@@ -1,6 +1,6 @@
 # Document Control
 
-Version:** PED v2.0
+**Version:** PED v2.0
 **Baseline:** M2 Architecture, Technology & Initial Design
 **Date:** 2026-09-28
 **Team:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
