@@ -61,7 +61,7 @@
 - **Stakeholder:** Municipal Administrators, Management
 - **Quality driver:** Auditability, data retention, compliance
 - **Architectural influence:** Append-only event store, retention policy, backup/restore, DB storage sizing, separation of current state from history
-- **Satisfied by:** ADR-ARCH-01, ADR-PERSIST-01 (Member 2)
+- **Satisfied by:** ADR-ARCH-01, ADR-PERSIST-01 
 
 ## ASR-to-Architecture Mapping
 
