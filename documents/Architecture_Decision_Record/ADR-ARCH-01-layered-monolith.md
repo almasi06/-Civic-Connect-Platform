@@ -59,7 +59,7 @@ Adopt a layered monolith with in-process domain events. Four logical layers: pre
 
 - Modular monolith evolution path (FE-007)
 - Notification channel abstraction (M2 future-scope)
-- `source` field on request entity (future IoT)
+- source field on request entity (future IoT)
 - PII-free reporting layer (future public API)
 - Clean API contract (future native apps)
 - Structured event/audit history (future analytics)
