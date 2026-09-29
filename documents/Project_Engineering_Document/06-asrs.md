@@ -1,9 +1,6 @@
 # Architecture-Significant Requirements (ASRs)
 
 > **M2 Addition — PED v2.0**
-> **Owner:** Davidzo Malapile
-> **Date:** 2026-09-28
-> **Linked ADRs:** ADR-ARCH-01, ADR-TECH-01
 
 ## ASR-01: Offline-First Field Worker Sync
 
