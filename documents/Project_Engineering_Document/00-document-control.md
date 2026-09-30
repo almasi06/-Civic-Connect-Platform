@@ -20,7 +20,7 @@
 | Naledi Moeng | Data/persistence, design patterns, integration |
 | Kamohelo Mabena | RTM, implementation, documentation, GitHub evidence |
 
-## Section 1.1 — M1 Baseline Inventory
+## Section 1.1 - M1 Baseline Inventory
 
 > Preserved from PED v1.0. This catalogue proves M1 was not silently rewritten.
 
@@ -39,7 +39,7 @@
 | Baseline Sign-Off | M1 sign-off block | Preserved; M2 sign-off added |
 | AI Usage Register | M1 entries | Preserved; M2 entries added |
 
-## Section 1.2 — M2 Controlled Change Record
+## Section 1.2 - M2 Controlled Change Record
 
 > Every M1 change for M2, with reason and evidence. Controlled change per M2 brief Section 5.1.
 
