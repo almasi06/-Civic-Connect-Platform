@@ -52,9 +52,9 @@
 | ASR section | Added | 8 ASRs identified and linked | M2 Section 5.2 | docs/ped/06-asrs.md |
 | Technology section | Added | Full stack + versions + dependencies | M2 Section 5.5 | ADR-TECH-01 |
 | Deployment direction | Added | Free-tier PaaS + managed Postgres | M2 Section 5.8 | docs/ped/14-deployment.md |
-| New requirements | Added | FR-08,09,10, 11, 14 15, NFR-07,08,09, 10, 11, | Scope evolution | PED Section Requirements (Member 3) |
-| New risks | Added | RR-008 to RR-157 | M2 introduces new risks | PED Section Risks (Member 3) |
-| New FE items | Added | FE-007 (architecture evolution path) | M2 forward planning | PED Section FE (Member 3) |
+| New requirements | Added | FR-08, 09, 10, 11, 13, 14, 15, NFR-07, 08, 09, 10, 11 | Scope evolution | PED Section Requirements  |
+| New risks | Added | RR-008 to RR-157 | M2 introduces new risks | PED Section Risks  |
+| New FE items | Added | FE-007 (architecture evolution path) | M2 forward planning | PED Section FE  |
 
 ## Review & Sign-Off
 
