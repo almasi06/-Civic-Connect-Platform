@@ -36,7 +36,7 @@ flowchart TD
 
 - ADR-ARCH-01 (architecture context)<br/>
 - A2 Task 1 (design problems and pattern selection)<br/>
-- Memeber 2's ADRs (ADR-PERSIST-01, ADR-INT-01)
+- ADRs (ADR-PERSIST-01, ADR-INT-01)
 
 ## Link
 
