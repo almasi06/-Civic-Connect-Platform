@@ -4,9 +4,7 @@ CivicConnect requires persistent storage for citizen incident reports, service-r
 status information, assignments, departmental information and the historical record of
 status changes. The persistence model must support the submission and tracking of
 municipal faults, offline synchronisation of field-worker updates, departmental
-reporting and transparent request-status tracking.
-
-The initial data model is therefore centred on the ServiceRequest entity, with related
+reporting and transparent request-status tracking. The initial data model is therefore centered on the ServiceRequest entity, with related
 entities representing citizens, categories, departments, assignments and status history.
 
 ### 2. Initial Data Model
@@ -37,9 +35,7 @@ erDiagram
 
 The ServiceRequest entity is the central persistent entity in CivicConnect. It
 represents a citizen-reported municipal fault and stores the information required to
-identify, locate and track the request.
-
-The initial attributes are:
+identify, locate and track the request. The initial attributes are:
 
 | Attribute | Description |
 |---|---|
@@ -58,9 +54,7 @@ The initial attributes are:
 ### 4. StatusHistory and Audit Data
 CivicConnect must retain a historical record of service-request status changes rather
 than storing only the current status. This provides traceability for citizens,
-administrators and other authorised users.
-
-The initial StatusHistory entity contains:
+administrators and other authorised users. The initial StatusHistory entity contains:
 
 | Attribute | Description |
 |---|---|
@@ -77,9 +71,7 @@ hide a correction; a correction should create a new history entry.
 
 ### 5. Assignment Data
 The Assignment entity records the relationship between a service request and the
-municipal department and/or field worker responsible for handling it.
-
-An initial Assignment structure is:
+municipal department and/or field worker responsible for handling it. An initial Assignment structure is:
 
 | Attribute | Description |
 |---|---|
@@ -94,23 +86,15 @@ unresolved faults. It also forms part of the persistence boundary for a status
 transition when an assignment changes.
 
 ### 6. Data Integrity
-CivicConnect will use layered validation to protect data integrity.
-
-Application-layer validation will enforce business rules and workflow rules, such as
+CivicConnect will use layered validation to protect data integrity. Application-layer validation will enforce business rules and workflow rules, such as
 whether a particular status transition is permitted and whether a user has permission
-to perform the operation.
-
-Database-level constraints will enforce structural integrity, including primary keys,
-foreign keys, required fields and valid status values.
-
-Client-side validation will be treated as a usability mechanism rather than the sole
+to perform the operation. Database-level constraints will enforce structural integrity, including primary keys,
+foreign keys, required fields and valid status values. Client-side validation will be treated as a usability mechanism rather than the sole
 security or integrity control because client-side checks can be bypassed.
 
 ### 7. Persistence Design Problem
 A key persistence problem is how CivicConnect should persist a service-request status
-transition when the transition can involve multiple related records.
-
-A status transition may require:
+transition when the transition can involve multiple related records. A status transition may require:
 
 1. Updating the current status of the ServiceRequest.
 2. Inserting a StatusHistory record.
@@ -123,9 +107,7 @@ Resolved while its corresponding history record was not successfully created.
 
 ### 8. Transactional Persistence Decision
 The initial CivicConnect design will treat the database changes associated with a
-status transition as one transactional operation.
-
-The transaction boundary is:
+status transition as one transactional operation. The transaction boundary is:
 
 ServiceRequest status update
         +
@@ -138,7 +120,7 @@ COMMIT
 If any required operation fails, the transaction will be rolled back so that the
 related changes are not partially persisted.
 
--This approach protects consistency between the current request state, the historical
+This approach protects consistency between the current request state, the historical
 audit record and related assignment information. It is proportionate to CivicConnect's
 current architecture because the related persistence operations form one logical
 business operation.
@@ -163,13 +145,7 @@ pessimistic locking would introduce additional locking complexity.
 
 ### 10. Notification and Transaction Consistency
 
-Notification processing must not occur from an uncommitted status transition.
-
-The notification event will therefore be raised only after the persistence transaction
-has successfully committed. This prevents a notification from being generated for a
-status change that is subsequently rolled back.
-
-Conceptually:
+Notification processing must not occur from an uncommitted status transition. The notification event will therefore be raised only after the persistence transaction has successfully committed. This prevents a notification from being generated for a status change that is subsequently rolled back. Conceptually:
 
 Status change
      ↓
@@ -183,15 +159,7 @@ Notification handling
 
 ### 11. Caching Consideration
 
-The current design will not cache the current ServiceRequest status in v1.
-
-Caching could improve read performance, but a stale cached status could cause citizens
-or administrators to see information that no longer reflects the persisted database
-state. This would conflict with the requirement for transparent request-status
-tracking.
-
-Caching may be reconsidered for read-heavy aggregate reporting, such as departmental
-dashboard data, if later performance evidence justifies the additional complexity.
+The current design will not cache the current ServiceRequest status in v1. Caching could improve read performance, but a stale cached status could cause citizens or administrators to see information that no longer reflects the persisted database state. This would conflict with the requirement for transparent request-status tracking. Caching may be reconsidered for read-heavy aggregate reporting, such as departmental dashboard data, if later performance evidence justifies the additional complexity.
 
 ### 12. Scalability and Availability Considerations
 
@@ -222,9 +190,7 @@ therefore remain important later engineering considerations.
 ### 14. Evidence and Decision Records
 
 The persistence decision will be recorded in ADR-PERSIST-01 and linked to the relevant
-architecture and requirements traceability records.
-
-Evidence will include:
+architecture and requirements traceability records. Evidence will include:
 
 - Initial data model/ERD.
 - StatusHistory design.
