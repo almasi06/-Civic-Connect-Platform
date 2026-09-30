@@ -1,11 +1,8 @@
 # ADR-TECH-01: PERN + TypeScript Technology Stack
 
 - **Status:** Accepted
-- **Date:** 2026-09-29
 - **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-- **Supersedes:** ED-003 (Deferred technology stack selection, M1)
-- **Related:** ADR-ARCH-01, ADR-PERSIST-01 , ADR-INT-01 
-- **Requirement(s):** ASR-01 to ASR-08
+
 
 ## Context
 
