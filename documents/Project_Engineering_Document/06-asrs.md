@@ -1,6 +1,5 @@
 # Architecture-Significant Requirements (ASRs)
 
-> **M2 Addition — PED v2.0**
 
 ## ASR-01: Offline-First Field Worker Sync
 
