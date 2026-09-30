@@ -15,7 +15,6 @@ See [ADR-ARCH-01](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.m
 | Alternative | Verdict | Reason |
 |---|---|---|
 | Layered monolith + in-process events | **Selected** | Proportionate for team size, timeline, budget |
-| Modular monolith | Deferred | Can evolve from A later (FE-007) |
 | Microservices | Rejected | Premature network boundaries (Richards & Ford, 2020) |
 | Serverless / FaaS | Rejected | Cold starts threaten NFR-02; offline sync complexity |
 
@@ -27,7 +26,7 @@ See [ADR-ARCH-01](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.m
 
 - **Architecture:** Logical structure, responsibilities, boundaries, interactions (layers, modules, events)
 - **Technology:** Specific products/versions implementing the architecture
-- **Logical layers ≠ physical deployment tiers:** All four logical layers run in a single deployable unit; the database is the only separate physical tier
+- **Logical layers are not the same as physical deployment tiers:** All four logical layers run in a single deployable unit; the database is the only separate physical tier
 
 ## Diagrams
 
