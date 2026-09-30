@@ -77,5 +77,5 @@
 
 ## Cross-cutting Non-ASR Constraints
 
-- **NFR-10 (WCAG 2.1 AA):** React + a11y library (axe-core in CI)
-- **NFR-12 (Error handling):** Centralised error boundary; no stack traces in user responses
+- **NFR-10 (WCAG 2.1 AA)**
+- **NFR-12 (Error handling)**
