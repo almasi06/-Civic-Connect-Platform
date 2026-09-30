@@ -12,7 +12,7 @@
 
 | Criterion (weight) | MERN | **PERN** | Django + React | Spring Boot + React |
 |---|---|---|---|---|
-| Team capability (25%) | High | **High** | Medium | Low–Med |
+| Team capability (25%) | High | **High** | Medium | Low-Med |
 | Free-tier hosting (20%) | Excellent | **Excellent** | Good | Poor |
 | Relational integrity / ACID (20%) | Weak | **Strong** | Strong | Strong |
 | Offline / PWA support (10%) | Strong | **Strong** | Good | Medium |
