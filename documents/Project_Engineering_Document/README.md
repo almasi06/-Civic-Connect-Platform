@@ -9,7 +9,7 @@
 
 | Section | File | Status |
 |---|---|---|
-| Document Control (M1 inventory + M2 changes) | [00-document-control.md](00-document-control.md) | Baselined |
+| Document Control | [00-document-control.md](00-document-control.md) | Baselined |
 | Requirements (FR + NFR) | [03-requiremnts.md](03-requirements.md) | M1 + M2 additions |
 | Scope Baseline | [04-scope-baseline.md](04-scope-baseline.md) | M1 + M2 layers |
 | Constraints | [05-constraints.md](05-constraints.md) | M1 baseline |
