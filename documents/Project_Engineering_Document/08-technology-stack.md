@@ -63,7 +63,7 @@
 
 ## Licensing Summary
 
-All selected technologies are open-source with permissive licences. No paid licences required. Satisfies zero-budget constraint.
+> All selected technologies are open-source with permissive licences. No paid licences required. Satisfies zero-budget constraint.
 
 ## Risks Introduced
 
@@ -85,4 +85,4 @@ All selected technologies are open-source with permissive licences. No paid lice
 
 - ADR: [ADR-TECH-01](../Architecture_Decision_Record/ADR-TECH-01-pern-stack.md)
 - Architecture: [07-architecture.md](07-architecture.md)
-- Risk Register: RR-005 to RR-008 
+- Risk Register: [12-risk-register.md](12-risk-register.md)
