@@ -73,6 +73,6 @@ Adopt a layered monolith with in-process domain events. Four logical layers: pre
 
 ## Links
 
-- PED: [07-architecture.md](../ped/07-architecture.md)
-- ASRs: [06-asrs.md](../ped/06-asrs.md)
+- PED: [07-architecture.md](../Project_Engineering_Document/07-architecture.md)
+- ASRs: [06-asrs.md](../Project_Engineering_Document/06-asrs.md)
 - Related ADRs: [ADR-TECH-01](ADR-TECH-01-pern-stack.md)
