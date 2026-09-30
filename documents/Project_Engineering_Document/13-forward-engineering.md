@@ -16,8 +16,8 @@
 | FE ID | M2 Status | Notes |
 |---|---|---|
 | FE-001 | In progress | M2 spike on service worker sync patterns; conflict strategy to be recorded in M2 ADR (ID TBD). |
-| FE-002 | Deferred to M2 | CI tooling confirmation pending stack selection (PERN + TypeScript now selected; GitHub Actions identified). |
-| FE-003 | Deferred to M2 | Free-tier hosting validation in progress (Vercel/Netlify, Railway/Render, Supabase/Neon under evaluation). |
-| FE-004 | Deferred to M2 | Free-tier monitoring option under evaluation. |
-| FE-005 | Deferred to M2 | Recovery as evaluation criterion for M2 stack decision. |
-| FE-006 | Deferred to M2 | Indexing/aggregation strategy noted for M2 data design. |
+| FE-002 | In progress | CI tooling confirmation pending stack selection (PERN + TypeScript now selected; GitHub Actions identified). |
+| FE-003 | In progress | Free-tier hosting validation in progress (Vercel/Netlify, Railway/Render, Supabase/Neon under evaluation). |
+| FE-004 | In progress | Free-tier monitoring option under evaluation. |
+| FE-005 | In progress | Recovery as evaluation criterion for M2 stack decision. |
+| FE-006 | In progress | Indexing/aggregation strategy noted for M2 data design. |
