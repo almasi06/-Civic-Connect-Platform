@@ -1,6 +1,6 @@
 # Technology Stack
 
-> **M2 Addition - PED v2.0**
+
 
 > **Linked ADR:** [ADR-TECH-01](../Architecture_Decision_Record/ADR-TECH-01-pern-stack.md)
 

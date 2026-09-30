@@ -1,6 +1,5 @@
 # M2 Baseline Definition
 
-> **M2 Addition - PED v2.0**
 
 **Baseline:** Architecture, Technology & Initial Design
 **Version:** M2-Baseline-v1.0

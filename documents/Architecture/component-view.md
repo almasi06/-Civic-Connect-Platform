@@ -1,6 +1,5 @@
 # Component view - Design Patterns Placement 
 
->**M2 Addition - PEDv2.0**
 
 ## Diagram 
 

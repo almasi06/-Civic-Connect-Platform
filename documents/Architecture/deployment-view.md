@@ -1,6 +1,6 @@
 # Deployment View
 
-> **M2 Addition - PED v2.0**
+>
 
 ## Diagram
 

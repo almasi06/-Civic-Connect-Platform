@@ -1,6 +1,5 @@
 # Deployment Direction
 
-> **M2 Addition - PED v2.0**
 
 ## Current Direction
 

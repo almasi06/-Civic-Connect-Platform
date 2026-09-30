@@ -1,6 +1,5 @@
 # Runtime View - Status Transition to Notification
 
-> **M2 Addition - PED v2.0**
 
 ## Diagram
 
