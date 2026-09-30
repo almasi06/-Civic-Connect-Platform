@@ -36,6 +36,10 @@ sequenceDiagram
 - **Optimistic concurrency:** Version column on request row detects lost updates
 - **Append-only audit:** Audit history records cannot be updated or deleted through normal application code
 
+
+## Link
+
+- PED: [07-architecture.md](../Project_Engineering_Document/07-architecture.md)
 ## ASRs Satisfied
 
 - ASR-02 (Real-Time Status Transparency)
