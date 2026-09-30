@@ -34,7 +34,7 @@
 | Constraints | Scope, schedule, cost, quality, security, technology | Preserved; tech deferment resolved |
 | RTM Structure | Requirement table skeleton | Evolved in M2 |
 | Risk Register | RR-001 to RR-007 | Preserved; M2 adds RR-005–009 |
-| FE Register | FE-001 to FE-006 | Preserved; M2 updates + FE-007 |
+| FE Register | FE-001 to FE-006 | Preserved; M2 updates  |
 | Decision Log | ED-001, ED-002, ED-003 | Preserved; ED-003 resolved |
 | Baseline Sign-Off | M1 sign-off block | Preserved; M2 sign-off added |
 | AI Usage Register | M1 entries | Preserved; M2 entries added |
@@ -54,7 +54,7 @@
 | Deployment direction | Added | Free-tier PaaS + managed Postgres | M2 Section 5.8 | docs/ped/14-deployment.md |
 | New requirements | Added | FR-08, 09, 10, 11, 13, 14, 15 NFR-07, 08, 09, 10, 11 | Scope evolution | PED Section Requirements  |
 | New risks | Added | RR-008 to RR-157 | M2 introduces new risks | PED Section Risks  |
-| New FE items | Added | FE-007 (architecture evolution path) | M2 forward planning | PED Section FE  |
+
 
 ## Review & Sign-Off
 
