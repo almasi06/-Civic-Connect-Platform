@@ -17,7 +17,7 @@
 | **Architecture** | [07-architecture.md](07-architecture.md) | Baselined (Member 1) |
 | **Technology Stack** | [08-technology-stack.md](08-technology-stack.md) | Baselined (Member 1) |
 | Data & Persistence | *(Member 2)* | M2 |
-| Design Patterns | *(Member 2)* | M2 |
+| Design Decisions | *(Member 2)* | M2 |
 | Integration / API | *(Member 2)* | M2 |
 | Risk Register | *(Member 3)* | M1 + M2 |
 | Forward Engineering | *(Member 3)* | M1 + M2 |
