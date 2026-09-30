@@ -1,4 +1,4 @@
-# ADR-PERSIST-01 — Transactional Status Transition
+# ADR-PERSIST-01: Transactional Status Transition
 
 ## Status
 
