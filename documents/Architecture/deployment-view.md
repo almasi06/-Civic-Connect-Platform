@@ -33,11 +33,11 @@ flowchart LR
 
 | Selected Technology | PaaS Compatibility |
 |---|---|
-| Node 20 LTS | ✅ Supported on all candidates |
-| PostgreSQL 16 | ✅ Managed add-on available |
-| Prisma migrations | ✅ Run at deploy time |
-| Static assets (React build) | ✅ Served from same host |
-| Workbox PWA | ✅ Browser-side, no server change |
+| Node 20 LTS |  Supported on all candidates |
+| PostgreSQL 16 |  Managed add-on available |
+| Prisma migrations |  Run at deploy time |
+| Static assets (React build) |  Served from same host |
+| Workbox PWA |  Browser-side, no server change |
 
 ## Deferred
 
