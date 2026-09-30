@@ -33,7 +33,7 @@
 | Scope Baseline | M1 in/out/future scope | Preserved |
 | Constraints | Scope, schedule, cost, quality, security, technology | Preserved; tech deferment resolved |
 | RTM Structure | Requirement table skeleton | Evolved in M2 |
-| Risk Register | RR-001 to RR-004 | Preserved; M2 adds RR-005–009 |
+| Risk Register | RR-001 to RR-007 | Preserved; M2 adds RR-005–009 |
 | FE Register | FE-001 to FE-006 | Preserved; M2 updates + FE-007 |
 | Decision Log | ED-001, ED-002, ED-003 | Preserved; ED-003 resolved |
 | Baseline Sign-Off | M1 sign-off block | Preserved; M2 sign-off added |
@@ -52,8 +52,8 @@
 | ASR section | Added | 8 ASRs identified and linked | M2 Section 5.2 | docs/ped/06-asrs.md |
 | Technology section | Added | Full stack + versions + dependencies | M2 Section 5.5 | ADR-TECH-01 |
 | Deployment direction | Added | Free-tier PaaS + managed Postgres | M2 Section 5.8 | docs/ped/14-deployment.md |
-| New requirements | Added | FR-08, 10, 11, 14, 16, NFR-07, 10, 11, 12 | Scope evolution | PED Section Requirements (Member 3) |
-| New risks | Added | RR-005 to RR-009 | M2 introduces new risks | PED Section Risks (Member 3) |
+| New requirements | Added | FR-08,09,10, 11, 14 15, NFR-07,08,09, 10, 11, | Scope evolution | PED Section Requirements (Member 3) |
+| New risks | Added | RR-008 to RR-157 | M2 introduces new risks | PED Section Risks (Member 3) |
 | New FE items | Added | FE-007 (architecture evolution path) | M2 forward planning | PED Section FE (Member 3) |
 
 ## Review & Sign-Off
