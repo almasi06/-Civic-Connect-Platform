@@ -1,11 +1,8 @@
 # ADR-ARCH-01: Layered Monolith with In-Process Domain Events
 
 - **Status:** Accepted
-- **Date:** 2026-09-28
 - **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-- **Supersedes:** None (M1 had no architecture decision)
-- **Related:** ADR-TECH-01, ADR-PERSIST-01 
-- **Requirement(s):** ASR-01 to ASR-08
+
 
 ## Context
 
