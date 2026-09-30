@@ -1,8 +1,5 @@
 # AI Usage Register
 
-## Purpose
-Per the SEN381 Master Project Brief, AI is an engineering assistant, not an authoritative source. All material AI contributions must be recorded here. Students must verify important AI claims against credible evidence and/or technical tests. AI-generated code is subject to the same controls as human-written code. The statement "AI generated it" is never an acceptable engineering defence.
-
 ---
 
 ## AI Usage Register : Assignment 1 
@@ -35,4 +32,4 @@ Per the SEN381 Master Project Brief, AI is an engineering assistant, not an auth
 ## AI Usage Register : PED v2.0
 | Date | Student | Tool | Task | AI Contribution | Verification | Decision | Issues Found |
 |---|---|---|---|---|---|---|---|
-| 25/09/26 | Davidzo | Grok | Updating the RTM: Design Link, Test Evidence and Change History; adding expanded FR/NFR rows. | Drafted cell content from PED v1.0, Assignments 1 and 2, and Risk Register Addendum 2. | Checked each cell against the source documents; confirm all items and the summarised wording of FR-08 to FR-15 and NFR-06 to NFR-11. | Accepted with modification | Information was missed from the document and some information was incorrect. |
+| 25/09/26 | Davidzo | Grok | Updating the RTM: Design Link, Test Evidence and Change History; adding expanded FR/NFR rows. | Drafted cell content from PED v1.0, Assignments 1 and 2, and Risk Register. | Checked each cell against the source documents; confirm all items and the summarised wording of FR-08 to FR-15 and NFR-06 to NFR-11. | Accepted with modification | Information was missed from the document and some information was incorrect. |
