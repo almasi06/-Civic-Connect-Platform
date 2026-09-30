@@ -3,24 +3,24 @@
 
 **Baseline:** Architecture, Technology & Initial Design
 **Version:** M2-Baseline-v1.0
-**Git tag:** `m2-baseline` (to be applied after PR merge)
+**Git tag:** `m2-baseline` 
 
 ## Included in Baseline
 
 | Item | Version | Owner |
 |---|---|---|
-| Architecture style | Layered monolith + in-process events | Member 1 |
-| Logical layers | Presentation / Application / Domain / Persistence | Member 1 |
-| ASR set | ASR-01 to ASR-08 | Member 1 |
-| Technology stack | PERN + TypeScript + Prisma + Workbox | Member 1 |
-| Database engine | PostgreSQL 16 | Member 1 |
-| Hosting direction | Free-tier PaaS (provider TBD) | Member 1 |
-| CI approach | GitHub Actions (build + unit tests blocking) | Member 3 |
-| Branching model | GitHub Flow, protected main, 2 reviewers | Member 3 |
-| Data model | Initial schema | Member 2 |
-| Design patterns | Observer + Factory Method | Member 2 |
-| Notification integration | In-process domain event | Member 2 |
-| RTM structure | Evolving matrix | Member 3 |
+| Architecture style | Layered monolith + in-process events | Kamo |
+| Logical layers | Presentation / Application / Domain / Persistence | Kamo |
+| ASR set | ASR-01 to ASR-08 | Kamo |
+| Technology stack | PERN + TypeScript + Prisma + Workbox | Kamo |
+| Database engine | PostgreSQL 16 | Kamo |
+| Hosting direction | Free-tier PaaS (provider TBD) | Kamo |
+| CI approach | GitHub Actions (build + unit tests blocking) | Davidzo |
+| Branching model | GitHub Flow, protected main, 2 reviewers | Davidzo |
+| Data model | Initial schema | Naledi |
+| Design patterns | Observer + Factory Method | Naledi |
+| Notification integration | In-process domain event | Naledi |
+| RTM structure | Evolving matrix | Davidzo |
 
 ## Traceability
 
@@ -39,7 +39,7 @@ Every baselined item traces to at least one of:
 | Message broker | A2 Task 3 recommends in-process | Independent scaling requirement | M3/M4 |
 | Read replicas / caching | No measured performance evidence | Load test results | M3/M4 |
 | Observability stack | FE-004 | Free-tier monitoring comparison | M3 |
-| Detailed design patterns | Member 2 in progress | ADR-PERSIST-01, ADR-INT-01 | M2 (this milestone) |
+| Detailed design patterns | Member 2 in progress | ADR-PERSIST-01, ADR-INT-01 | M2 |
 | Specific class designs | Detailed design not required in M2 | M3 detailed design | M3 |
 
 ## Change Control
@@ -52,13 +52,13 @@ Any post-baseline change to an included item requires:
 
 ## Sign-Off
 
-| Role | Name | Date | Approved |
-|---|---|---|---|
-| Architecture Lead | Davidzo Malapile | 2026-09-29 | ✅ |
-| Data & Design Lead | Naledi Moeng | pending | ⏳ |
-| Dev & Traceability Lead | Kamohelo Mabena | pending | ⏳ |
+| Role | Name | Date | 
+|---|---|---|
+| Architecture Lead | Davidzo Malapile | 2026-09-29 |
+| Data & Design Lead | Naledi Moeng | pending |
+| Dev & Traceability Lead | Kamohelo Mabena | pending |
 
-**Baseline becomes formally accepted when all three signatures are present and the PR is merged into Documentation.**
+> Baseline becomes formally accepted when all three signatures are present and the PR is merged into Documentation.
 
 ## Links
 
