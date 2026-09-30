@@ -1,6 +1,6 @@
 # Initial Design Decisions
 
-## Design Decision 1 — Notification Fan-Out
+## Design Decision 1: Notification Fan-Out
 **Design Pattern:** Observer
 
 ### 1.1 Design Problem
@@ -87,7 +87,7 @@ The decision will be evidenced through:
 - Traceability to the relevant CivicConnect functional requirements, particularly
   the status tracking and notification requirements.
 
-## Design Decision 2 — Service-Request Category Creation
+## Design Decision 2: Service-Request Category Creation
 **Design Pattern:** Factory Method
 
 ### 2.1 Design Problem
