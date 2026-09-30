@@ -44,3 +44,8 @@ flowchart LR
 - Specific hosting provider -> M3
 - Multi-region -> not planned
 - Production observability -> M3/M4
+
+
+## Link
+
+- PED: [07-architecture.md](../Project_Engineering_Document/07-architecture.md)
