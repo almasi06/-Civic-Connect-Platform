@@ -1,4 +1,4 @@
-# ADR-INT-01 — Notification Integration Approach
+# ADR-INT-01: Notification Integration Approach
 
 ## Status
 
