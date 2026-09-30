@@ -29,8 +29,8 @@
 
 | ADR | Decision | Status |
 |---|---|---|
-| [ADR-ARCH-01](../adr/ADR-ARCH-01-layered-monolith.md) | Layered monolith + in-process events | Accepted |
-| [ADR-TECH-01](../adr/ADR-TECH-01-pern-stack.md) | PERN + TypeScript stack | Accepted |
+| [ADR-ARCH-01](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md) | Layered monolith + in-process events | Accepted |
+| [ADR-TECH-01](../Architecture_Decision_Record/ADR-TECH-01-pern-stack.md) | PERN + TypeScript stack | Accepted |
 
 ## Version History
 
