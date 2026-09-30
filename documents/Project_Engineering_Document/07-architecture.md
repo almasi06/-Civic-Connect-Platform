@@ -1,8 +1,6 @@
 # Architecture
 
-> **M2 Addition — PED v2.0**
-> **Owner:** Davidzo Malapile
-> **Date:** 2026-09-28
+
 
 ## Selected Architecture
 
@@ -10,7 +8,7 @@ Layered monolith with in-process domain events.
 
 ## Decision
 
-See [ADR-ARCH-01](../adr/ADR-ARCH-01-layered-monolith.md).
+See [ADR-ARCH-01](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md).
 
 ## Alternatives Considered
 
@@ -33,7 +31,7 @@ See [ADR-ARCH-01](../adr/ADR-ARCH-01-layered-monolith.md).
 
 ## Diagrams
 
-- [Logical architecture](../architecture/logical-architecture.md)
-- [Deployment view](../architecture/deployment-view.md)
-- [Runtime view](../architecture/runtime-view.md)
-- [Component view](../architecture/component-view.md)
+- [Logical architecture](../Architecture/logical-architecture.md)
+- [Deployment view](../Architecture/deployment-view.md)
+- [Runtime view](../Architecture/runtime-view.md)
+- [Component view](../Architecture/component-view.md)
