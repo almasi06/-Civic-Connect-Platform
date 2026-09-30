@@ -1,4 +1,4 @@
-# Architecture-Significant Requirements (ASRs)
+# Architecture Significant Requirements (ASRs)
 
 
 ## ASR-01: Offline-First Field Worker Sync
@@ -34,7 +34,7 @@
 - **Architectural influence:** Query/index design, aggregation strategy, possible read-model separation, PII-free reporting layer
 - **Satisfied by:** ADR-ARCH-01, ADR-TECH-01
 
-## ASR-05: Low-Bandwidth / Intermittent Connectivity
+## ASR-05: Low-Bandwidth & Intermittent Connectivity
 
 - **Source:** Technology Constraint 1
 - **Stakeholder:** Field Workers, Citizens
@@ -54,7 +54,7 @@
 - **Architectural influence:** Layered architecture, dependency injection, separation of concerns, initial automated verification
 - **Satisfied by:** ADR-ARCH-01
 
-## ASR-08: Audit Retention & Accountability (NEW in M2)
+## ASR-08: Audit Retention & Accountability
 
 - **Source:** NFR-07 (90-day retention), FR-16 (resolution times, staff activity)
 - **Stakeholder:** Municipal Administrators, Management
