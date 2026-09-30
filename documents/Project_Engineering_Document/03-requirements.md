@@ -268,7 +268,7 @@
 
 ---
 
-## Expanded Functional Requirements (M2 — from Risk Register Addendum 2)
+## Expanded Functional Requirements (M2)
 
 ### FR-08: Request History View
 
@@ -438,7 +438,7 @@
 
 ---
 
-## Expanded Non-Functional Requirements (M2 — from Risk Register Addendum 2)
+## Expanded Non-Functional Requirements (M2)
 
 ### NFR-06: Audit Log Retention
 
