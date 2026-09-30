@@ -1,8 +1,7 @@
 # ADR-PERSIST-01: Transactional Status Transition
 
-## Status
-
-Accepted
+- **Status:** Accepted
+- **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
 
 ## Context
 
