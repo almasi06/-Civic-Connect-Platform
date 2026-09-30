@@ -1,10 +1,5 @@
 # CivicConnect: Project Engineering Document (PED)
 
-**Version:** 2.0
-**Baseline:** Architecture, Technology & Initial Design
-**Team:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-**Date:** 2026-09-28
-
 ## Quick Navigation
 
 | Section | File | Status |
