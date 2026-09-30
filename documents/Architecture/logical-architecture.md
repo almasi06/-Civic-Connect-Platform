@@ -75,3 +75,7 @@ flowchart TD
 - All four logical layers run in a single deployable unit (ADR-ARCH-01)
 - The database is the only separate physical tier
 - Logical layers are a design concept, not physical deployment tiers
+
+## Link
+
+- PED: [07-architecture.md](../Project_Engineering_Document/07-architecture.md)
