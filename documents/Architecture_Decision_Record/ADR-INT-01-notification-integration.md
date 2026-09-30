@@ -1,8 +1,7 @@
 # ADR-INT-01: Notification Integration Approach
 
-## Status
-
-Accepted
+- **Status:** Accepted
+- **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
 
 ## Context
 
