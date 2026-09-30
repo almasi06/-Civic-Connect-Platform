@@ -24,7 +24,7 @@ sequenceDiagram
     WF->>Bus: RAISE StatusChanged (post-commit)
     Bus->>NH: notify(event)
     NH->>DB: INSERT in_app_notification
-    NH-->>API: ack
+    NH-->>API: acknowledgement
     API-->>UI: 200 OK
 ```
 
