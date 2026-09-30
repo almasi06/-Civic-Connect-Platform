@@ -41,41 +41,24 @@ This decision may be revisited if future requirements introduce sufficient
 notification volume, independent deployment requirements or other integration
 needs.
 
+
 ## 4. Initial Integration Flow
 
-The initial integration flow is:
+The initial notification integration follows this sequence:
 
-```text
-User/Client
-    |
-    v
-Service Request Workflow
-    |
-    v
-Status Transition
-    |
-    v
-Persistence Transaction
-    |
-    +---- failure ----> Rollback
-    |
-    +---- success ----> Commit
-                          |
-                          v
-                   Status-Change Event
-                          |
-                          v
-                 Notification Subject
-                          |
-                +---------+---------+
-                |                   |
-                v                   v
-          Observer 1           Observer 2
+```mermaid
+flowchart TD
+    A[Service Request Workflow] --> B[Status Transition]
+    B --> C[Persistence Transaction]
+    C -->|Failure| D[Rollback]
+    C -->|Success| E[Commit]
+    E --> F[Status Change Event]
+    F --> G[Notification Subject]
+    G --> H[Observer 1]
+    G --> I[Observer 2]
+```
 
 
-### Step 5 — Add interface responsibilities
-
-```markdown id="f8q2sw"
 ## 5. Initial Interface Responsibilities
 
 The initial design will separate responsibilities as follows:
