@@ -54,9 +54,9 @@ Any post-baseline change to an included item requires:
 
 | Role | Name | Date | 
 |---|---|---|
-| Architecture Lead | Davidzo Malapile | 2026-09-29 |
-| Data & Design Lead | Naledi Moeng | pending |
-| Dev & Traceability Lead | Kamohelo Mabena | pending |
+| Architecture Lead | Kamohelo Mabena | 2026-09-28 |
+| Data & Design Lead | Naledi Moeng | 2026-09-28 |
+| Dev & Traceability Lead | Davidzo Malapile | 2026-09-28 |
 
 > Baseline becomes formally accepted when all three signatures are present and the PR is merged into Documentation.
 
