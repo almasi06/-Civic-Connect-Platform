@@ -54,7 +54,7 @@
 | Deployment direction | Added | Free-tier PaaS + managed Postgres | M2 Section 5.8 | docs/ped/14-deployment.md |
 | New requirements | Added | FR-08, 09, 10, 11, 13, 14, 15 NFR-07, 08, 09, 10, 11 | Scope evolution | PED Section Requirements  |
 | New risks | Added | RR-008 to RR-157 | M2 introduces new risks | PED Section Risks  |
-
+| Decision Log | ED-004 to ED-012 | Preserved; ED-003 resolved |
 
 ## Review & Sign-Off
 
