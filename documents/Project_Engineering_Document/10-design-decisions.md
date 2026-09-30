@@ -151,12 +151,12 @@ factory implementations will provide the category-specific creation behaviour.
 
 Conceptually, the design may contain:
 
-- `RequestFactory` — common creation interface.
-- `FacilityFaultFactory` — creates facility-fault requests.
-- `DamagedEquipmentFactory` — creates damaged-equipment requests.
-- `SecurityConcernFactory` — creates security-related requests.
-- `ITSupportFactory` — creates IT-support requests.
-- `LostPropertyFactory` — creates lost-property requests.
+- `RequestFactory` - common creation interface.
+- `FacilityFaultFactory` - creates facility-fault requests.
+- `DamagedEquipmentFactory` - creates damaged-equipment requests.
+- `SecurityConcernFactory` - creates security-related requests.
+- `ITSupportFactory` - creates IT-support requests.
+- `LostPropertyFactory` - creates lost-property requests.
 
 The exact classes and interfaces may be refined during implementation.
 
