@@ -23,6 +23,11 @@ Three initial integration approaches were considered:
 | Synchronous REST | The application communicates with a separate notification service through an HTTP API. | Provides a clear service boundary and allows independent components. | Introduces network failures, API management and additional deployment complexity. |
 | Asynchronous event/message | The application publishes an event to a messaging mechanism which notification components consume. | Provides loose coupling and asynchronous processing. | Requires additional messaging infrastructure and operational complexity. |
 
+The alternatives were informed by the Assignment 2 research on in-process calls,
+synchronous REST communication and asynchronous event/message-based integration.
+The research considered the trade-offs between coupling, service boundaries,
+network dependency, asynchronous processing and additional infrastructure.
+
 ## 3. Initial Integration Decision
 
 For the initial CivicConnect implementation, an **in-process event-based
@@ -94,7 +99,7 @@ The initial integration design must satisfy the following constraints:
 
 The initial integration decision will be evidenced through:
 
-- `ADR-INT-01` documenting the integration alternatives and selected approach.
+- `ADR-INT-01-Notification Integration` documenting the integration alternatives and selected approach.
 - A component/integration diagram showing the status-transition and notification
   interaction.
 - Application implementation of the status-change event flow.
