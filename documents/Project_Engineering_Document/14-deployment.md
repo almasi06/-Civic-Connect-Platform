@@ -17,13 +17,13 @@
 
 | Selected Decision | Deployment Compatibility |
 |---|---|
-| Layered monolith (ADR-ARCH-01) | Single container deploy -✅ |
-| PostgreSQL 16 (ADR-TECH-01) | Managed Postgres available on all candidates -✅ |
-| Node 20 LTS | Supported on all candidates -✅ |
-| Prisma migrations | Run at deploy time -✅ |
-| Workbox PWA | Static assets served from same host -✅ |
-| HTTPS/TLS (NFR-03) | Provided by PaaS by default -✅ |
-| Stateless app (ASR-06) | Supports horizontal scaling if needed -✅ |
+| Layered monolith (ADR-ARCH-01) | Single container deploy |
+| PostgreSQL 16 (ADR-TECH-01) | Managed Postgres available on all candidates  |
+| Node 20 LTS | Supported on all candidates  |
+| Prisma migrations | Run at deploy time  |
+| Workbox PWA | Static assets served from same host  |
+| HTTPS/TLS (NFR-03) | Provided by PaaS by default  |
+| Stateless app (ASR-06) | Supports horizontal scaling if needed  |
 
 ## Known Implications
 
