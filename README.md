@@ -1,6 +1,6 @@
 # CivicConnect – Community Service Request Management Platform  
 
-## 📌 Project Overview  
+## Project Overview  
 Civic Connect is a controlled digital platform designed to manage community service requests such as facility faults, maintenance issues, IT support, security concerns, and other operational needs. The project consolidates prior programming, database, and web development knowledge into a full software engineering lifecycle, emphasizing **traceability, accountability, and quality evidence** rather than just working code.  
 
 ---
