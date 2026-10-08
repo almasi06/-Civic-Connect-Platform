@@ -74,7 +74,7 @@ implementation.
 The notification mechanism must not publish an event for a status transition
 that has failed and been rolled back.
 
-### 1.6 Decision Evidence
+### 1.6 Planned Decision Evidence
 
 The decision will be evidenced through:
 
