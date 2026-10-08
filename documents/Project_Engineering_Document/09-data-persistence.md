@@ -204,3 +204,17 @@ The persistence decision must be supported by implementation and test evidence a
 
 These checks provide evidence for the transaction boundary, concurrency control, validation rules and notification timing. The test results, relevant code changes and review evidence should be linked to the appropriate PED, ADR and RTM entries once they exist.
 
+### 15. Persistence Decision Traceability
+
+The persistence decision is linked to the following project requirements and engineering artefacts:
+
+| Project artefact or requirement                    | Relationship to this decision                                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| FR-05 — status alerts and tracking                 | Requires reliable, current status information and consistent status transitions.                                                |
+| FR-04 — administrative actions and permissions     | Supports validation of who may perform particular workflow transitions.                                                         |
+| FR-03 — unresolved faults by department and status | Depends on reliable request-state data for reporting and filtering.                                                             |
+| Data/persistence model                             | Defines the request, status, assignment and history data structures and their integrity relationships.                          |
+| `ADR-PERSIST-01`                                   | Records the formal decision, alternatives, trade-offs and consequences.                                                         |
+| RTM                                                | Links relevant requirements to the design decision and, as development progresses, to implementation and verification evidence. |
+| Risk Register                                      | Records the risk of partial transitions, conflicting updates and incomplete history.                                            |
+
