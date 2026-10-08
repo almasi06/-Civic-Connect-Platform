@@ -187,17 +187,20 @@ therefore remain important later engineering considerations.
 | FR-05 | ServiceRequest stores the current status while StatusHistory preserves the sequence of status transitions. |
 | NFR-01 | Efficient persistence and synchronisation of status updates must support the required offline-to-online synchronisation time. |
 
-### 14. Evidence and Decision Records
 
-The persistence decision will be recorded in ADR-PERSIST-01 and linked to the relevant
-architecture and requirements traceability records. Evidence will include:
+### 14. Implementation and Verification Evidence
 
-- Initial data model/ERD.
-- StatusHistory design.
-- Transaction boundary for status transitions.
-- Version field for optimistic concurrency.
-- Database integrity constraints.
-- Verification that a failed status transition does not leave partial data persisted.
-- Verification that notification processing does not occur when the transaction rolls back.
-- RTM traceability to FR-03 and FR-05.
+The persistence decision must be supported by implementation and test evidence as the application develops. The following are planned verification checks; they must not be recorded as passed until they have actually been executed.
+
+| ID     | Verification check                                                                           | Expected result                                                                                                       |
+| ------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| DP-T01 | Attempt a status transition in which a related database write fails.                         | The transaction rolls back; neither the status nor its related history/assignment changes remain partially committed. |
+| DP-T02 | Submit a status transition that violates the workflow rules.                                 | The application rejects the transition and makes no unintended changes.                                               |
+| DP-T03 | Attempt to update a request using an outdated version value.                                 | The conflicting update is detected and rejected or handled through an explicit conflict-resolution process.           |
+| DP-T04 | Attempt to save a structurally invalid reference or status value.                            | The relevant database constraint rejects the invalid data.                                                            |
+| DP-T05 | Cause a status-transition transaction to fail and observe notification handling.             | No notification event is raised for the rolled-back transition.                                                       |
+| DP-T06 | Complete a valid status transition.                                                          | The current status and history record agree, and the notification event is raised only after a successful commit.     |
+| DP-T07 | Attempt to modify or delete an existing history entry through normal application operations. | The operation is not permitted; a correction is recorded as a new history entry.                                      |
+
+These checks provide evidence for the transaction boundary, concurrency control, validation rules and notification timing. The test results, relevant code changes and review evidence should be linked to the appropriate PED, ADR and RTM entries once they exist.
 
