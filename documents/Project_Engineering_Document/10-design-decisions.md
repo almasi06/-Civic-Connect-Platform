@@ -159,7 +159,7 @@ Conceptually, the design may contain:
 
 The exact classes and interfaces may be refined during implementation.
 
-### 2.6 Decision Evidence
+### 2.6 Planned Decision Evidence
 
 The decision will be evidenced through:
 
