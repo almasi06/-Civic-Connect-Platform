@@ -65,8 +65,7 @@ The subject will provide operations conceptually equivalent to:
 - `removeObserver()`
 - `notifyObservers()`
 
-When a valid status transition has been committed, the subject can notify the
-registered observers of the status-change event.
+After a valid status transition has successfully committed, the notification mechanism can then notify the registered observers of the status-change event.
 
 Potential observers may include notification or audit-related components. The
 specific notification channels and interfaces will be refined during
