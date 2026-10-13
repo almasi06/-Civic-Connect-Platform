@@ -248,7 +248,7 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 
 #### 14.5 Residual Risk and Technical Debt
 
-**Residual risks** (full detail in Risk Register §12):
+**Residual risks**:
 
 | Risk ID | Description |
 |---------|-------------|
@@ -256,7 +256,7 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 | RR-M3-02 | Long-running transactions cause lock contention (mitigated by short transaction bounds) |
 | RR-M3-03 | Version-mismatch conflicts under concurrent load (mitigated by optimistic concurrency tests) |
 
-**Technical debt** (full detail in Technical Debt Register):
+**Technical debt**:
 
 | Debt ID | Description |
 |---------|-------------|
