@@ -128,6 +128,19 @@ business operation.
 The decision was informed by the Assignment 2 persistence research, which identified
 atomic transactions as the appropriate mechanism for preventing partially completed
 status transitions.
+#### Supporting Analysis
+
+This decision is recorded in **ADR-PERSIST-01: Transactional Status Transition**. The supporting analysis (decision matrix, theoretical foundation, authoritative references, traceability, verification plan, residual risks and technical debt) is documented in:
+
+- **Full ADR:** [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md)
+- **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md)
+
+**Verification evidence:** TC-BE-04 through TC-BE-09 (see RTM rows for FR-04, FR-05, FR-06, NFR-01).
+
+**Residual risks:** RR-M3-01, RR-M3-02, RR-M3-03 (see Risk Register §12).
+
+**Technical debt:** TD-M3-01, TD-M3-02, TD-M3-03 (see Technical Debt Register).
+
 
 ### 9. Concurrency Control
 CivicConnect must also consider concurrent updates to the same service request. For
@@ -189,15 +202,66 @@ therefore remain important later engineering considerations.
 
 ### 14. Evidence and Decision Records
 
-The persistence decision will be recorded in ADR-PERSIST-01 and linked to the relevant
-architecture and requirements traceability records. Evidence will include:
+The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status Transition** and linked to the relevant architecture and requirements traceability records.
 
-- Initial data model/ERD.
-- StatusHistory design.
-- Transaction boundary for status transitions.
-- Version field for optimistic concurrency.
-- Database integrity constraints.
-- Verification that a failed status transition does not leave partial data persisted.
-- Verification that notification processing does not occur when the transaction rolls back.
-- RTM traceability to FR-03 and FR-05.
+#### 14.1 ADR References
+
+| Artefact | Location |
+|----------|----------|
+| **Full ADR** | [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md) |
+| **Supporting analysis** | [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md) |
+| **Related architecture ADR** | [`docs/adr/ADR-ARCH-01-layered-monolith.md`](../adr/ADR-ARCH-01-layered-monolith.md) |
+| **Related technology ADR** | [`docs/adr/ADR-TECH-01-pern-stack.md`](../adr/ADR-TECH-01-pern-stack.md) |
+
+#### 14.2 Supporting Evidence Artefacts
+
+- Initial data model / ERD (Section 2).
+- StatusHistory design (Section 4).
+- Transaction boundary for status transitions (Section 8).
+- Version field for optimistic concurrency (Section 9).
+- Post-commit event raising (Section 10).
+- Database integrity constraints (Section 6).
+
+#### 14.3 Verification Evidence
+
+| Evidence ID | Description | Type | Status |
+|-------------|-------------|------|--------|
+| TC-BE-04 | Status transition succeeds end-to-end; status + history row present after commit | Integration | Planned |
+| TC-BE-05 | Deliberate failure mid-transaction → no state change persisted | Negative | Planned |
+| TC-BE-06 | Version mismatch → 409 Conflict; no partial write | Negative | Planned |
+| TC-BE-07 | Post-commit event fires only after successful commit | Unit + Integration | Planned |
+| TC-BE-08 | Notification NOT persisted when transaction fails | Negative | Planned |
+| TC-BE-09 | Concurrent updates — one wins, other gets 409 | Concurrency | Planned |
+
+#### 14.4 Traceability
+
+| Requirement | Relationship to ADR-PERSIST-01 |
+|-------------|--------------------------------|
+| FR-01 | ServiceRequest stores the submitted incident, description, location and photo reference — inserted atomically |
+| FR-02 | ServiceRequest/assignment status data provides the persistent server-side state required for synchronisation — batch sync uses per-request transactions |
+| FR-03 | ServiceRequest, Category, Assignment and Department data support unresolved-fault reporting by department |
+| FR-04 | Status transition is atomic; no partial ticket state observable |
+| FR-05 | Notification fires only after commit; phantom notifications prevented |
+| FR-06 | History inserted in same transaction as status change; tracking view always consistent |
+| NFR-01 | `/api/sync` uses per-request transactions; batch integrity relies on this ADR |
+| Security Constraint 2 | Audit trail written atomically; RBAC enforced before transaction |
+
+#### 14.5 Residual Risk and Technical Debt
+
+**Residual risks** (full detail in Risk Register §12):
+
+| Risk ID | Description |
+|---------|-------------|
+| RR-M3-01 | Post-commit event lost on application crash (mitigated by planned Outbox pattern) |
+| RR-M3-02 | Long-running transactions cause lock contention (mitigated by short transaction bounds) |
+| RR-M3-03 | Version-mismatch conflicts under concurrent load (mitigated by optimistic concurrency tests) |
+
+**Technical debt** (full detail in Technical Debt Register):
+
+| Debt ID | Description |
+|---------|-------------|
+| TD-M3-01 | Event delivery is at-most-once (Outbox pattern deferred post-M3) |
+| TD-M3-02 | No saga-based recovery (not applicable to monolith) |
+| TD-M3-03 | No automated outbox test (out of M3 scope) |
+
 
