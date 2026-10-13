@@ -133,6 +133,7 @@ status transitions.
 This decision is recorded in **ADR-PERSIST-01: Transactional Status Transition**. The supporting analysis (decision matrix, theoretical foundation, authoritative references, traceability, verification plan, residual risks and technical debt) is documented in:
 
 - **Full ADR:** [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md)
+- **Related integration ADR:** [`../Architecture/Architecture_Decision_Record/ADR-INT-01-notification-integration.md`](../Architecture/Architecture_Decision_Record/ADR-INT-01-notification-integration.md) and [supporting analysis](../Architecture/Architecture_Decision_Record/ADR-INT-01-supporting-analysis.md) |
 - **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md)
 - **Runtime view:** [`../Architecture/runtime-view.md`](../Architecture/runtime-view.md) — shows the transactional flow at runtime
 - **Component view:** [`../Architecture/component-view.md`](../Architecture/component-view.md) — shows the components involved in status transitions
