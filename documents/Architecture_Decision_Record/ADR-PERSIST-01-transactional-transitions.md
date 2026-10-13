@@ -113,3 +113,13 @@ The decision will be verified through:
 
 - Optimistic concurrency control using a version value.
 - Observer-based notification fan-out.
+
+## Supporting Analysis
+
+See [ADR-PERSIST-01-supporting-analysis.md](./ADR-PERSIST-01-supporting-analysis.md) for:
+- Decision matrix comparing alternatives
+- ACID + Transactional Outbox theoretical foundation
+- Authoritative references
+- Traceability to M3 assessment areas and requirements
+- Verification evidence plan (TC-BE-04 through TC-BE-09)
+- Residual risks (RR-M3-01 to RR-M3-03) and technical debt (TD-M3-01 to TD-M3-03)
