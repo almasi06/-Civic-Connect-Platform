@@ -134,6 +134,8 @@ This decision is recorded in **ADR-PERSIST-01: Transactional Status Transition**
 
 - **Full ADR:** [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md)
 - **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md)
+- **Runtime view:** [`../Architecture/runtime-view.md`](../Architecture/runtime-view.md) — shows the transactional flow at runtime
+- **Component view:** [`../Architecture/component-view.md`](../Architecture/component-view.md) — shows the components involved in status transitions
 
 **Verification evidence:** TC-BE-04 through TC-BE-09 (see RTM rows for FR-04, FR-05, FR-06, NFR-01).
 
