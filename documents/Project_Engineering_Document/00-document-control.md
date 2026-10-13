@@ -86,6 +86,8 @@
 | Backend implementation | Added | Express + PostgreSQL backend with repositories, services, middleware | M2 → M3 transition from mock to real persistence | `backend/server/` |
 | Test suite | Added | Backend integration + negative tests (TC-BE-01 to TC-BE-15+) | M3 requires meaningful verification evidence | `backend/tests/` (to be completed) |
 | CI pipeline | Added | GitHub Actions running tests + typecheck + lint | M3 requires automated verification | `.github/workflows/` (Member 3) |
+| ADR-DESIGN-01 | Added | ADR + supporting analysis for Observer pattern in notification fan-out | M3 requires controlled decision records for design decisions; A2 research recommends Observer | ADR-DESIGN-01-observer-notification-fanout.md |
+| ADR-DESIGN-02 | Added | ADR + supporting analysis for Factory Method in request creation | M3 requires controlled decision records for design decisions; A2 research recommends Factory Method | ADR-DESIGN-02-factory-method-request-creation.md |
 
 ---
 
