@@ -2,12 +2,10 @@
 
 - **Status:** Accepted
 - **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-- **Date:** 11 October 2026
-- **Related ADRs:** ADR-ARCH-01, ADR-PERSIST-01
 
 ---
 
-## 1. Context
+## Context
 
 CivicConnect supports different categories of service request: pothole, water leak,
 power outage, illegal dumping, and several others. Each category has distinct attributes,
@@ -28,7 +26,7 @@ This decision is informed by:
 
 ---
 
-## 2. Decision
+## Decision
 
 CivicConnect will use the **Factory Method pattern** for service-request creation.
 
@@ -39,7 +37,7 @@ individual factories.
 
 ---
 
-## 3. Rationale
+## Rationale
 
 The Factory Method pattern separates creation logic per category. Adding a new category
 is a local change — add a new factory, register it — without modifying the central
@@ -51,7 +49,7 @@ as appropriate for CivicConnect's category-variation problem.
 
 ---
 
-## 4. Alternatives Considered
+## Alternatives Considered
 
 | Approach | Description | Advantages | Limitations |
 |----------|-------------|-----------|-------------|
@@ -60,9 +58,12 @@ as appropriate for CivicConnect's category-variation problem.
 | **Abstract Factory** | Interface for creating families of related objects. | Useful when multiple related objects must vary together. | Unnecessary complexity — CivicConnect only varies the request itself. |
 | **Builder** | Step-by-step construction of complex objects. | Useful for complex multi-part construction. | Overkill — request creation is a single step. |
 
-### 4.1 Decision Matrix
+### Decision Matrix
 
 Scoring relative to the baseline (central `switch` statement):
+- `0` = equivalent
+- `+1` / `+2` = better
+- `-1` / `-2` = worse
 
 | Criterion | Weight | Baseline: Switch | Factory Method (Selected) | Abstract Factory | Builder |
 |-----------|--------|------------------|---------------------------|------------------|---------|
@@ -84,7 +85,7 @@ simple but blocks extension.
 
 ## 5. Theoretical Foundation
 
-### 5.1 The Factory Method Pattern
+### The Factory Method Pattern
 
 Defined in *Design Patterns* (Gamma et al., 1994):
 
@@ -94,7 +95,7 @@ Defined in *Design Patterns* (Gamma et al., 1994):
 The pattern separates the *interface* of object creation from the *implementation*.
 Clients depend on the interface; the choice of concrete creation logic is deferred.
 
-### 5.2 The Open/Closed Principle
+### The Open/Closed Principle
 
 Bertrand Meyer, *Object-Oriented Software Construction* (1988):
 
@@ -103,7 +104,7 @@ Bertrand Meyer, *Object-Oriented Software Construction* (1988):
 The Factory Method pattern supports this principle: adding a category extends the system
 without modifying existing creation code.
 
-### 5.3 Why Not Abstract Factory?
+### Why Not Abstract Factory?
 
 Abstract Factory is used when a family of related objects must vary together (e.g., a UI
 toolkit where buttons, menus, and scrollbars must all match a theme). CivicConnect only
@@ -112,7 +113,7 @@ indirection without benefit.
 
 ---
 
-## 6. Consequences
+## Consequences of Factory Method
 
 ### Positive
 
@@ -129,7 +130,7 @@ indirection without benefit.
 
 ---
 
-## 7. Implementation Implications
+## Implementation Implications
 
 | Component | File |
 |-----------|------|
@@ -141,7 +142,7 @@ never on individual factories.
 
 ---
 
-## 8. Authoritative References
+## Authoritative References
 
 | # | Source | Relevance |
 |---|--------|-----------|
@@ -153,7 +154,7 @@ never on individual factories.
 
 ---
 
-## 9. Traceability to Requirements
+## Traceability to Requirements
 
 | Requirement | Nature of Link |
 |-------------|----------------|
@@ -163,7 +164,7 @@ never on individual factories.
 
 ---
 
-## 10. Traceability to M3 Assessment Areas
+## Traceability Assessment Areas
 
 | M3 Area | How This ADR Contributes |
 |---------|--------------------------|
@@ -175,7 +176,7 @@ never on individual factories.
 
 ---
 
-## 11. Verification Evidence Plan
+## Verification Evidence Plan
 
 | Evidence ID | Description | Type |
 |-------------|-------------|------|
@@ -194,7 +195,7 @@ never on individual factories.
 
 ---
 
-## 13. Technical Debt
+## Technical Debt
 
 | Debt ID | Description | Target |
 |---------|-------------|--------|
@@ -204,18 +205,6 @@ never on individual factories.
 
 ## 14. Related Architecture Views
 
-- [Component view](../component-view.md) — request factories
-- [Logical architecture](../logical-architecture.md) — factory boundary
+- [Component view](../Architecture/component-view.md) — request factories
+- [Logical architecture](../Architecture/logical-architecture.md) — factory boundary
 
----
-
-## 15. Summary
-
-| Question | Answer |
-|----------|--------|
-| What was decided? | Factory Method for request creation |
-| Why? | Extensibility; category-local validation; Open/Closed Principle |
-| Alternatives rejected? | Switch (blocks extension); Abstract Factory (unjustified); Builder (overkill) |
-| Reference framework? | Gamma et al. Factory Method; Meyer OCP |
-| M3 evidence? | TC-BE-20, TC-BE-21, TC-BE-22 |
-| Residual risk? | Registry growth; missing category validation |
