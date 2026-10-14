@@ -2,8 +2,6 @@
 
 - **Status:** Accepted
 - **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-- **Date:** 10 October 2026
-- **Related ADRs:** ADR-INT-01, ADR-PERSIST-01, ADR-ARCH-01
 
 ---
 
