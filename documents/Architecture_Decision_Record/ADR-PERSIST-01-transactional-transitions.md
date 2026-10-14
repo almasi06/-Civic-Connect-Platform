@@ -118,7 +118,7 @@ The decision will be verified through:
 
 ## Supporting Analysis
 
-See [ADR-PERSIST-01-supporting-analysis.md](./ADR-PERSIST-01-supporting-analysis.md) for:
+See [ADR-PERSIST-01-supporting-analysis.md](./Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md) for:
 
 - **Decision matrix** comparing transactional, saga-based, and independent-operation approaches
 - **Theoretical foundation:** ACID properties and the Transactional Outbox pattern
@@ -130,9 +130,9 @@ See [ADR-PERSIST-01-supporting-analysis.md](./ADR-PERSIST-01-supporting-analysis
 
 ## Related Architecture Views
 
-- [Runtime view](../runtime-view.md) — sequence diagram showing the transactional flow
-- [Component view](../component-view.md) — components involved in status transitions
-- [Logical architecture](../logical-architecture.md) — layer boundaries
+- [Runtime view](../Architecture/runtime-view.md) — sequence diagram showing the transactional flow
+- [Component view](../Architecture/component-view.md) — components involved in status transitions
+- [Logical architecture](../Architecture/logical-architecture.md) — layer boundaries
 
 ## Related Requirements
 
@@ -143,6 +143,6 @@ See [ADR-PERSIST-01-supporting-analysis.md](./ADR-PERSIST-01-supporting-analysis
 
 ## Related Decision Records
 
-- [ADR-ARCH-01](./ADR-ARCH-01-layered-monolith.md) — Layered monolith (context for the transaction boundary)
-- [ADR-INT-01](./ADR-INT-01-notification-integration.md) — Notification integration
-- [ADR-TECH-01](./ADR-TECH-01-pern-stack.md) — PostgreSQL as persistence technology
+- [ADR-ARCH-01](./Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md) — Layered monolith (context for the transaction boundary)
+- [ADR-INT-01](./Architecture_Decision_Record/ADR-INT-01-notification-integration.md) — Notification integration
+- [ADR-TECH-01](./Architecture_Decision_Record/ADR-TECH-01-pern-stack.md) — PostgreSQL as persistence technology
