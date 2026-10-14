@@ -23,7 +23,7 @@ Every technology in this document was scored on a 1-5 scale against each weighte
 Scores are derived from verifiable, project-specific evidence:
 
 - **Team capability:** Team's prior coursework and comfort with each stack (self-assessed across 3 members)
-- **Free-tier hosting:** Verified against provider documentation (Render, Railway, Supabase, Fly.io)
+- **Free-tier hosting:** Verified against provider documentation 
 - **ACID / relational integrity:** Verified against database documentation and A2 Task 2
 - **Offline / PWA support:** Verified against Workbox and ecosystem documentation
 - **Learning curve:** Based on team skill self-assessment and ecosystem maturity
@@ -37,8 +37,6 @@ Scores are derived from verifiable, project-specific evidence:
 - [MongoDB transactions documentation](https://www.mongodb.com/docs/manual/core/transactions/)
 - [Prisma documentation](https://www.prisma.io/docs)
 - [Workbox documentation](https://developer.chrome.com/docs/workbox)
-- [Render free tier limits](https://render.com/docs/free)
-- [Railway pricing](https://railway.app/pricing)
 - [Supabase free tier](https://supabase.com/pricing)
 
 
@@ -352,7 +350,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 | Validation | Zod | 3.x | Shared schema validation |
 | Testing | Vitest + Supertest | - | Unit + integration (A2 Task 4) |
 | CI | GitHub Actions | - | A2 Task 4 recommendation |
-| Hosting | Render / Railway / Fly | - | Free-tier PaaS with managed Postgres |
+| Hosting | Supabase | - | Free-tier PaaS with managed Postgres |
 | Monitoring | UptimeRobot / Logtail | - | FE-004; NFR-05 verification |
 | Accessibility | axe-core | - | NFR-10 WCAG 2.1 AA |
 
