@@ -1,13 +1,13 @@
-# ADR-INT-01 — Supporting Analysis
+# ADR-INT-01: Supporting Analysis
 
-**Parent ADR:** ADR-INT-01: Notification Integration Approach
+**Parent ADR:** 
+ADR-INT-01: Notification Integration Approach
 **Status:** Accepted
 **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-**Date:** October 2026
 
 ---
 
-## 1. Purpose of This Section
+## Purpose of This Section
 
 ADR-INT-01 records the decision to use an **in-process event-based notification integration** approach for the initial CivicConnect implementation. This supporting analysis provides:
 
@@ -16,12 +16,11 @@ ADR-INT-01 records the decision to use an **in-process event-based notification 
 - **Authoritative references** supporting the choice
 - **Traceability** to M3 assessment areas and requirements
 - **Verification evidence** the team will produce
-
-This section does not repeat the decision — it justifies it.
+This section does not repeat the decision it justifies it.
 
 ---
 
-## 2. Decision Matrix
+## Decision Matrix
 
 The following matrix scores each alternative against the criteria that matter for CivicConnect's notification integration. Scoring is relative to the **baseline** (in-process method calls), where:
 
@@ -47,9 +46,9 @@ The following matrix scores each alternative against the criteria that matter fo
 
 ---
 
-## 3. Theoretical Foundation
+## Theoretical Foundation
 
-### 3.1 The Observer Pattern
+### The Observer Pattern
 
 The decision applies the **Observer design pattern**, in which a subject (the workflow service) notifies a set of observers (notification handlers) without knowing their concrete types.
 
@@ -63,7 +62,7 @@ The decision applies the **Observer design pattern**, in which a subject (the wo
 
 *Reference: Gamma, Helm, Johnson, Vlissides, "Design Patterns: Elements of Reusable Object-Oriented Software" (1994), Observer pattern.*
 
-### 3.2 Post-Commit Event Raising
+### Post-Commit Event Raising
 
 The ADR requires that the event is raised **only after the transaction commits**. This is a critical correctness property — the event must never fire for a status change that was rolled back.
 
@@ -74,7 +73,7 @@ The ADR requires that the event is raised **only after the transaction commits**
 
 *Reference: Chris Richardson, "Transactional Outbox Pattern" — https://microservices.io/patterns/data/transactional-outbox.html*
 
-### 3.3 Why Not a Message Broker (Yet)?
+### Why Not a Message Broker?
 
 The asynchronous message broker option is architecturally superior for systems that require:
 
@@ -96,7 +95,7 @@ Introducing a broker now would:
 
 *Reference: Sam Newman, "Monolith to Microservices" (2019), Ch. 1 — "When to split".*
 
-### 3.4 Why Not Synchronous REST?
+### Why Not Synchronous REST?
 
 A REST-based notification service would:
 
@@ -108,7 +107,7 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 4. Authoritative References
+## Authoritative References
 
 | # | Source | Relevance |
 |---|--------|-----------|
@@ -121,7 +120,7 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 5. Traceability to M3 Assessment Areas
+## Traceability for Assessment Areas
 
 | M3 Area | How This ADR Contributes |
 |---------|--------------------------|
@@ -134,7 +133,7 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 6. Traceability to Requirements (RTM Rows)
+## Traceability to Requirements
 
 | Requirement | Nature of Link |
 |-------------|----------------|
@@ -144,7 +143,7 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 7. Verification Evidence Plan
+## Verification Evidence Plan
 
 | Evidence ID | Description | Type |
 |-------------|-------------|------|
@@ -156,7 +155,7 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 8. Residual Risk
+## Residual Risk
 
 | Risk ID | Description | Probability | Impact | Mitigation |
 |---------|-------------|-------------|--------|------------|
@@ -166,23 +165,10 @@ For a monolith serving a single municipal deployment, **in-process events are th
 
 ---
 
-## 9. Technical Debt
+## Technical Debt
 
 | Debt ID | Description | Rationale | Target |
 |---------|-------------|-----------|--------|
 | **TD-M3-04** | In-process events are at-most-once within process lifetime | Acceptable for M3 demonstration | Adopt Transactional Outbox pattern in post-M3 iteration |
 | **TD-M3-05** | No external event observability (no metrics, no tracing) | Team size and scope | Add when notification volume increases |
 | **TD-M3-06** | No dead-letter queue for failed notification persistence | No queue exists yet | Coupled with Outbox adoption |
-
----
-
-## 10. Summary
-
-| Question | Answer |
-|----------|--------|
-| What was decided? | In-process event-based notification, post-commit, Observer pattern |
-| Why? | Decoupling without infrastructure; aligned with layered monolith; proportionate to scope |
-| Alternatives rejected? | In-process method call (tight coupling); synchronous REST (network cost, latency); message broker (disproportionate) |
-| Reference framework? | Observer pattern; Transactional Outbox; Sam Newman's split criteria |
-| M3 evidence? | TC-BE-07, TC-BE-08, TC-BE-16, TC-BE-17, TC-BE-18 |
-| Residual risk? | Event loss on crash (documented; Outbox deferred) |
