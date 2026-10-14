@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Context
+## Context
 
 When a CivicConnect service request changes status, multiple parties may need to be
 notified: the citizen, the assigned field worker, the departmental manager, and the
@@ -27,7 +27,7 @@ This decision is informed by:
 
 ---
 
-## 2. Decision
+## Decision
 
 CivicConnect will use the **Observer pattern** for notification fan-out.
 
@@ -41,7 +41,7 @@ database transaction has successfully committed.
 
 ---
 
-## 3. Rationale
+## Rationale
 
 The Observer pattern provides separation between the subject (workflow service) and the
 observers (notification channels) without introducing a network boundary or additional
@@ -54,7 +54,7 @@ in isolation.
 
 ---
 
-## 4. Alternatives Considered
+## Alternatives Considered
 
 | Approach | Description | Advantages | Limitations |
 |----------|-------------|-----------|-------------|
@@ -62,7 +62,7 @@ in isolation.
 | **Observer pattern (selected)** | Workflow service publishes events; observers subscribe. | Decoupling; extensible; testable in isolation. | Indirection; observer lifecycle must be managed. |
 | **Mediator pattern** | A central mediator coordinates workflow, notification, and audit components. | Centralised coordination when many components interact. | More indirection than justified; mediator becomes a bottleneck for understanding. |
 
-### 4.1 Decision Matrix
+### Decision Matrix
 
 Scoring is relative to the baseline (direct method calls):
 - `0` = equivalent
@@ -87,9 +87,9 @@ point). Direct calls are simple but break extensibility.
 
 ---
 
-## 5. Theoretical Foundation
+## Theoretical Foundation
 
-### 5.1 The Observer Pattern
+### The Observer Pattern
 
 Defined in *Design Patterns: Elements of Reusable Object-Oriented Software*
 (Gamma, Helm, Johnson, Vlissides, 1994):
@@ -104,14 +104,14 @@ Defined in *Design Patterns: Elements of Reusable Object-Oriented Software*
 | Observer interface | `(e: StatusChanged) => void` |
 | Concrete Observer | `NotificationHandler` (planned); future Email/SMS notifiers |
 
-### 5.2 Post-Commit Event Semantics
+### Post-Commit Event Semantics
 
 ADR-INT-01 establishes that events are raised **only after** the transaction commits
 (see ADR-PERSIST-01). The Observer pattern composes naturally with this: the
 `eventBus.raise()` call happens after `COMMIT`, so no observer receives an event for a
 rolled-back transition.
 
-### 5.3 Why Not Mediator?
+### Why Not Mediator?
 
 The Mediator pattern centralises coordination when many components must interact.
 CivicConnect has one subject, a small set of observers (currently 1, planned 3–4), and
@@ -121,7 +121,7 @@ what Observer handles.
 
 ---
 
-## 6. Consequences
+## Consequences of Observer Pattern
 
 ### Positive
 
@@ -139,7 +139,7 @@ what Observer handles.
 
 ---
 
-## 7. Implementation Implications
+## Implementation Implications
 
 | Component | File |
 |-----------|------|
@@ -152,7 +152,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 8. Authoritative References
+## Authoritative References
 
 | # | Source | Relevance |
 |---|--------|-----------|
@@ -164,7 +164,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 9. Traceability to Requirements
+## Traceability to Requirements
 
 | Requirement | Nature of Link |
 |-------------|----------------|
@@ -174,7 +174,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 10. Traceability to M3 Assessment Areas
+## Traceability Assessment Areas
 
 | M3 Area | How This ADR Contributes |
 |---------|--------------------------|
@@ -186,7 +186,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 11. Verification Evidence Plan
+## Verification Evidence Plan
 
 | Evidence ID | Description | Type |
 |-------------|-------------|------|
@@ -198,7 +198,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 12. Residual Risk
+## Residual Risk
 
 | Risk ID | Description | Probability | Impact | Mitigation |
 |---------|-------------|-------------|--------|------------|
@@ -208,7 +208,7 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ---
 
-## 13. Technical Debt
+## Technical Debt
 
 | Debt ID | Description | Target |
 |---------|-------------|--------|
@@ -219,19 +219,6 @@ Registration occurs once at application startup (`backend/server/index.ts`).
 
 ## 14. Related Architecture Views
 
-- [Runtime view](../runtime-view.md) — sequence diagram showing observer notification
-- [Component view](../component-view.md) — subject and observer components
-- [Logical architecture](../logical-architecture.md) — where the Observer pattern lives
-
----
-
-## 15. Summary
-
-| Question | Answer |
-|----------|--------|
-| What was decided? | Observer pattern for notification fan-out |
-| Why? | Decoupling; extensibility; proportionate to scope |
-| Alternatives rejected? | Direct calls (tight coupling); Mediator (unjustified indirection) |
-| Reference framework? | Gamma et al. Observer pattern |
-| M3 evidence? | TC-BE-07, TC-BE-08, TC-BE-16, TC-BE-17, TC-BE-19 |
-| Residual risk? | Observer failure silently swallowed; lifecycle management |
+- [Runtime view](../Architecture/runtime-view.md) — sequence diagram showing observer notification
+- [Component view](../Architecture/component-view.md) — subject and observer components
+- [Logical architecture](../Architecture/logical-architecture.md) — where the Observer pattern lives
