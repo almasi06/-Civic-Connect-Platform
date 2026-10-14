@@ -64,7 +64,7 @@ These are real engineering benefits. The team takes seriously the lecturer's gui
 - Richards & Ford (2020): avoid premature network boundaries
 - A2 Task 3: in-process event handling is proportionate for a small team
 
-## Consequences
+## Consequences of Layered Monolith
 
 **Positive:**
 - Lower operational complexity
