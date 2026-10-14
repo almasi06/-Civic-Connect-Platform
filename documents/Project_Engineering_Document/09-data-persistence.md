@@ -132,9 +132,9 @@ status transitions.
 
 This decision is recorded in **ADR-PERSIST-01: Transactional Status Transition**. The supporting analysis (decision matrix, theoretical foundation, authoritative references, traceability, verification plan, residual risks and technical debt) is documented in:
 
-- **Full ADR:** [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md)
-- **Related integration ADR:** [`../Architecture/Architecture_Decision_Record/ADR-INT-01-notification-integration.md`](../Architecture/Architecture_Decision_Record/ADR-INT-01-notification-integration.md) and [supporting analysis](../Architecture/Architecture_Decision_Record/ADR-INT-01-supporting-analysis.md) |
-- **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md)
+- **Full ADR:** [`../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md`](../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md)
+- **Related integration ADR:** [`../Architecture_Decision_Record/ADR-INT-01-notification-integration.md`](../Architecture_Decision_Record/ADR-INT-01-notification-integration.md) and [supporting analysis](../Architecture_Decision_Record/ADR-INT-01-supporting-analysis.md) |
+- **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md)
 - **Runtime view:** [`../Architecture/runtime-view.md`](../Architecture/runtime-view.md) — shows the transactional flow at runtime
 - **Component view:** [`../Architecture/component-view.md`](../Architecture/component-view.md) — shows the components involved in status transitions
 
@@ -211,10 +211,10 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 
 | Artefact | Location |
 |----------|----------|
-| **Full ADR** | [`docs/adr/ADR-PERSIST-01-transactional-status-transition.md`](../adr/ADR-PERSIST-01-transactional-status-transition.md) |
-| **Supporting analysis** | [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../adr/ADR-PERSIST-01-supporting-analysis.md) |
-| **Related architecture ADR** | [`docs/adr/ADR-ARCH-01-layered-monolith.md`](../adr/ADR-ARCH-01-layered-monolith.md) |
-| **Related technology ADR** | [`docs/adr/ADR-TECH-01-pern-stack.md`](../adr/ADR-TECH-01-pern-stack.md) |
+| **Full ADR** | [`/Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md`](../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md) 
+| **Supporting analysis** | [`/Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md`](../Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md) |
+| **Related architecture ADR** | [`/Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md`](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md) |
+| **Related technology ADR** | [`/Architecture_Decision_Record/ADR-TECH-01-pern-stack.md`](../Architecture_Decision_Record/ADR-TECH-01-pern-stack.md) |
 
 #### 14.2 Supporting Evidence Artefacts
 
@@ -229,12 +229,12 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 
 | Evidence ID | Description | Type | Status |
 |-------------|-------------|------|--------|
-| TC-BE-04 | Status transition succeeds end-to-end; status + history row present after commit | Integration | Planned |
-| TC-BE-05 | Deliberate failure mid-transaction → no state change persisted | Negative | Planned |
-| TC-BE-06 | Version mismatch → 409 Conflict; no partial write | Negative | Planned |
-| TC-BE-07 | Post-commit event fires only after successful commit | Unit + Integration | Planned |
-| TC-BE-08 | Notification NOT persisted when transaction fails | Negative | Planned |
-| TC-BE-09 | Concurrent updates — one wins, other gets 409 | Concurrency | Planned |
+| TC-BE-04 | Status transition succeeds end-to-end; status + history row present after commit | Integration | In progress |
+| TC-BE-05 | Deliberate failure mid-transaction → no state change persisted | Negative | In progress |
+| TC-BE-06 | Version mismatch → 409 Conflict; no partial write | Negative | In progress |
+| TC-BE-07 | Post-commit event fires only after successful commit | Unit + Integration | In progress |
+| TC-BE-08 | Notification NOT persisted when transaction fails | Negative | In progress |
+| TC-BE-09 | Concurrent updates — one wins, other gets 409 | Concurrency | In progress |
 
 #### 14.4 Traceability
 
