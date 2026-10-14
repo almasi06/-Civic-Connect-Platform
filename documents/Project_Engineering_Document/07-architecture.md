@@ -151,7 +151,7 @@ Rather than build microservices now, we are building a monolith that preserves e
 
 The monolith is the **starting** architecture, not the **final** one. The migration to microservices is documented, triggered, and time-bound.
 
-### Migration Plan (Documented as FE-007)
+### Migration Plan
 
 | Phase | Action | Trigger | Estimated Effort |
 |---|---|---|---|
