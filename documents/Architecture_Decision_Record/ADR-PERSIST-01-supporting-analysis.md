@@ -1,13 +1,12 @@
-# ADR-PERSIST-01 — Supporting Analysis
+# ADR-PERSIST-01: Supporting Analysis
 
 **Parent ADR:** ADR-PERSIST-01: Transactional Status Transition
 **Status:** Accepted
 **Deciders:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
-**Date:** October 2026
 
 ---
 
-## 1. Purpose of This Section
+## Purpose of This Section
 
 ADR-PERSIST-01 records the decision to use a single database transaction for status transitions, with the notification event published only after commit. This supporting analysis provides:
 
@@ -16,12 +15,11 @@ ADR-PERSIST-01 records the decision to use a single database transaction for sta
 - **Authoritative references** supporting the choice
 - **Traceability** to specific M3 assessment areas and requirements
 - **Verification evidence** the team will produce
-
-This section does not repeat the decision — it justifies it.
+This section does not repeat the decision it justifies it.
 
 ---
 
-## 2. Decision Matrix
+## Decision Matrix
 
 The following matrix scores each alternative against the criteria that matter for CivicConnect's status-transition workflow. Scoring is relative to the **baseline** (independent operations):
 
@@ -45,9 +43,9 @@ The following matrix scores each alternative against the criteria that matter fo
 
 ---
 
-## 3. Theoretical Foundation
+## Theoretical Foundation
 
-### 3.1 ACID Properties
+### ACID Properties
 
 | Property | How It Applies |
 |----------|----------------|
@@ -58,7 +56,7 @@ The following matrix scores each alternative against the criteria that matter fo
 
 *Reference: PostgreSQL 16 Documentation, "Transaction Isolation" — https://www.postgresql.org/docs/16/transaction-iso.html*
 
-### 3.2 Post-Commit Event Problem and the Transactional Outbox
+### Post-Commit Event Problem and the Transactional Outbox
 
 The ADR requires that the `StatusChanged` event is raised **only after commit**. This pattern has a subtle failure mode:
 
@@ -77,7 +75,7 @@ The industry-standard solution is the **Transactional Outbox Pattern**, document
 - *Chris Richardson, "Transactional Outbox Pattern" — https://microservices.io/patterns/data/transactional-outbox.html*
 - *Gunnar Morling, "Reliable Microservices Data Exchange with the Outbox Pattern" — https://debezium.io/blog/2019/02/19/reliable-microservices-data-exchange-with-the-outbox-pattern/*
 
-### 3.3 Why Not the Saga Pattern?
+### Why Not the Saga Pattern?
 
 The Saga pattern is standard when operations span **multiple services**. CivicConnect's M2 architecture (ADR-ARCH-01) is a **layered monolith**, so all operations live in one process and one database. Introducing sagas would add infrastructure complexity, require compensation logic, and break atomic guarantees that POPIA-adjacent accountability requires.
 
@@ -85,7 +83,7 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 4. Authoritative References
+## Authoritative References
 
 | # | Source | Relevance |
 |---|--------|-----------|
@@ -98,7 +96,7 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 5. Traceability to M3 Assessment Areas
+## Traceability to Assessment Areas
 
 | M3 Area | How This ADR Contributes |
 |---------|--------------------------|
@@ -111,7 +109,7 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 6. Traceability to Requirements (RTM Rows)
+## Traceability to Requirements
 
 | Requirement | Nature of Link |
 |-------------|----------------|
@@ -123,7 +121,7 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 7. Verification Evidence Plan
+## Verification Evidence Plan
 
 | Evidence ID | Description | Type |
 |-------------|-------------|------|
@@ -136,7 +134,7 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 8. Residual Risk
+## Residual Risk
 
 | Risk ID | Description | Probability | Impact | Mitigation |
 |---------|-------------|-------------|--------|------------|
@@ -146,23 +144,10 @@ The Saga pattern is standard when operations span **multiple services**. CivicCo
 
 ---
 
-## 9. Technical Debt
+## Technical Debt
 
 | Debt ID | Description | Rationale | Target |
 |---------|-------------|-----------|--------|
 | TD-M3-01 | Event delivery is at-most-once (in-process) | Acceptable for M3 | Outbox pattern post-M3 |
 | TD-M3-02 | No saga-based recovery | No cross-service transactions yet | Revisit if architecture evolves |
 | TD-M3-03 | No automated outbox test | Out of M3 scope | Add when adopted |
-
----
-
-## 10. Summary
-
-| Question | Answer |
-|----------|--------|
-| What was decided? | Status transitions use a single DB transaction; events publish post-commit |
-| Why? | ACID atomicity, audit consistency, correct notification semantics |
-| Alternative rejected? | Saga (unjustified for monolith); independent operations (unsafe) |
-| Reference framework? | ACID (Postgres docs); Transactional Outbox (Richardson, Morling) |
-| M3 evidence? | 6 integration/negative tests + ADR traceability in RTM |
-| Residual risk? | Post-commit event loss (documented; outbox deferred) |
