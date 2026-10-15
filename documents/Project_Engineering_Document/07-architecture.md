@@ -111,7 +111,7 @@ The software industry has broadly moved toward distributed architectures, and th
 | **Team scaling** | At 30 engineers, microservices allow parallel ownership. |
 | **Organisational alignment** | Conway's Law: systems mirror team structure. |
 
-### The Counter-Arguments for M3 (Which We Also Accept)
+### The Counter-Arguments
 
 | Cost | Why it applies right now |
 |---|---|
