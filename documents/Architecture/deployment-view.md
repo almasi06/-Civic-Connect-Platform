@@ -35,7 +35,7 @@ flowchart LR
 |---|---|
 | Node 20 LTS |  Supported on all candidates |
 | PostgreSQL 16 |  Managed add-on available |
-| Prisma migrations |  Run at deploy time |
+| pg (node-postgres) |  Works with any managed PostgreSQL |
 | Static assets (React build) |  Served from same host |
 | Workbox PWA |  Browser-side, no server change |
 
