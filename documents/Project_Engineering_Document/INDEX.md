@@ -36,3 +36,4 @@
 |---|---|---|---|
 | v1.0 | 2026-09-08 | M1 Engineering Foundation & Requirements Baseline | Team |
 | v2.0 | 2026-09-28 | M2 Architecture, Technology & Initial Design Baseline | Team |
+| v3.0 | 2026-10-15 | M3 Controlled Construction, Integration, Quality & Release Readiness | Team |
