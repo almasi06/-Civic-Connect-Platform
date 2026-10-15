@@ -262,7 +262,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 | MongoDB | 3.60 | (1) Weaker ACID; (2) No foreign key constraints; (3) Weaker relational reporting  **three losses** |
 | SQLite | 3.35 | (1) Not deployable on free-tier PaaS; (2) Single-writer, not concurrent; (3) Weak JSON support  **three losses** |
 
-**PostgreSQL selected** — highest on ACID, foreign key integrity, and reporting aggregation, with the strongest migration path for growth. Supports ADR-PERSIST-01's transactional requirement with zero configuration overhead.
+**PostgreSQL selected** - highest on ACID, foreign key integrity, and reporting aggregation, with the strongest migration path for growth. Supports ADR-PERSIST-01's transactional requirement with zero configuration overhead.
 
 ### Stack Rejection Reasons (Detailed)
 
