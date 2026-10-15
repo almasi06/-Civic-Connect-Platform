@@ -67,7 +67,7 @@ flowchart TD
 
 ### Persistence Layer
 - Data access via repositories, transactional writes
-- Prisma ORM, PostgreSQL, migrations
+- pg node-postgres, PostgreSQL
 - Integrity constraints, append-only audit storage
 
 ## Notes
