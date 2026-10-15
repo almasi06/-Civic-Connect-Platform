@@ -6,7 +6,7 @@
 |---|---|---|---|
 | ED-001 | Exclude payment integration from scope | M1 decision | Baselined |
 | ED-002 | Web-responsive only release | M1 decision | Baselined |
-| ED-003 | Defer final technology stack selection | M1 decision | Superseded by ED-005 |
+| ED-003 | Defer final technology stack selection | Baseline Approved | Accepted |
 | ED-004 | Adopt layered monolith with in-process domain events | ADR-ARCH-01 | Accepted |
 | ED-005 | Adopt PERN + TypeScript technology stack | ADR-TECH-01 | Accepted |
 | ED-006 | Transactional status transition with optimistic concurrency | ADR-PERSIST-01 | Accepted |
