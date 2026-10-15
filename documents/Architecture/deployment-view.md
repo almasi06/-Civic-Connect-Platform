@@ -11,7 +11,7 @@ flowchart LR
         C2[Admin Browser]
         C3[Field Worker PWA]
     end
-    subgraph PaaS[Free-tier PaaS: Render / Railway / Fly]
+    subgraph PaaS[Free-tier PaaS: Supabase]
         App[Web App Monolith<br/>API + Static Assets + Domain Events]
         DB[(Managed PostgreSQL 16)]
     end
