@@ -29,7 +29,7 @@ flowchart TD
     end
     subgraph Persistence[Persistence Layer]
         D1[Repositories]
-        D2[Prisma ORM]
+        D2[pg node-postgres]
         D3[PostgreSQL]
     end
     A1 --> B1
