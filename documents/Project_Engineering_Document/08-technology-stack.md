@@ -35,7 +35,7 @@ Scores are derived from verifiable, project-specific evidence:
 - [Node.js release schedule](https://nodejs.org/en/about/previous-releases)
 - [PostgreSQL 16 release notes](https://www.postgresql.org/docs/16/release-16.html)
 - [MongoDB transactions documentation](https://www.mongodb.com/docs/manual/core/transactions/)
-- [Prisma documentation](https://www.prisma.io/docs)
+- [pg (node-postgres) documentation](https://node-postgres.com/)
 - [Workbox documentation](https://developer.chrome.com/docs/workbox)
 - [Supabase free tier](https://supabase.com/pricing)
 
@@ -333,6 +333,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 | MERN | 3.75 | (1) Weak ACID; (2) Weak relational reporting  **two losses** |
 | Django + React | 3.75 | (1) Team capability gap; (2) Weaker PWA tooling; (3) Learning curve **three losses** |
 | Spring Boot + React | 2.90 | (1) Team capability gap; (2) Free-tier memory limits; (3) Cold-start latency; (4) Learning curve  **four losses** |
+
 ## Selected Versions
 
 | Layer | Technology | Version | Rationale |
@@ -344,7 +345,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 | Client storage | IndexedDB (via idb) | 8.x | FR-02 offline caching |
 | Backend runtime | Node.js | 20 LTS | Long-term support; free-tier compatible |
 | Backend framework | Express | 4.x | Mature; minimal; team familiar |
-| ORM | Prisma | 5.x | Type-safe; migrations; transactions (A2 Task 2) |
+| Database client | `pg` (node-postgres) | 8.x | Explicit parameterised SQL; supports transactions required by ADR-PERSIST-01 (A2 Task 2) |
 | Database | PostgreSQL | 16.x | ACID; relational; free-tier available |
 | Auth | JWT + bcrypt | - | RBAC (FR-04); session timeout (NFR-11) |
 | Validation | Zod | 3.x | Shared schema validation |
@@ -358,7 +359,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 
 - Node 20 LTS runs on all target free-tier hosts
 - PostgreSQL 16 available on Render/Railway/Supabase free tiers
-- Prisma 5 supports transactions required by A2 Task 2
+- `pg` 8.x supports native PostgreSQL transactions (`BEGIN`/`COMMIT`/`ROLLBACK`) required by ADR-PERSIST-01 and A2 Task 2
 - Workbox 7 supports offline sync required by NFR-01
 - All dependencies pinned via lockfile (A2 Task 4)
 
