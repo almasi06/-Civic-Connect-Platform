@@ -90,6 +90,9 @@
 | ADR-DESIGN-02 | Added | ADR + supporting analysis for Factory Method in request creation | M3 requires controlled decision records for design decisions; A2 research recommends Factory Method | ADR-DESIGN-02-factory-method-request-creation.md |
 | ADR-PERSIST-01-supporting-analysis | Added | Decision matrix comparing transactional, saga, and independent-operation approaches; ACID + Transactional Outbox theoretical foundation; authoritative references; traceability to M3 assessment areas; verification evidence plan (TC-BE-04 to TC-BE-09); residual risks (RR-M3-01 to RR-M3-03); technical debt (TD-M3-01 to TD-M3-03) | M3 requires decision justification with traceable reasoning; ADR alone is not sufficient evidence of the decision-making process | ADR-PERSIST-01-supporting-analysis.md |
 | ADR-INT-01-supporting-analysis | Added | Decision matrix comparing in-process method call, in-process event, synchronous REST, and message broker; Observer + Transactional Outbox theoretical foundation; authoritative references; traceability; verification evidence plan (TC-BE-07, TC-BE-08, TC-BE-16 to TC-BE-18); residual risks (RR-M3-04 to RR-M3-06); technical debt (TD-M3-04 to TD-M3-06) | M3 requires decision justification with traceable reasoning for integration decisions | ADR-INT-01-supporting-analysis.md |
+| Defect Register | Added | Created `documents/Registers/defect-register.md` with 28 defects (DEF-001 to DEF-028) identified during M3 construction, testing and integration | M3 requires defect tracking and quality interpretation | defect-register.md |
+| Technical Debt Register | Added | Created `documents/Registers/technical-debt-register.md` with 22 debt items (TD-M3-01 to TD-M3-22) covering architectural, testing, deployment and integration compromises | M3 requires honest recording of deferred compromises | technical-debt-register.md |
+
 
 ---
 
