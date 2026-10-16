@@ -49,9 +49,9 @@ work. Technical debt is things that work but could be better.
 
 | Metric | Count |
 |--------|-------|
-| Total debt items | 22 |
-| High priority | 3 (TD-M3-13, TD-M3-16, TD-M3-21) |
-| Medium priority | 6 |
+| Total debt items | 25 |
+| High priority | 4 (TD-M3-13, TD-M3-16, TD-M3-21, TD-M3-23) |
+| Medium priority | 8 |
 | Low priority | 13 |
 
 **Note:** Several technical debt items are cross-referenced (e.g., TD-M3-01 and
