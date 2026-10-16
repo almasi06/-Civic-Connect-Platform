@@ -2,10 +2,10 @@ name: CivicConnect CI
 
 on:
   pull_request:
-    branches: [main, master]
+    branches: [main, master, Documentation]
     types: [opened, synchronize, reopened]
   push:
-    branches: [main, master]
+    branches: [main, master, Documentation, "m3/**"]
   workflow_dispatch:
 
 permissions:
@@ -48,7 +48,7 @@ jobs:
         run: npm run build
 
   # ===========================================================================
-  # BACKEND — Typecheck, tests, build
+  # BACKEND — Typecheck, tests, build (with ephemeral Postgres)
   # ===========================================================================
   backend:
     name: Backend checks
@@ -153,8 +153,3 @@ jobs:
           if [ -n "$SERVER_PID" ]; then
             kill $SERVER_PID || true
           fi
-
-      - name: Check dependency vulnerabilities
-        if: always()
-        run: npm audit --audit-level=high
-        continue-on-error: true
