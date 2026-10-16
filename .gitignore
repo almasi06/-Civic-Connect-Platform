@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+dist-ssr/
+build/
+
+# Env files — NEVER commit
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Test artifacts
+coverage/
+.vitest-cache/
+playwright-report/
+test-results/
+
+# TS build info
+*.tsbuildinfo
+
+# Vite cache
+.vite/
+
+# Test artifacts and scratch files (never commit)
+token.txt
+login*.json
+create*.json
+sync-*.json
+test-*.js

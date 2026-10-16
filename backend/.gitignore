@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+build/
+
+# Env files - NEVER commit
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Test artifacts
+coverage/
+.vitest-cache/
+
+# TS build info
+*.tsbuildinfo
+# Test artifacts and scratch files (never commit)
+token.txt
+login*.json
+create*.json
+sync-*.json
+test-*.js

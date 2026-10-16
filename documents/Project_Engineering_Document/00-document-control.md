@@ -11,6 +11,7 @@
 |---|---|---|---|
 | v1.0 | 2026-09-08 | M1 Engineering Foundation & Requirements Baseline | Team |
 | v2.0 | 2026-09-28 | M2 Architecture, Technology & Initial Design Baseline | Team |
+| v3.0 | 2026-10-16 | M3  Architecture/design implemented; 60+ tests verified; controlled changes M3-01, M3-02; PED sections 18–27 added; registers and release evidence populated | Team |
 
 ## Contributors
 
