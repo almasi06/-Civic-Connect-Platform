@@ -34,8 +34,8 @@ defined by a requirement, acceptance criterion, or architectural decision.
 
 | Metric | Count |
 |--------|-------|
-| Total defects recorded | 28 |
-| Closed (fixed and verified) | 28 |
+| Total defects recorded | 29 |
+| Closed (fixed and verified) | 29 |
 | Open | 0 |
 | Won't Fix | 0 |
 
