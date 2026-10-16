@@ -86,6 +86,15 @@ The decision will be evidenced through:
 - Traceability to the relevant CivicConnect functional requirements, particularly
   the status tracking and notification requirements.
 
+  ### 1.7 Traceability
+
+- **ADR:** [ADR-DESIGN-01: Observer Pattern for Notification Fan-Out](../Architecture/Architecture_Decision_Record/ADR-DESIGN-01-observer-notification-fanout.md)
+- **Related ADRs:** ADR-INT-01, ADR-PERSIST-01, ADR-ARCH-01
+- **Requirements:** FR-05, FR-06, NFR-02
+- **Test evidence:** TC-BE-07, TC-BE-08, TC-BE-16, TC-BE-17, TC-BE-19
+
+*Note:* This decision is detailed in full in ADR-DESIGN-01, including the decision matrix, theoretical foundation, authoritative references, verification evidence plan, residual risks, and technical debt.
+
 ## Design Decision 2: Service-Request Category Creation
 **Design Pattern:** Factory Method
 
@@ -170,3 +179,12 @@ The decision will be evidenced through:
 - Tests demonstrating that different request categories can be created correctly.
 - Traceability to the relevant CivicConnect functional requirements, particularly
   service-request submission and categorisation requirements.
+
+  ### 2.7 Traceability
+
+- **ADR:** [ADR-DESIGN-02: Factory Method for Service-Request Creation](../Architecture/Architecture_Decision_Record/ADR-DESIGN-02-factory-method-request-creation.md)
+- **Related ADRs:** ADR-ARCH-01, ADR-PERSIST-01
+- **Requirements:** FR-01, FR-03, FR-04
+- **Test evidence:** TC-BE-20, TC-BE-21, TC-BE-22
+
+*Note:* This decision is detailed in full in ADR-DESIGN-02, including the decision matrix, theoretical foundation, authoritative references, verification evidence plan, residual risks, and technical debt.

@@ -128,6 +128,22 @@ business operation.
 The decision was informed by the Assignment 2 persistence research, which identified
 atomic transactions as the appropriate mechanism for preventing partially completed
 status transitions.
+#### Supporting Analysis
+
+This decision is recorded in **ADR-PERSIST-01: Transactional Status Transition**. The supporting analysis (decision matrix, theoretical foundation, authoritative references, traceability, verification plan, residual risks and technical debt) is documented in:
+
+- **Full ADR:** [`../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md`](../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md)
+- **Related integration ADR:** [`../Architecture_Decision_Record/ADR-INT-01-notification-integration.md`](../Architecture_Decision_Record/ADR-INT-01-notification-integration.md) and [supporting analysis](../Architecture_Decision_Record/ADR-INT-01-supporting-analysis.md) |
+- **Supporting analysis:** [`docs/adr/ADR-PERSIST-01-supporting-analysis.md`](../Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md)
+- **Runtime view:** [`../Architecture/runtime-view.md`](../Architecture/runtime-view.md) — shows the transactional flow at runtime
+- **Component view:** [`../Architecture/component-view.md`](../Architecture/component-view.md) — shows the components involved in status transitions
+
+**Verification evidence:** TC-BE-04 through TC-BE-09 (see RTM rows for FR-04, FR-05, FR-06, NFR-01).
+
+**Residual risks:** RR-M3-01, RR-M3-02, RR-M3-03 (see Risk Register §12).
+
+**Technical debt:** TD-M3-01, TD-M3-02, TD-M3-03 (see Technical Debt Register).
+
 
 ### 9. Concurrency Control
 CivicConnect must also consider concurrent updates to the same service request. For
@@ -187,8 +203,72 @@ therefore remain important later engineering considerations.
 | FR-05 | ServiceRequest stores the current status while StatusHistory preserves the sequence of status transitions. |
 | NFR-01 | Efficient persistence and synchronisation of status updates must support the required offline-to-online synchronisation time. |
 
+### 14. Evidence and Decision Records
 
-### 14. Implementation and Verification Evidence
+The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status Transition** and linked to the relevant architecture and requirements traceability records.
+
+#### 14.1 ADR References
+
+| Artefact | Location |
+|----------|----------|
+| **Full ADR** | [`/Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md`](../Architecture_Decision_Record/ADR-PERSIST-01-transactional-status-transition.md) 
+| **Supporting analysis** | [`/Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md`](../Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md) |
+| **Related architecture ADR** | [`/Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md`](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md) |
+| **Related technology ADR** | [`/Architecture_Decision_Record/ADR-TECH-01-pern-stack.md`](../Architecture_Decision_Record/ADR-TECH-01-pern-stack.md) |
+
+#### 14.2 Supporting Evidence Artefacts
+
+- Initial data model / ERD (Section 2).
+- StatusHistory design (Section 4).
+- Transaction boundary for status transitions (Section 8).
+- Version field for optimistic concurrency (Section 9).
+- Post-commit event raising (Section 10).
+- Database integrity constraints (Section 6).
+
+#### 14.3 Verification Evidence
+
+| Evidence ID | Description | Type | Status |
+|-------------|-------------|------|--------|
+| TC-BE-04 | Status transition succeeds end-to-end; status + history row present after commit | Integration | In progress |
+| TC-BE-05 | Deliberate failure mid-transaction → no state change persisted | Negative | In progress |
+| TC-BE-06 | Version mismatch → 409 Conflict; no partial write | Negative | In progress |
+| TC-BE-07 | Post-commit event fires only after successful commit | Unit + Integration | In progress |
+| TC-BE-08 | Notification NOT persisted when transaction fails | Negative | In progress |
+| TC-BE-09 | Concurrent updates — one wins, other gets 409 | Concurrency | In progress |
+
+#### 14.4 Traceability
+
+| Requirement | Relationship to ADR-PERSIST-01 |
+|-------------|--------------------------------|
+| FR-01 | ServiceRequest stores the submitted incident, description, location and photo reference — inserted atomically |
+| FR-02 | ServiceRequest/assignment status data provides the persistent server-side state required for synchronisation — batch sync uses per-request transactions |
+| FR-03 | ServiceRequest, Category, Assignment and Department data support unresolved-fault reporting by department |
+| FR-04 | Status transition is atomic; no partial ticket state observable |
+| FR-05 | Notification fires only after commit; phantom notifications prevented |
+| FR-06 | History inserted in same transaction as status change; tracking view always consistent |
+| NFR-01 | `/api/sync` uses per-request transactions; batch integrity relies on this ADR |
+| Security Constraint 2 | Audit trail written atomically; RBAC enforced before transaction |
+
+#### 14.5 Residual Risk and Technical Debt
+
+**Residual risks**:
+
+| Risk ID | Description |
+|---------|-------------|
+| RR-M3-01 | Post-commit event lost on application crash (mitigated by planned Outbox pattern) |
+| RR-M3-02 | Long-running transactions cause lock contention (mitigated by short transaction bounds) |
+| RR-M3-03 | Version-mismatch conflicts under concurrent load (mitigated by optimistic concurrency tests) |
+
+**Technical debt**:
+
+| Debt ID | Description |
+|---------|-------------|
+| TD-M3-01 | Event delivery is at-most-once (Outbox pattern deferred post-M3) |
+| TD-M3-02 | No saga-based recovery (not applicable to monolith) |
+| TD-M3-03 | No automated outbox test (out of M3 scope) |
+
+
+### 15. Implementation and Verification Evidence
 
 The persistence decision must be supported by implementation and test evidence as the application develops. The following are planned verification checks; they must not be recorded as passed until they have actually been executed.
 
@@ -204,7 +284,7 @@ The persistence decision must be supported by implementation and test evidence a
 
 These checks provide evidence for the transaction boundary, concurrency control, validation rules and notification timing. The test results, relevant code changes and review evidence should be linked to the appropriate PED, ADR and RTM entries once they exist.
 
-### 15. Persistence Decision Traceability
+### 16. Persistence Decision Traceability
 
 The persistence decision is linked to the following project requirements and engineering artefacts:
 
