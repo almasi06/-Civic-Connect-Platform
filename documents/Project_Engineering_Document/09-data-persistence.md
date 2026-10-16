@@ -268,3 +268,33 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 | TD-M3-03 | No automated outbox test (out of M3 scope) |
 
 
+### 14. Implementation and Verification Evidence
+
+The persistence decision must be supported by implementation and test evidence as the application develops. The following are planned verification checks; they must not be recorded as passed until they have actually been executed.
+
+| ID     | Verification check                                                                           | Expected result                                                                                                       |
+| ------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| DP-T01 | Attempt a status transition in which a related database write fails.                         | The transaction rolls back; neither the status nor its related history/assignment changes remain partially committed. |
+| DP-T02 | Submit a status transition that violates the workflow rules.                                 | The application rejects the transition and makes no unintended changes.                                               |
+| DP-T03 | Attempt to update a request using an outdated version value.                                 | The conflicting update is detected and rejected or handled through an explicit conflict-resolution process.           |
+| DP-T04 | Attempt to save a structurally invalid reference or status value.                            | The relevant database constraint rejects the invalid data.                                                            |
+| DP-T05 | Cause a status-transition transaction to fail and observe notification handling.             | No notification event is raised for the rolled-back transition.                                                       |
+| DP-T06 | Complete a valid status transition.                                                          | The current status and history record agree, and the notification event is raised only after a successful commit.     |
+| DP-T07 | Attempt to modify or delete an existing history entry through normal application operations. | The operation is not permitted; a correction is recorded as a new history entry.                                      |
+
+These checks provide evidence for the transaction boundary, concurrency control, validation rules and notification timing. The test results, relevant code changes and review evidence should be linked to the appropriate PED, ADR and RTM entries once they exist.
+
+### 15. Persistence Decision Traceability
+
+The persistence decision is linked to the following project requirements and engineering artefacts:
+
+| Project artefact or requirement                    | Relationship to this decision                                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| FR-05 — status alerts and tracking                 | Requires reliable, current status information and consistent status transitions.                                                |
+| FR-04 — administrative actions and permissions     | Supports validation of who may perform particular workflow transitions.                                                         |
+| FR-03 — unresolved faults by department and status | Depends on reliable request-state data for reporting and filtering.                                                             |
+| Data/persistence model                             | Defines the request, status, assignment and history data structures and their integrity relationships.                          |
+| `ADR-PERSIST-01`                                   | Records the formal decision, alternatives, trade-offs and consequences.                                                         |
+| RTM                                                | Links relevant requirements to the design decision and, as development progresses, to implementation and verification evidence. |
+| Risk Register                                      | Records the risk of partial transitions, conflicting updates and incomplete history.                                            |
+

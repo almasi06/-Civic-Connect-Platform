@@ -29,7 +29,7 @@ flowchart TD
     end
     subgraph Persistence[Persistence Layer]
         D1[Repositories]
-        D2[Prisma ORM]
+        D2[pg node-postgres]
         D3[PostgreSQL]
     end
     A1 --> B1
@@ -67,7 +67,7 @@ flowchart TD
 
 ### Persistence Layer
 - Data access via repositories, transactional writes
-- Prisma ORM, PostgreSQL, migrations
+- pg node-postgres, PostgreSQL
 - Integrity constraints, append-only audit storage
 
 ## Notes

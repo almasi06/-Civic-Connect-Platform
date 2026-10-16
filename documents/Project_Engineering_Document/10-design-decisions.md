@@ -65,8 +65,7 @@ The subject will provide operations conceptually equivalent to:
 - `removeObserver()`
 - `notifyObservers()`
 
-When a valid status transition has been committed, the subject can notify the
-registered observers of the status-change event.
+After a valid status transition has successfully committed, the notification mechanism can then notify the registered observers of the status-change event.
 
 Potential observers may include notification or audit-related components. The
 specific notification channels and interfaces will be refined during
@@ -75,7 +74,7 @@ implementation.
 The notification mechanism must not publish an event for a status transition
 that has failed and been rolled back.
 
-### 1.6 Decision Evidence
+### 1.6 Planned Decision Evidence
 
 The decision will be evidenced through:
 
@@ -169,7 +168,7 @@ Conceptually, the design may contain:
 
 The exact classes and interfaces may be refined during implementation.
 
-### 2.6 Decision Evidence
+### 2.6 Planned Decision Evidence
 
 The decision will be evidenced through:
 

@@ -10,16 +10,46 @@ M1 left architecture unspecified. M2 requires a proportionate architecture that 
 
 ## Decision
 
-Adopt a layered monolith with in-process domain events. Four logical layers: presentation, application, domain, persistence. Single deployable unit; one managed PostgreSQL database as the only separate physical tier.
+Adopt a **layered monolith with in-process domain events** for M3, with **microservices documented as the long-term architectural destination** and a controlled migration path.
+
+Four logical layers: presentation, application, domain, persistence. Single deployable unit; one managed PostgreSQL database as the only separate physical tier.
 
 ## Alternatives Considered
 
-| Alternative | Verdict | Reason |
-|---|---|---|
-| Layered monolith + in-process events | **Selected** | Proportionate for team size, timeline, budget |
-| Modular monolith | Deferred | Can evolve from A later (FE-007) |
-| Microservices | Rejected | Premature network boundaries (Richards & Ford, 2020) |
-| Serverless / FaaS | Rejected | Cold starts threaten NFR-02; offline sync complexity |
+Four architecture styles were evaluated on a weighted decision matrix (see [07-architecture.md](../Project_Engineering_Document/07-architecture.md)).
+
+### Alternative 1 - Modular Monolith (Rejected for M3)
+
+**What it is:** A single deployable unit with strict internal module boundaries and internal APIs between modules.
+
+**What it would offer CivicConnect:**
+- Stronger internal discipline than a plain monolith
+- Clearer path to microservices (each module can become a service)
+- Same operational simplicity as a monolith (single deployment, single DB)
+
+**Why it was rejected:**
+- Adds discipline overhead (internal API contracts between modules) without clear benefit at our codebase size
+- The team hasn't yet experienced the pain that internal module boundaries solve
+- Scored 4.50 vs monolith's 4.60 - lower on team capacity and deployment simplicity
+- Can be revisited as an intermediate stage if the codebase grows (documented in growth path)
+
+**Score: 4.50**
+
+### Alternative 2 - Microservices (Deferred - Long-Term Target)
+
+**What they are:** Separately deployable services communicating over a network, each owning its own data store and deployment pipeline.
+
+**What microservices would offer CivicConnect:**
+- **Independent scaling** - notification service could scale separately from reporting, directly serving ASR-04 (reporting performance)
+- **Fault isolation** - a crash in reporting wouldn't take down status transitions, directly serving ASR-06 (99.5% uptime)
+- **Technology diversity** - each service could use its own stack (e.g., Python for analytics)
+- **Team parallelism** - each student could own a service boundary at team-scale
+- **Organisational alignment** - Conway's Law supports service boundaries at municipal-team scale
+
+These are real engineering benefits. The team takes seriously the lecturer's guidance that microservices represent the modern direction.
+
+**Why they are deferred (not rejected):**
+- **Transactional complexity** - ADR-PERSIST-01 requires ACID across status + audit + assignment. Microservices require either a shared DB (defeats the point) or a saga pattern with compensating transactions.
 
 ## Rationale
 
@@ -34,7 +64,7 @@ Adopt a layered monolith with in-process domain events. Four logical layers: pre
 - Richards & Ford (2020): avoid premature network boundaries
 - A2 Task 3: in-process event handling is proportionate for a small team
 
-## Consequences
+## Consequences of Layered Monolith
 
 **Positive:**
 - Lower operational complexity
