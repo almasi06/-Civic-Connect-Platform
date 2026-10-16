@@ -18,7 +18,7 @@
 | Forward Engineering | [13-forward-engineering.md](13-forward-engineering.md) | M1 + M2 |
 | **Deployment** | [14-deployment.md](14-deployment.md) | Baselined |
 | **Baseline Definition** | [15-baseline.md](15-baseline.md) | Baselined |
-| AI Usage Register | [16-ai-usage-register.md](16-ai-usage-register.md) | M1 + M2 |
+| AI Usage Register | [16-ai-usage-register.md](16-ai-usage-register.md) | M1 + M2 + M3 |
 
 ### M3 Additions (PED v3.0)
 
@@ -44,6 +44,7 @@
 | [ADR-TECH-02](../Architecture_Decision_Record/ADR-TECH-02-supabase-postgres-hosting.md) | Supabase as PostgreSQL host | Accepted |
 | [ADR-INT-01](../Architecture_Decision_Record/ADR-INT-01-notification-integration.md) | In-process Event-based Integration | Accepted |
 | [ADR-PERSIST-01](../Architecture_Decision_Record/ADR-PERSIST-01-transactional-transitions.md) | Database Transaction | Accepted |
+| [ADR-TECH-02](../Architecture_Decision_Record/ADR-TECH-02-supabase-postgres-hosting.md) | pg node postgres | Accepted |
 
 ## Project Registers
 

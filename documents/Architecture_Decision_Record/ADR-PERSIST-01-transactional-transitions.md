@@ -113,3 +113,36 @@ The decision will be verified through:
 
 - Optimistic concurrency control using a version value.
 - Observer-based notification fan-out.
+
+---
+
+## Supporting Analysis
+
+See [ADR-PERSIST-01-supporting-analysis.md](./Architecture_Decision_Record/ADR-PERSIST-01-supporting-analysis.md) for:
+
+- **Decision matrix** comparing transactional, saga-based, and independent-operation approaches
+- **Theoretical foundation:** ACID properties and the Transactional Outbox pattern
+- **Authoritative references:** PostgreSQL documentation, Richardson, Morling, Kleppmann, Fowler
+- **Traceability** to M3 assessment areas and requirements (FR-04, FR-05, FR-06, NFR-01)
+- **Verification evidence plan:** TC-BE-04 through TC-BE-09
+- **Residual risks:** RR-M3-01 to RR-M3-03
+- **Technical debt:** TD-M3-01 to TD-M3-03
+
+## Related Architecture Views
+
+- [Runtime view](../Architecture/runtime-view.md) — sequence diagram showing the transactional flow
+- [Component view](../Architecture/component-view.md) — components involved in status transitions
+- [Logical architecture](../Architecture/logical-architecture.md) — layer boundaries
+
+## Related Requirements
+
+- FR-04 — Admin routing, updating, closing tickets
+- FR-05 — Notification on status change
+- FR-06 — Citizens track report status via tracking number
+- NFR-01 — Offline-to-online sync performance
+
+## Related Decision Records
+
+- [ADR-ARCH-01](./Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md) — Layered monolith (context for the transaction boundary)
+- [ADR-INT-01](./Architecture_Decision_Record/ADR-INT-01-notification-integration.md) — Notification integration
+- [ADR-TECH-01](./Architecture_Decision_Record/ADR-TECH-01-pern-stack.md) — PostgreSQL as persistence technology

@@ -16,7 +16,7 @@ Adopt the **PERN stack with TypeScript**:
 
 - **Frontend:** React 18 + Vite 5 + TypeScript 5 + Workbox 7
 - **Backend:** Node.js 20 LTS + Express 4 + TypeScript 5
-- **ORM:** Prisma 5
+- **Database client:** `pg` (node-postgres) 8.x direct parameterised SQL
 - **Database:** PostgreSQL 16
 - **Auth:** JWT + bcrypt
 - **Validation:** Zod 3
@@ -39,7 +39,7 @@ Adopt the **PERN stack with TypeScript**:
 - **PostgreSQL** is required for ACID transactions (A2 Task 2) across status update + audit + assignment, and for relational reporting (FR-03, FR-10, FR-14, FR-16).
 - **Node/Express/React** minimises context-switching for a JS-fluent team; single language across stack reduces integration risk.
 - **Workbox** supports the PWA + offline sync pattern required by FR-02 and NFR-01.
-- **Prisma** provides type-safe queries, migrations, and transactions - supporting ASR-03 and ASR-08.
+- **`pg` (node-postgres)** keeps SQL explicit and parameterised, giving direct control over transactions (supporting ASR-03 and ASR-08) and transaction boundaries required for ADR-PERSIST-01.
 - **TypeScript** shared types between frontend and backend reduce contract drift.
 - All selected technologies have viable free tiers (zero-budget constraint).
 - All selected technologies have mature testing ecosystems (A2 Task 4 CI requirement).
@@ -62,7 +62,6 @@ Adopt the **PERN stack with TypeScript**:
 
 **Complexity introduced:**
 - Lockfile management (to be enforced in CI)
-- Prisma migration workflow discipline
 
 ## Versions and Compatibility
 
@@ -70,7 +69,7 @@ Adopt the **PERN stack with TypeScript**:
 |---|---|---|---|
 | Runtime | Node.js | 20 LTS | All target PaaS hosts |
 | Database | PostgreSQL | 16 | Render/Railway/Supabase free tiers |
-| ORM | Prisma | 5.x | PostgreSQL 16 |
+| Database client | `pg` (node-postgres) | 8.x | PostgreSQL 16 |
 | Frontend | React | 18.x | All modern browsers |
 | PWA | Workbox | 7.x | NFR-01 offline sync |
 | Language | TypeScript | 5.x | Node + React |
@@ -81,7 +80,7 @@ All selected technologies are open-source with permissive licences:
 - Node.js - MIT
 - Express - MIT
 - React - MIT
-- Prisma - Apache 2.0
+- `pg` (node-postgres) - MIT
 - PostgreSQL - PostgreSQL Licence
 - Workbox - Apache 2.0
 - TypeScript - Apache 2.0
@@ -94,7 +93,7 @@ No paid licences required. Satisfies the zero-budget constraint.
 - HTTPS/TLS at the presentation boundary (NFR-03)
 - Secrets via environment variables; never committed
 - Dependabot + npm audit as CI warnings (A2 Task 4)
-- Prisma parameterised queries prevent SQL injection
+- Parameterised queries via `pg` placeholders (`$1`, `$2`, ...) prevent SQL injection
 
 ## Evidence
 

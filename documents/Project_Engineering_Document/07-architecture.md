@@ -4,16 +4,23 @@
 
 ## Selected Architecture
 
-Layered monolith with in-process domain events.
+**Layered monolith with in-process domain events**, with a documented migration path to microservices as the long-term destination.
 
 ## Decision
 
 See [ADR-ARCH-01](../Architecture_Decision_Record/ADR-ARCH-01-layered-monolith.md).
 
-## Alternatives Considered
+## Architecture Decision Matrix
+
+Architecture choice was evaluated using a weighted decision matrix. Criteria weights reflect M1 constraints, ASRs, and the lecturer's guidance that the organisation may grow.
 
 | Alternative | Verdict | Reason |
-Architecture choice was evaluated using a weighted decision matrix. Criteria weights reflect M1 constraints, ASRs, and the lecturer's guidance that the organisation may grow.
+|---|---|---|
+| Layered monolith + in-process events | **Selected** | Proportionate for team size, timeline, budget |
+| Modular monolith | Rejected | Adds discipline overhead not yet justified at current codebase size |
+| Microservices | Deferred (long-term target) | Premature network boundaries (Richards & Ford, 2020); documented migration path |
+| Serverless / FaaS | Rejected | Cold starts threaten NFR-02; offline sync complexity |
+
 
 | Criterion | Weight | **Monolith** | Modular Monolith | **Microservices** | Serverless |
 |---|---|---|---|---|---|
@@ -169,19 +176,62 @@ The team commits (via this document and ADR-ARCH-01) to revisiting the architect
 
 | Trigger | Threshold | Current State |
 |---|---|---|
-| Layered monolith + in-process events | **Selected** | Proportionate for team size, timeline, budget |
-| Microservices | Rejected | Premature network boundaries (Richards & Ford, 2020) |
-| Serverless / FaaS | Rejected | Cold starts threaten NFR-02; offline sync complexity |
+| Concurrent users | > 500 (5× NFR-02 target) | Target: 100 |
+| Notification volume | > 10,000/day | Estimated: < 500/day at MVP |
+| Reporting query time | > 1 second p95 | Target: < 3 seconds p95 |
+| Uptime below | 99.5% over 30-day window (NFR-05) | Not yet measurable |
+| Team size | > 6 developers | 3 students |
+| Single-component failure causes total outage | Any occurrence | Not currently measurable |
+
+When any trigger is hit, the team is committed (by this document) to revisit the architecture decision with a formal ADR.
+
+### Growth Dimensions
+
+**User Scale:**
+
+| Stage | Users | Architecture Response | Trigger |
+|---|---|---|---|
+| MVP | < 100 | Monolith + managed Postgres (current) | - |
+| Pilot | 1,000-5,000 | Add read replica; CDN for PWA assets | Response time > 2s p95 |
+| Municipal | 50,000-200,000 | Extract notification service; queue async | Notification volume > 10k/day |
+| Multi-municipal | 200,000+ | Extract reporting service; dedicated analytics DB | Reporting query time > 1s p95 |
+
+**Capability Scale:**
+
+| Future Capability | What's Needed | How the Current Architecture Supports It |
+|---|---|---|
+| Native mobile apps | Mobile API, push notifications, refresh tokens | Clean REST contract; JWT auth extendable; Observer pattern accepts FCM/APNs without workflow change |
+| IoT sensor ingestion | Ingestion service, device auth, bulk endpoints | source field on ServiceRequest; domain events accept multiple producers; bulk inserts supported |
+| Multi-municipal | Tenant isolation, per-tenant config, SSO | Layer boundaries allow tenant middleware; schema extendable with tenantId |
+| Predictive analytics | Event store, analytics pipeline, ML serving | Append-only StatusHistory provides structured events; read replica separates analytics workload |
+| Public API | Rate limiting, API keys, versioning | PII-free reporting layer; API gateway can wrap monolith endpoints |
+
+**Team Scale:**
+
+| Team Size | Recommended Architecture | Rationale |
+|---|---|---|
+| 1-5 developers | Monolith (current) | Communication overhead lower than distribution overhead |
+| 6-15 developers | Modular monolith | Internal module boundaries allow parallel work |
+| 16-40 developers | Selective microservices | Team autonomy exceeds coordination cost |
+| 40+ developers | Full microservices | Organisation requires service ownership boundaries |
+### Hardware / Operations Cost Projection
+
+| Stage | Users | Infrastructure | Monthly Cost |
+|---|---|---|---|
+| MVP (M4) | < 100 | Free-tier PaaS + managed Postgres | R0 |
+| Pilot | 1,000-5,000 | Basic paid tier + read replica | R500-1,200 |
+| Municipal | 50,000-200,000 | Paid PaaS + 2 services + CDN + Redis | R3,000-6,000 |
+| Multi-municipal | 200,000+ | Multi-region + managed Kubernetes + dedicated DB | R12,000-25,000 |
 
 ## Proportionality Statement
 
-> A more distributed architecture is not automatically more advanced. Microservices would introduce network boundaries, operational overhead, distributed transaction complexity, and debugging difficulty that CivicConnect's current requirements, team size, budget, and timeline do not justify. The layered monolith with in-process domain events satisfies all ASRs while keeping complexity proportionate.
+> A more distributed architecture is not automatically more advanced. Microservices are the correct long-term destination for CivicConnect at municipal scale, but they would introduce network boundaries, operational overhead, distributed transaction complexity, and debugging difficulty that the current project constraints 3 students, 12–14 weeks, zero budget, MVP scale cannot justify. The layered monolith with in-process domain events satisfies all ASRs at current scale while preserving four migration seams that make a future move to microservices a controlled refactor rather than a rewrite.
 
 ## Architecture vs Technology
 
 - **Architecture:** Logical structure, responsibilities, boundaries, interactions (layers, modules, events)
 - **Technology:** Specific products/versions implementing the architecture
-- **Logical layers are not the same as physical deployment tiers:** All four logical layers run in a single deployable unit; the database is the only separate physical tier
+- **Logical layers is not the same as physical deployment tiers:** All four logical layers run in a single deployable unit; the database is the only separate physical tier
 
 ## Diagrams
 
@@ -189,3 +239,12 @@ The team commits (via this document and ADR-ARCH-01) to revisiting the architect
 - [Deployment view](../Architecture/deployment-view.md)
 - [Runtime view](../Architecture/runtime-view.md)
 - [Component view](../Architecture/component-view.md)
+
+## References
+
+- Fowler, M. (2014) *MonolithFirst*. martinfowler.com. Available at: https://martinfowler.com/bliki/MonolithFirst.html
+- Newman, S. (2021) *Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith*. O'Reilly Media.
+- Newman, S. (2021) *Building Microservices: Designing Fine-Grained Systems*, 2nd edn. O'Reilly Media.
+- Richards, M. and Ford, N. (2020) *Fundamentals of Software Architecture: An Engineering Approach*. O'Reilly Media.
+- Bass, L., Clements, P. and Kazman, R. (2021) *Software Architecture in Practice*, 4th edn. Addison-Wesley.
+- A2 Task 3 (integration research; in-process recommendation for 3-person team).

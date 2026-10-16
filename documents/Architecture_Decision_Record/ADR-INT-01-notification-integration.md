@@ -136,7 +136,32 @@ The decision will be verified through:
 - FR-05 — Status tracking/transition behaviour.
 - FR-06 — Notification behaviour.
 
+## Supporting Analysis
+
+See [ADR-INT-01-supporting-analysis.md](./ADR-INT-01-supporting-analysis.md) for:
+
+- **Decision matrix** comparing in-process method call, in-process event, synchronous REST, and message broker
+- **Theoretical foundation:** Observer pattern, post-commit event raising, Transactional Outbox
+- **Authoritative references:** Gamma et al. (Observer), Richardson (Outbox), Newman (split criteria)
+- **Traceability** to M3 assessment areas and requirements (FR-05, FR-06, NFR-02)
+- **Verification evidence plan:** TC-BE-07, TC-BE-08, TC-BE-16, TC-BE-17, TC-BE-18
+- **Residual risks:** RR-M3-04 to RR-M3-06
+- **Technical debt:** TD-M3-04 to TD-M3-06
+
+## Related Architecture Views
+
+- [Runtime view](../runtime-view.md) — sequence diagram showing the post-commit event flow
+- [Component view](../component-view.md) — components involved in notification
+- [Logical architecture](../logical-architecture.md) — layer boundaries
+
+## Related Requirements
+
+- FR-05 — Notification on status change
+- FR-06 — Citizens track report status
+- NFR-02 — Response time under 3s (synchronous REST rejected for latency)
+
 ## Related Decisions
 
-- ADR-PERSIST-01 — Transactional Status Transition.
-- Observer-based notification fan-out design decision.
+- [ADR-PERSIST-01](./ADR-PERSIST-01-transactional-transitions.md) — Transactional Status Transition
+- [ADR-ARCH-01](./ADR-ARCH-01-layered-monolith.md) — Layered monolith (context)
+- Observer-based notification fan-out design decision

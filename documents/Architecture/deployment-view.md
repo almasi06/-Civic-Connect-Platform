@@ -11,7 +11,7 @@ flowchart LR
         C2[Admin Browser]
         C3[Field Worker PWA]
     end
-    subgraph PaaS[Free-tier PaaS: Render / Railway / Fly]
+    subgraph PaaS[Free-tier PaaS: Supabase]
         App[Web App Monolith<br/>API + Static Assets + Domain Events]
         DB[(Managed PostgreSQL 16)]
     end
@@ -35,7 +35,7 @@ flowchart LR
 |---|---|
 | Node 20 LTS |  Supported on all candidates |
 | PostgreSQL 16 |  Managed add-on available |
-| Prisma migrations |  Run at deploy time |
+| pg (node-postgres) |  Works with any managed PostgreSQL |
 | Static assets (React build) |  Served from same host |
 | Workbox PWA |  Browser-side, no server change |
 
