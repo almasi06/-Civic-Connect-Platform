@@ -268,7 +268,7 @@ The persistence decision is recorded in **ADR-PERSIST-01: Transactional Status T
 | TD-M3-03 | No automated outbox test (out of M3 scope) |
 
 
-### 14. Implementation and Verification Evidence
+### 15. Implementation and Verification Evidence
 
 The persistence decision must be supported by implementation and test evidence as the application develops. The following are planned verification checks; they must not be recorded as passed until they have actually been executed.
 
@@ -284,7 +284,7 @@ The persistence decision must be supported by implementation and test evidence a
 
 These checks provide evidence for the transaction boundary, concurrency control, validation rules and notification timing. The test results, relevant code changes and review evidence should be linked to the appropriate PED, ADR and RTM entries once they exist.
 
-### 15. Persistence Decision Traceability
+### 16. Persistence Decision Traceability
 
 The persistence decision is linked to the following project requirements and engineering artefacts:
 
