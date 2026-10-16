@@ -45,13 +45,13 @@ npm test
 
 **Results:** 20/20 passing.
 
-**What it demonstrates:** The state machine logic is correct in isolation — no DB, no HTTP. This is a pure logic test.
+**What it demonstrates:** The state machine logic is correct in isolation - no DB, no HTTP. This is a pure logic test.
 
 ---
 
 #### `tests/unit/city.test.ts` (9 tests)
 
-**What it verifies:** The Tshwane city-boundary gate — GPS coordinates inside vs outside the city.
+**What it verifies:** The Tshwane city-boundary gate - GPS coordinates inside vs outside the city.
 
 **Coverage:**
 - Coordinates inside Tshwane accepted

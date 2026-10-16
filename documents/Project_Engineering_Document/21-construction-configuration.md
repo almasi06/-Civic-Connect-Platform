@@ -15,9 +15,64 @@ Repository strategy, configuration approach, and important implementation notes 
 - **Merge strategy:** Squash and merge
 - **Full rules:** `CONTRIBUTING.md`
 
+
 ## Directory Structure
 
->>1234567890987654323456789876543456789 file structure
+```text
+-Civic-Connect-Platform/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── adr.md
+│   │   ├── bug.md
+│   │   └── feature.md
+│   ├── workflows/
+│   │   ├── ci.yml                 # CI pipeline (frontend, backend, security)
+│   │   └── security.yml           # CodeQL, gitleaks, npm audit
+│   └── pull_request_template.md
+├── backend/
+│   ├── migrations/
+│   │   └── 001_initial_schema.sql # PostgreSQL schema
+│   ├── server/
+│   │   ├── application/
+│   │   │   └── workflow.service.ts # State machine + RBAC transitions
+│   │   ├── persistence/
+│   │   │   └── request.repository.ts
+│   │   └── db.ts                  # pg Pool (SSL, transactions)
+│   ├── tests/
+│   │   ├── e2e/
+│   │   ├── fixtures/
+│   │   ├── integration/
+│   │   │   └── transitions.test.ts # TC-BE-TRANS-01 (FR-04)
+│   │   ├── unit/
+│   │   ├── README.md
+│   │   └── setup.ts
+│   └── package.json
+├── documents/
+│   ├── Architecture/
+│   ├── Architecture_Decision_Record/
+│   │   └── ADR-TECH-01-pern-stack.md
+│   ├── Project_Engineering_Document/
+│   │   ├── 20-controlled-changes.md
+│   │   ├── 21-construction-configuration.md
+│   │   ├── 25-performance-reliability.md
+│   │   └── 27-release-readiness.md
+│   ├── Registers/
+│   │   ├── defect-register.md
+│   │   └── technical-debt-register.md
+│   ├── Release/
+│   │   ├── release-evidence-summary.md
+│   │   ├── residual-risk-statement.md
+│   │   ├── rollback-plan.md
+│   │   └── staging-environment.md
+│   └── Requirements_Traceability_Matrix/
+│       └── RTM.md
+├── src/                           # Frontend (React 19 + Vite 6)
+├── .env.example
+├── .gitignore
+├── CONTRIBUTING.md
+├── package.json
+└── README.md
+```
 
 
 ## Configuration Approach
