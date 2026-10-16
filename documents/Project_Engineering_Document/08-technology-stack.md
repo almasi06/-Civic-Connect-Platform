@@ -254,7 +254,7 @@ Each rejected database is documented below with **why it was rejected**, **what 
 
 ---
 
-### Summary — Multi-Criteria Rejection
+### Summary - Multi-Criteria Rejection
 
 | Database | Score | Rejected On |
 |---|---|---|
