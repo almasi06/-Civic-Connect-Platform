@@ -12,12 +12,12 @@
 | Architecture style | Layered monolith + in-process events | Kamo |
 | Logical layers | Presentation / Application / Domain / Persistence | Kamo |
 | ASR set | ASR-01 to ASR-08 | Kamo |
-| Technology stack | PERN + TypeScript + Prisma + Workbox | Kamo |
+| Technology stack | PERN + TypeScript + pg (node-postgres) + Workbox | Kamo |
 | Database engine | PostgreSQL 16 | Kamo |
-| Hosting direction | Free-tier PaaS (provider TBD) | Kamo |
+| Database hosting | Supabase (managed PostgreSQL 16) | Kamo |
 | CI approach | GitHub Actions (build + unit tests blocking) | Davidzo |
 | Branching model | GitHub Flow, protected main, 2 reviewers | Davidzo |
-| Data model | Initial schema | Naledi |
+| Data model | Initial schema — `backend/migrations/001_initial_schema.sql` | Naledi |
 | Design patterns | Observer + Factory Method | Naledi |
 | Notification integration | In-process domain event | Naledi |
 | RTM structure | Evolving matrix | Davidzo |
@@ -27,20 +27,9 @@
 Every baselined item traces to at least one of:
 - A requirement (FR-XX, NFR-XX)
 - An ASR (ASR-01 to ASR-08)
-- An ADR (ADR-ARCH-01, ADR-TECH-01, ADR-PERSIST-01, ADR-INT-01)
+- An ADR (ADR-ARCH-01, ADR-TECH-01, ADR-TECH-02, ADR-PERSIST-01, ADR-INT-01, ADR-DESIGN-01, ADR-DESIGN-02)
 - A risk (RR-XXX)
 - A forward engineering consideration (FE-XXX)
-
-## Deferred / Open Decisions
-
-| Item | Reason | Evidence needed | Target |
-|---|---|---|---|
-| Specific hosting provider | Free-tier terms change | Comparison matrix | M3 |
-| Message broker | A2 Task 3 recommends in-process | Independent scaling requirement | M3/M4 |
-| Read replicas / caching | No measured performance evidence | Load test results | M3/M4 |
-| Observability stack | FE-004 | Free-tier monitoring comparison | M3 |
-| Detailed design patterns | Member 2 in progress | ADR-PERSIST-01, ADR-INT-01 | M2 |
-| Specific class designs | Detailed design not required in M2 | M3 detailed design | M3 |
 
 ## Change Control
 
@@ -54,11 +43,9 @@ Any post-baseline change to an included item requires:
 
 | Role | Name | Date | 
 |---|---|---|
-| Architecture Lead | Kamohelo Mabena | 2026-09-28 |
-| Data & Design Lead | Naledi Moeng | 2026-09-28 |
-| Dev & Traceability Lead | Davidzo Malapile | 2026-09-28 |
-
-> Baseline becomes formally accepted when all three signatures are present and the PR is merged into Documentation.
+| Architecture Lead | Kamohelo Mabena | 2026-10-15 |
+| Data & Design Lead | Naledi Moeng | 2026-10-15 |
+| Dev & Traceability Lead | Davidzo Malapile | 2026-10-15 |
 
 ## Links
 

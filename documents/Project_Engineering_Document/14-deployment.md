@@ -6,7 +6,7 @@
 | Item | Direction |
 |---|---|
 | Deployment model | Single-region free-tier PaaS |
-| Hosting candidates | Render / Railway / Fly.io |
+| Hosting | Supabase |
 | Database | Managed PostgreSQL 16 (same provider) |
 | Environments | Development + staging (production deferred to M3/M4) |
 | Configuration | Environment variables; no committed secrets |
@@ -20,7 +20,7 @@
 | Layered monolith (ADR-ARCH-01) | Single container deploy |
 | PostgreSQL 16 (ADR-TECH-01) | Managed Postgres available on all candidates  |
 | Node 20 LTS | Supported on all candidates  |
-| Prisma migrations | Run at deploy time  |
+| SQL migrations | Applied via Supabase SQL Editor for dev |
 | Workbox PWA | Static assets served from same host  |
 | HTTPS/TLS (NFR-03) | Provided by PaaS by default  |
 | Stateless app (ASR-06) | Supports horizontal scaling if needed  |
