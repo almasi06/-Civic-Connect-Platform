@@ -70,4 +70,11 @@ different aspects of the same underlying design choice.
 | **ADR / Decision Log** | Records why specific decisions were made |
 
 ---
+## Review Cadence
 
+This register is reviewed:
+
+- At each milestone boundary
+- When a related area is modified
+- When a debt item becomes a risk
+- When the team identifies new compromises
