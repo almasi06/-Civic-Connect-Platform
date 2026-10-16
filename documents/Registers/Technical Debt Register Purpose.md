@@ -1,7 +1,7 @@
 # Technical Debt Register
 
-**Owner:** Member 3 (coordinator); all members contribute
-**Version:** v1.0 (M3)
+**Owner:** Davidzo Malapile, Naledi Moeng, Kamohelo Mabena
+**Version:** v1.0 (Milestone 3)
 **Last Updated:** 2026-10-15
 
 ---
@@ -30,6 +30,18 @@ work. Technical debt is things that work but could be better.
 | **High** | Should be addressed in M4 or before production use | Next milestone |
 | **Medium** | Address when the related area is next touched | Future milestone |
 | **Low** | Acceptable indefinitely; revisit only if circumstances change | No fixed date |
+
+---
+## Categories
+
+| Category | Meaning | Example |
+|----------|---------|---------|
+| **Architecture** | Structural compromise | No read replicas; monolith instead of microservices |
+| **Code** | Implementation shortcut | Duplicated logic; hardcoded values |
+| **Test** | Missing or weak test coverage | No E2E tests; coverage gaps |
+| **Documentation** | Out-of-date or missing docs | API docs incomplete |
+| **Operational** | Deployment, monitoring, or config debt | Manual migrations; no log aggregation |
+| **Security** | Deferred hardening or auditing | No token denylist; no rate limit on some endpoints |
 
 ---
 
