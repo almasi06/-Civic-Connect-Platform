@@ -1,0 +1,41 @@
+node_modules
+dist
+.env
+.env.local
+*.local
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+dist-ssr/
+
+# Env files
+.env
+.env.example
+.env.local
+.env.*.local
+backend/.env
+backend/.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Test artifacts
+coverage/
+.vitest-cache/
+
+# Playwright / Vitest
+playwright-report/
+test-results/
