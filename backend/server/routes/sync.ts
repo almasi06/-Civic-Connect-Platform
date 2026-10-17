@@ -116,6 +116,13 @@ syncRouter.post(
           }
         }
 
+        
+        // A brand-new synced request must arrive as 'submitted'.
+        // Otherwise a client could bypass the workflow state machine entirely.
+        if (!existing && incoming.status !== "submitted") {
+          throw new HttpError(400, "New synced requests must start as 'submitted'.");
+        }
+
         await client.query(
           `INSERT INTO requests (
              id, tracking_number, category, description, lat, lng, photo,
