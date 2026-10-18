@@ -46,7 +46,7 @@ Documents which black-box test techniques were applied, which critical scenarios
 | Malformed token returns 401 | NFR-08 | TC-BE-AUTH-08 |  Pass |
 | Token without Bearer prefix returns 401 | NFR-08 | TC-BE-AUTH-09 | Pass |
 | Health endpoint returns 200 with db status | NFR-05 | TC-API-01 |  Pass |
-| E2E: full lifecycle (submit -> assign -> in_progress -> resolve) | FR-01, FR-04, FR-11, ADR-PERSIST-01 | TC-E2E-02 |  In progress |
+| E2E: full lifecycle (submit -> assign -> in_progress -> resolve) | FR-01, FR-04, FR-11, ADR-PERSIST-01 | TC-E2E-02 |  Pass  |
 
 ## Black-Box Design Technique Examples
 
