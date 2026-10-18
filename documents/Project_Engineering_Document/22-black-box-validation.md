@@ -35,6 +35,8 @@ Documents which black-box test techniques were applied, which critical scenarios
 | Unauthorised request returns 401 | NFR-12, FR-04 | TC-BE-TRANS-04 |  Pass |
 | History recorded after transition | FR-05, NFR-06 | TC-BE-TRANS-05 |  Pass |
 | Unknown status rejected | FR-04 | TC-BE-TRANS-06 |  Pass |
+| Citizen can filter their report history | FR-08 | TC-BE-REQ-13 | Pass |
+| Staff can filter by status and category | FR-09 | TC-BE-REQ-14 | Pass |
 | Valid credentials return JWT | FR-12 | TC-BE-AUTH-01 |  Pass |
 | Wrong password returns 401 | FR-12 | TC-BE-AUTH-02 |  Pass |
 | Unknown email returns 401 | FR-12 | TC-BE-AUTH-03 |  Pass |
