@@ -92,7 +92,7 @@ This is a **deferral, not a verification**. The NFR-02 target remains **unproven
 
 ## Future Work (Post-Project Maintenance)
 
- The K6 script remains in the repository. Due to local Windows environment constraints, the K6 binary could not be installed. The test remains deferred. This is accepted as a known limitation for the final project submission.*
+ The K6 script remains in the repository. Due to local Windows environment constraints, the K6 binary could not be installed. The test remains deferred. This is accepted as a known limitation for the final project submission.
 
 ## Links
 
