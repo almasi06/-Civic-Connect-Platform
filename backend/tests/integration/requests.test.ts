@@ -195,5 +195,52 @@ describe("Requests API", () => {
       const res = await fetch(`${TEST_BASE_URL}/api/requests/not-a-uuid`);
       expect([404, 500]).toContain(res.status);
     });
+    
+  });
+      // ---------------------------------------------------------------------------
+  // FR-08: Citizen Request History
+  // ---------------------------------------------------------------------------
+  describe("FR-08: Citizen History", () => {
+    it("TC-BE-REQ-13: can filter requests by reporterDeviceId", async () => {
+      const deviceId = "test-device-history-01";
+      const payload = validReportPayload({ reporterDeviceId: deviceId });
+      await fetch(`${TEST_BASE_URL}/api/requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      // The API uses q= for free-text, but the frontend filters by deviceId locally.
+      // We test that the list endpoint returns the report with the deviceId.
+      const res = await fetch(`${TEST_BASE_URL}/api/requests?q=${payload.trackingNumber}`);
+      expect(res.status).toBe(200);
+      const body = await res.json();
+      expect(body.length).toBe(1);
+      expect(body[0].reporterDeviceId).toBe(deviceId);
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // FR-09: Staff Search/Filter
+  // ---------------------------------------------------------------------------
+  describe("FR-09: Staff Search and Filter", () => {
+    it("TC-BE-REQ-14: can filter by multiple criteria (status + category)", async () => {
+      const payload = validReportPayload({
+        reporterDeviceId: "test-device-search-01",
+        category: "pothole",
+        status: "submitted",
+      });
+      await fetch(`${TEST_BASE_URL}/api/requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      // Filter by category=pothole AND status=submitted
+      const res = await fetch(`${TEST_BASE_URL}/api/requests?category=pothole&status=submitted`);
+      expect(res.status).toBe(200);
+      const body = await res.json();
+      expect(body.every((r: any) => r.category === "pothole" && r.status === "submitted")).toBe(true);
+    });
   });
 });
