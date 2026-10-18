@@ -1,6 +1,4 @@
-# 25 - Performance & Reliability
-
-> **M3/M4 Addition - PED v4.0**
+# Performance & Reliability
 
 ## Purpose
 
