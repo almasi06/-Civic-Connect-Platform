@@ -22,15 +22,15 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 
 | Gate | Status | Evidence |
 |---|---|---|
-| Build passes (typecheck + build) |  | CI workflow + manual `npm run build` |
-| Unit tests pass |  | 31 tests pass |
-| Integration tests pass |  | 28 tests pass |
-| E2E tests pass |  | 2 tests pass |
-| Static analysis |  | ESLint run; CodeQL pending CI |
-| Security checks |  | npm audit clean; gitleaks passes |
+| Build passes (typecheck + build) | Done | CI workflow + manual `npm run build` |
+| Unit tests pass | Done | 31 tests pass |
+| Integration tests pass | Done | 28 tests pass |
+| E2E tests pass | Done | 2 tests pass |
+| Static analysis | Done | ESLint run; CodeQL pending CI |
+| Security checks | Done | npm audit clean; gitleaks passes |
 | Performance test executed |  | Executed but NFR-02 threshold failed for writes |
-| Defects triaged |  | DEF-005 through DEF-008 logged |
-| Residual risks documented |  | See `../Release/residual-risk-statement.md` |
+| Defects triaged | Done | DEF-005 through DEF-008 logged |
+| Residual risks documented | Done | See `../Release/residual-risk-statement.md` |
 | Staging deployment |  | Simulated local staging only |
 
 ## Blockers
