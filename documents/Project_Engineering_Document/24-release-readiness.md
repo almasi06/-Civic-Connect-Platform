@@ -1,6 +1,4 @@
-# 27 - Release Readiness
-
-> **M3/M4 Addition - PED v4.0**
+# Release Readiness
 
 ## Purpose
 
@@ -71,6 +69,5 @@ See `../Release/rollback-plan.md`.
 ## Links
 
 - Release folder: `../Release/`
-- M3 overview: `18-m3-overview.md`
-- Defects: `26-defects-quality.md`
-- CI: `22-ci-automated-verification.md`
+- Defects: `23-defects-quality.md`
+- CI: `19-ci-automated-verification.md`
