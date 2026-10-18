@@ -94,7 +94,7 @@ This is a **deferral, not a verification**. The NFR-02 target remains **unproven
 
 - Install k6 in CI runner or use an equivalent tool
 - Execute the load test against staging
-- Extend workload to 50–100 concurrent users
+- Extend workload to 50-100 concurrent users
 - Add a DB-read scenario
 - Record results in this section
 
