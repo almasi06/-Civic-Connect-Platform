@@ -5,7 +5,7 @@ import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import type { Role } from "../types";
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is not set. Check your backend/.env file.");
 }
@@ -30,7 +30,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   }
   const token = header.slice("Bearer ".length);
   try {
-    const payload = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload & {
+       const payload = jwt.verify(token, JWT_SECRET) as unknown as {
       sub: string;
       role: Role;
     };
