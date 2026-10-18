@@ -98,14 +98,10 @@ Repository strategy, configuration approach, and important implementation notes 
 │   │   ├── 18-controlled-changes.md
 │   │   ├── 19-construction-configuration.md
 │   │   ├── 20-ci-automated-verification.md
-
-│   │   ├── 21-construction-configuration.md
-│   │   ├── 22-ci-automated-verification.md
-│   │   ├── 23-quality-strategy.md
-│   │   ├── 24-black-box-validation.md
-│   │   ├── 25-performance-reliability.md
-│   │   ├── 26-defects-quality.md
-│   │   ├── 27-release-readiness.md
+│   │   ├── 21-performance-reliability.md
+│   │   ├── 22-black-box-validation.md
+│   │   ├── 23-defects-quality.md
+│   │   ├── 24-release-readiness.md
 │   │   └── INDEX.md
 │   ├── Registers/
 │   │   ├── defect-register.md
