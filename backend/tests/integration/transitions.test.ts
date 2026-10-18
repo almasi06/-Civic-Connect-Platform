@@ -135,4 +135,40 @@ describe("Status transitions", () => {
     });
     expect(res.status).toBe(400);
   });
+    it("TC-BE-TRANS-07: Field worker can add a field update with note", async () => {
+    const { id, version } = await createReport();
+    
+    // 1. Admin assigns it to a worker
+    const assignRes = await fetch(`${TEST_BASE_URL}/api/requests/${id}/status`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${adminToken}`,
+      },
+      body: JSON.stringify({
+        to: "assigned",
+        expectedVersion: version,
+        assignedTo: workerId,
+        assignedName: "Thabo Mokoena",
+      }),
+    });
+    const assigned = await assignRes.json();
+    
+    // 2. Worker adds a field update
+    const updateRes = await fetch(`${TEST_BASE_URL}/api/requests/${id}/update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${workerToken}`,
+      },
+      body: JSON.stringify({
+        expectedVersion: assigned.version,
+        note: "Inspected the site. Repair scheduled.",
+      }),
+    });
+    
+    expect(updateRes.status).toBe(200);
+    const updated = await updateRes.json();
+    expect(updated.history.length).toBeGreaterThan(assigned.history.length);
+  });
 });
