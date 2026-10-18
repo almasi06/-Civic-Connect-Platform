@@ -21,7 +21,7 @@ Quality effort is prioritised by risk. The three drivers:
 
 | Risk / ASR | Why it matters | Verification approach | Status |
 |---|---|---|---|
-| **RR-001** (offline sync) | NFR-01 must-have; free-tier constraints | Sync tests planned |  Deferred |
+| **RR-001** (offline sync) | NFR-01 must-have; free-tier constraints | Sync tests planned |  Measured Failure |
 | **ASR-01** (offline-first) | Core UX for field workers | PWA integration |  Partial |
 | **ASR-02** (real-time notifications) | Citizen transparency | Post-commit event tests (TC-BE-TRANS-05) |  Verified |
 | **ASR-03** (RBAC + audit) | Compliance, security | 6 transition tests + 9 auth tests |  Verified |
