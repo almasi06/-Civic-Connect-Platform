@@ -1,8 +1,5 @@
 # Quality Strategy
 
-> **M3 Addition - PED v3.0**
-
-
 ## Purpose
 
 Explains **which risks received stronger verification and why** the risk-based quality strategy for M3.
@@ -70,5 +67,5 @@ Coverage percentage is **not** a target. What matters is that critical behaviour
 
 - Risk register: `12-risk-register.md`
 - ASRs: `06-asrs.md`
-- Black-box validation: `24-black-box-validation.md`
-- Defects: `26-defects-quality.md`
+- Black-box validation: `21-black-box-validation.md`
+- Defects: `23-defects-quality.md`
