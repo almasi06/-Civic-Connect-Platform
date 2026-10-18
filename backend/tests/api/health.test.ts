@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import request from 'supertest';
-import app from '../../server/index';
+import app from '../../server/app';
 
 describe('Health Check API', () => {
   it('TC-API-01: GET /health should return 200 and db connected', async () => {
