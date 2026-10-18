@@ -22,7 +22,7 @@ Documents the M3/M4 performance/load exercise: operation tested, workload, envir
 | Tool | k6 |
 | Thresholds | p95 < 3000ms (NFR-02) |
 
-## Actual Results (Executed 2026-10-18)
+## Actual Results (Executed 2026-10-17)
 
 The K6 load test was executed locally against the Express API, with the database hosted on Supabase (Frankfurt region).
 
