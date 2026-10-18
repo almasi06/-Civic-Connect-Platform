@@ -5,21 +5,9 @@
 
 ## Purpose
 
-Shows which M2 decisions were implemented as planned, and where the implementation differs (or was controlled via change).
 
-## Conformance Table
 
-| M2 Decision | ADR Reference | Implementation Status | Deviation? |
-|---|---|---|---|
-| Layered monolith + in-process events | ADR-ARCH-01 |  Implemented - `backend/server/{routes,application,middleware,persistence}/` | No |
-| PERN stack (Postgres, Express, React, Node) | ADR-TECH-01 |  Implemented - verified in `package.json` | No |
-| ACID transactions for status transitions | ADR-PERSIST-01 |  Implemented - `BEGIN/COMMIT/ROLLBACK` in `requestRepository.updateStatus` | No |
-| In-process notification event | ADR-INT-01 | Implemented - `eventBus.raise()` post-commit | No |
-| Observer pattern for notification fan-out | M2 S10 design decision |  Implemented - `domain/events.ts` | No |
-| Factory Method for request categories | M2 S10 design decision |  Implemented- `domain/requestFactory.ts` (frontend) | No |
-| Free-tier PaaS hosting | ADR-TECH-01 |  Implemented - Supabase free tier |  Clarified by ADR-TECH-02 |
-| ORM: Prisma 5 | ADR-TECH-01 |  **Controlled change** - switched to `pg` driver | See Change M3-01 |
-| Database host: unspecified | ADR-TECH-01 |  **Clarified** - Supabase chosen | See Change M3-02 |
+
 
 ## Significant Deviations
 
