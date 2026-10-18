@@ -21,15 +21,15 @@ Quality effort is prioritised by risk. The three drivers:
 
 | Risk / ASR | Why it matters | Verification approach | Status |
 |---|---|---|---|
-| **RR-001** (offline sync) | NFR-01 must-have; free-tier constraints | Sync tests planned |  Deferred |
-| **ASR-01** (offline-first) | Core UX for field workers | PWA integration |  Partial |
-| **ASR-02** (real-time notifications) | Citizen transparency | Post-commit event tests (TC-BE-TRANS-05) |  Verified |
-| **ASR-03** (RBAC + audit) | Compliance, security | 6 transition tests + 9 auth tests |  Verified |
-| **ASR-04** (reporting analytics) | Performance-critical | Filter tests TC-BE-REQ-06..09 |  Verified |
-| **ASR-06** (99.5% uptime) | Availability | Health endpoint TC-API-01 |  Verified |
-| **ASR-08** (audit retention) | Compliance | History persistence TC-BE-TRANS-05 |  Verified |
-| **RR-005** (free-tier DB) | Scalability ceiling | Load test placeholder |  Deferred |
-| **RR-009** (architecture drift) | Maintainability | Code review discipline |  Ongoing |
+| RR-001 (offline sync) | NFR-01 must-have; free-tier constraints | Sync tests planned |  Deferred |
+| ASR-01 (offline-first) | Core UX for field workers | PWA integration |  Partial |
+| ASR-02 (real-time notifications) | Citizen transparency | Post-commit event tests (TC-BE-TRANS-05) |  Verified |
+| ASR-03 (RBAC + audit) | Compliance, security | 6 transition tests + 9 auth tests |  Verified |
+| ASR-04 (reporting analytics) | Performance-critical | Filter tests TC-BE-REQ-06..09 |  Verified |
+| ASR-06 (99.5% uptime) | Availability | Health endpoint TC-API-01 |  Verified |
+| ASR-08 (audit retention) | Compliance | History persistence TC-BE-TRANS-05 |  Verified |
+| RR-005 (free-tier DB) | Scalability ceiling | K6 load test executed (p95 = 21.67s) |  Measured Failure |
+| RR-009 (architecture drift) | Maintainability | Code review discipline |  Ongoing |
 
 ## Coverage Approach
 
