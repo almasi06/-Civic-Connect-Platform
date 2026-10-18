@@ -1,7 +1,4 @@
-# 24 - Black-Box, Integration & System Validation
-
-> **M3 Addition - PED v3.0**
-
+# Black-Box, Integration & System Validation
 
 ## Purpose
 
@@ -95,5 +92,5 @@ Documents which black-box test techniques were applied, which critical scenarios
 ## Links
 
 - Test files: `backend/tests/`
-- Quality strategy: `23-quality-strategy.md`
+- Quality strategy: `20-quality-strategy.md`
 - RTM: `../Requirements_Traceability_Matrix/RTM.md`
