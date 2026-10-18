@@ -34,7 +34,7 @@ The K6 load test was executed locally against the Express API, with the database
 
 ### Test 2: GET /api/requests (Read Load)
 - **Result:** p95 = **24.1s** (threshold failed)
-- **Interpretation:** The list endpoint performs a **N+1 query pattern** — for every report, it makes 3 additional database calls (to `request_history` and `request_workers`). With 100 concurrent users hitting 50+ reports, this triggers 15,000+ queries to a Frankfurt database, which the free tier cannot handle.
+- **Interpretation:** The list endpoint performs a **N+1 query pattern** for every report, it makes 3 additional database calls (to `request_history` and `request_workers`). With 100 concurrent users hitting 50+ reports, this triggers 15,000+ queries to a Frankfurt database, which the free tier cannot handle.
 
 ## Root Cause
 
