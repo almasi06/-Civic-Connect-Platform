@@ -49,18 +49,18 @@ Quality effort is prioritised by risk. The three drivers:
 
 | Requirement | Priority | Risk | Test Coverage | Evidence |
 |---|---|---|---|---|
-| FR-01 (submit) | Must | High | 4 tests + E2E | `requests.test.ts` |
-| FR-02 (offline sync) | Must | Critical (RR-001) | Pending | - |
-| FR-03 (map/reporting) | Should | Medium | 1 test | `requests.test.ts` |
-| FR-04 (RBAC + transitions) | Must | High | 6 tests | `transitions.test.ts` |
-| FR-05 (notifications) | Should | High | 1 test | `transitions.test.ts` |
-| FR-06 (track by number) | Must | Medium | 1 test | `requests.test.ts` |
-| FR-11 (assign/accept) | Must | Medium | 2 tests | `transitions.test.ts` |
-| FR-12 (auth) | Must | High | 9 tests | `auth.test.ts` |
-| NFR-03 (HTTPS/TLS) | Must | High | Manual | ADR-TECH-02 |
-| NFR-05 (uptime) | Should | Medium | 1 test | `health.test.ts` |
-| NFR-08 (session timeout) | Must | Medium | 3 tests | `auth.test.ts` |
-| NFR-12 (error handling) | Must | High | 5 tests | `requests.test.ts` + `transitions.test.ts` |
+| FR-01 (submit) | Must | High | 4 integration tests + E2E | `requests.test.ts`, `admin-resolve.test.ts` |
+| FR-02 (offline sync) | Must | Critical (RR-001) | Endpoint tested (2 tests); timing test deferred | `sync.test.ts` |
+| FR-03 (map/reporting) | Should | Medium | 1 integration test | `requests.test.ts` |
+| FR-04 (RBAC + transitions) | Must | High | 6 integration tests + 6 unit tests | `transitions.test.ts`, `workflow.test.ts` |
+| FR-05 (notifications) | Should | High | 1 integration test (post-commit event) | `transitions.test.ts` |
+| FR-06 (track by number) | Must | Medium | 1 integration test | `requests.test.ts` |
+| FR-11 (assign/accept) | Must | Medium | 2 integration tests | `transitions.test.ts` |
+| FR-12 (auth) | Must | High | 10 integration tests | `auth.test.ts` |
+| NFR-03 (HTTPS/TLS) | Must | High | Manual verification | ADR-TECH-02 |
+| NFR-05 (uptime) | Should | Medium | 1 health check test | `health.test.ts` |
+| NFR-08 (session timeout) | Must | Medium | 3 auth tests (JWT expiry) | `auth.test.ts` |
+| NFR-09 (error handling) | Must | High | 5 negative tests across requests + transitions | `requests.test.ts`, `transitions.test.ts` |
 
 ## Interpretation of Coverage
 
