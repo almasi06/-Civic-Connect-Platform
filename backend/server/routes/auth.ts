@@ -15,7 +15,7 @@ import { validateBody } from "../middleware/validate.middleware";
 
 export const authRouter = Router();
 
-const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 const JWT_EXPIRES_IN = "8h";
 
 const isTest = process.env.NODE_ENV === "test" || process.env.DISABLE_RATE_LIMIT === "1";

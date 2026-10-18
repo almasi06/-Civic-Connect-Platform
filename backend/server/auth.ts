@@ -10,7 +10,7 @@ export interface AuthUser {
   role: Role;
 }
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is not set. Check your backend/.env file.");
 }
@@ -27,7 +27,7 @@ export function authenticatedUser(req: Request): AuthUser | undefined {
   if (!header?.startsWith("Bearer ")) return undefined;
   const token = header.slice("Bearer ".length);
   try {
-    const payload = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload & {
+   const payload = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload & {
       sub: string;
       role: Role;
     };

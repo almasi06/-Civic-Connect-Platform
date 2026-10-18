@@ -123,6 +123,8 @@ requestsRouter.post(
       reporterDeviceId: body.reporterDeviceId,
       source: body.source,
       syncState: body.syncState,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
 
     res.status(201).json(created);
