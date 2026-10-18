@@ -1,6 +1,4 @@
-# 26 - Defects & Quality Interpretation
-
-> **M3/M4 Addition - PED v4.0**
+# Defects & Quality Interpretation
 
 ## Purpose
 
