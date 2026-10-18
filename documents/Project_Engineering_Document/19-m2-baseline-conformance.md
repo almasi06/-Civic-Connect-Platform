@@ -23,7 +23,7 @@ Shows which M2 decisions were implemented as planned, and where the implementati
 
 ## Significant Deviations
 
-### Change M3-01 - Prisma → `pg` driver
+### Change M3-01 - Prisma -> `pg` driver
 
 - **Original M2 decision:** Prisma 5 as ORM
 - **Implementation evidence:** Team chose raw SQL via `pg` (node-postgres) to keep transaction boundaries visible for M3 evidence of ADR-PERSIST-01, and to reduce dependency footprint on free tier
