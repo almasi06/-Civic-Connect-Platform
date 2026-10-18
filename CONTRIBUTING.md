@@ -5,9 +5,9 @@ This document defines how the team collaborates on the CivicConnect repository.
 ## Branching Model
 
 We use **GitHub Flow**:
-- `main` — protected, production-ready
-- `Documentation` — protected, current integration branch
-- Feature branches — short-lived, one per task, deleted after merge
+- `main` - protected, production-ready
+- `Documentation` - protected, current integration branch
+- Feature branches - short-lived, one per task, deleted after merge
 
 ### Branch naming
 
