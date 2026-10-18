@@ -29,7 +29,7 @@ Full details: `../Registers/defect-register.md` and `../Registers/Defect_Registe
 ### DEF-008 - Supabase password authentication failure (Medium)
 - **Root cause:** The password in `backend/.env` no longer matched the Supabase project's password.
 - **Fix:** Password reset and `.env` updated by the team.
-- **Regression evidence:** All 63 tests pass after the fix.
+- **Regression evidence:** All 60+ tests pass after the fix.
 - **Status:**  Closed
 
 ### DEF-020 - Rate limiter blocked integration tests (Low)
