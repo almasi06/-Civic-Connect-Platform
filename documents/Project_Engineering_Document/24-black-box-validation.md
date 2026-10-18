@@ -14,7 +14,7 @@ Documents which black-box test techniques were applied, which critical scenarios
 | **Equivalence Partitioning** | Login credentials, form inputs | Valid email / invalid email / missing field  TC-BE-AUTH-01, TC-BE-AUTH-03, TC-BE-AUTH-04 |
 | **Boundary Value Analysis** | GPS coordinates (inside/outside Tshwane) | TC-BE-REQ-03 tests the city boundary |
 | **Decision Table** | Status transition rules | TC-BE-TRANS-02  Submitted -> Resolved is rejected |
-| **State Transition** | Request lifecycle | TC-E2E-02  Submitted → Assigned -> In Progress → Resolved |
+| **State Transition** | Request lifecycle | TC-E2E-02  Submitted → Assigned -> In Progress -> Resolved |
 | **Negative testing** | Unauthorised, malformed | TC-BE-TRANS-04 (no token = 401), TC-BE-REQ-02 (missing lat/lng = 400) |
 
 ## Critical Scenarios Tested
