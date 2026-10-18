@@ -49,7 +49,7 @@ All database access uses `pg` (node-postgres) with parameterised SQL statements.
 
 - ADR-TECH-01 must be updated: "ORM: Prisma 5" -> "Database client: pg (node-postgres)"
 - PED section [08-technology-stack.md](08-technology-stack.md) must be updated
-- PED section [21-construction-configuration.md](21-construction-configuration.md) reflects the new client
+- PED section [21-construction-configuration.md](18-construction-configuration.md) reflects the new client
 - New technical debt entry TD-M3-10 (manual migrations)
 - Verification evidence will include TC-BE-XX tests confirming explicit transaction boundaries
 
