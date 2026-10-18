@@ -1,4 +1,4 @@
-# 22 - CI & Automated Verification
+# CI & Automated Verification
 
 > **M3 Addition - PED v3.0**
 
