@@ -42,7 +42,7 @@ Full details: `../Registers/defect-register.md` and `../Registers/Defect_Registe
 
 ## Most Concerning Defect
 
-**DEF-006** — the assignment lookup inconsistency would have made the entire field-worker workflow non-functional in production. It was discovered only by the E2E test (`TC-E2E-02`) exercising the full lifecycle. This demonstrates the value of E2E testing beyond unit/integration coverage.
+**DEF-006** - the assignment lookup inconsistency would have made the entire field-worker workflow non-functional in production. It was discovered only by the E2E test (`TC-E2E-02`) exercising the full lifecycle. This demonstrates the value of E2E testing beyond unit/integration coverage.
 
 ## Static / Security Findings
 
@@ -63,11 +63,11 @@ Full details: `../Registers/defect-register.md` and `../Registers/Defect_Registe
 - **Audit trail:** Every transition appends to `request_history`.
 
 ### What the Evidence Does NOT Prove
-- **Production-scale reliability** — the 30-day uptime target (NFR-05) is not measured.
-- **Performance** — the K6 load test failed the threshold (p95 = 21.67s vs 3s target).
-- **Accessibility** — WCAG 2.1 AA compliance not audited.
-- **Cross-browser behaviour** — only Chromium tested.
-- **Offline sync timing** — NFR-01 not measured.
+- **Production-scale reliability** - the 30-day uptime target (NFR-05) is not measured.
+- **Performance** - the K6 load test failed the threshold (p95 = 21.67s vs 3s target).
+- **Accessibility** - WCAG 2.1 AA compliance not audited.
+- **Cross-browser behaviour** - only Chromium tested.
+- **Offline sync timing** - NFR-01 not measured.
 
 ## Technical Debt Accepted
 
