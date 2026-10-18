@@ -22,7 +22,7 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 |---|---|---|
 | Build passes (typecheck + build) | Done | CI workflow + manual `npm run build` |
 | Unit tests pass | Done | 31 tests pass |
-| Integration tests pass | Done | 28 tests pass |
+| Integration tests pass | Done | 29 tests pass |
 | E2E tests pass | Done | 2 tests pass |
 | Static analysis | Done | ESLint run; CodeQL pending CI |
 | Security checks | Done | npm audit clean; gitleaks passes |
