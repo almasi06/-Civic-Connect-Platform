@@ -1,0 +1,14 @@
+{
+  "id": "bbbbbbbb-2222-2222-2222-222222222222",
+  "trackingNumber": "TSH-OUT999",
+  "category": "pothole",
+  "description": "Outside the city",
+  "lat": -33.9249,
+  "lng": 18.4241,
+  "reporterDeviceId": "test-device-002",
+  "status": "submitted",
+  "version": 1,
+  "history": [],
+  "source": "web",
+  "syncState": "synced"
+}

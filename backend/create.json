@@ -1,0 +1,16 @@
+{
+  "id": "aaaaaaaa-1111-1111-1111-111111111111",
+  "trackingNumber": "TSH-ABC123",
+  "category": "pothole",
+  "description": "Big pothole on Main Street",
+  "lat": -25.7479,
+  "lng": 28.2293,
+  "reporterDeviceId": "test-device-001",
+  "status": "submitted",
+  "version": 1,
+  "history": [
+    { "status": "submitted", "at": "2026-10-12T12:00:00Z", "by": "citizen" }
+  ],
+  "source": "web",
+  "syncState": "synced"
+}
