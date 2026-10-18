@@ -35,7 +35,7 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 
 ## Blockers
 
-### Blocker 1 - Supabase password authentication failure (DEF-008) — RESOLVED
+### Blocker 1 - Supabase password authentication failure (DEF-008) - RESOLVED
 **Impact:** The backend could not connect to the database at time of writing.
 **Resolution:** Supabase password reset and `backend/.env` updated. All 63 tests now pass.
 
@@ -56,9 +56,9 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 ## Residual Risks
 
 See `../Release/residual-risk-statement.md`. Key risks:
-- Supabase free-tier pauses after 7 days of inactivity — demos must wake the project.
+- Supabase free-tier pauses after 7 days of inactivity demos must wake the project.
 - Free-tier connection limits under concurrent load (RR-005).
-- No multi-region failover — single-region dependency on Supabase Frankfurt.
+- No multi-region failover single-region dependency on Supabase Frankfurt.
 
 ## Release Evidence Summary
 
