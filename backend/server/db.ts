@@ -41,5 +41,14 @@ export async function pingDb(): Promise<boolean> {
   }
 }
 
-process.on("SIGTERM", () => pool.end());
-process.on("SIGINT", () => pool.end());
+// Graceful shutdown: only close the pool if it's still active
+const shutdown = async () => {
+  try {
+    await pool.end();
+  } catch (err) {
+    // Ignore "Called end on pool more than once" errors during test teardown
+  }
+};
+
+process.once("SIGTERM", shutdown);
+process.once("SIGINT", shutdown);
