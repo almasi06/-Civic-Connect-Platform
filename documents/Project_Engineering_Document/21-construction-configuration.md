@@ -35,31 +35,74 @@ Repository strategy, configuration approach, and important implementation notes 
 │   ├── server/
 │   │   ├── application/
 │   │   │   └── workflow.service.ts # State machine + RBAC transitions
+│   │   ├── domain/
+│   │   │   ├── workflow.ts         # ALLOWED + ROLE_CAN matrices
+│   │   │   ├── events.ts           # In-process event bus
+│   │   │   └── city.ts             # Tshwane boundary gate
+│   │   ├── middleware/
+│   │   │   ├── auth.middleware.ts  # JWT verification + requireRole
+│   │   │   ├── error.middleware.ts # HttpError + asyncHandler
+│   │   │   └── validate.middleware.ts # Zod schemas
 │   │   ├── persistence/
-│   │   │   └── request.repository.ts
-│   │   └── db.ts                  # pg Pool (SSL, transactions)
+│   │   │   ├── request.repository.ts
+│   │   │   ├── user.repository.ts
+│   │   │   └── team.repository.ts
+│   │   ├── routes/
+│   │   │   ├── auth.ts
+│   │   │   ├── requests.ts
+│   │   │   ├── sync.ts
+│   │   │   ├── teams.ts
+│   │   │   └── workers.ts
+│   │   ├── db.ts                  # pg Pool (SSL, transactions)
+│   │   └── index.ts               # Express app entry
 │   ├── tests/
+│   │   ├── api/
+│   │   │   └── health.test.ts     # TC-API-01 (NFR-05)
 │   │   ├── e2e/
+│   │   │   └── admin-resolve.test.ts # TC-E2E-02 (full lifecycle)
 │   │   ├── fixtures/
+│   │   │   └── helpers.ts         # loginAsAdmin, cleanupTestData
 │   │   ├── integration/
-│   │   │   └── transitions.test.ts # TC-BE-TRANS-01 (FR-04)
+│   │   │   ├── auth.test.ts       # TC-BE-AUTH-01..10
+│   │   │   ├── requests.test.ts   # TC-BE-REQ-01..12
+│   │   │   ├── sync.test.ts       # TC-BE-SYNC-01..02
+│   │   │   └── transitions.test.ts # TC-BE-TRANS-01..06 (FR-04)
 │   │   ├── unit/
+│   │   │   ├── city.test.ts       # TC-BE-CITY-01..09
+│   │   │   ├── smoke.test.ts      # Sanity checks
+│   │   │   └── workflow.test.ts   # TC-BE-WF-01..20
 │   │   ├── README.md
 │   │   └── setup.ts
-│   └── package.json
+│   ├── .env
+│   ├── package.json
+│   └── tsconfig.json
 ├── documents/
 │   ├── Architecture/
 │   ├── Architecture_Decision_Record/
-│   │   └── ADR-TECH-01-pern-stack.md
+│   │   ├── ADR-ARCH-01-layered-monolith.md
+│   │   ├── ADR-TECH-01-pern-stack.md
+│   │   ├── ADR-TECH-02-supabase-postgres-hosting.md
+│   │   ├── ADR-PERSIST-01-transactional-transitions.md
+│   │   └── ADR-INT-01-notification-integration.md
 │   ├── Project_Engineering_Document/
+│   │   ├── 00-document-control.md
+│   │   ├── 18-m3-overview.md
+│   │   ├── 19-m2-baseline-conformance.md
 │   │   ├── 20-controlled-changes.md
 │   │   ├── 21-construction-configuration.md
+│   │   ├── 22-ci-automated-verification.md
+│   │   ├── 23-quality-strategy.md
+│   │   ├── 24-black-box-validation.md
 │   │   ├── 25-performance-reliability.md
-│   │   └── 27-release-readiness.md
+│   │   ├── 26-defects-quality.md
+│   │   ├── 27-release-readiness.md
+│   │   └── INDEX.md
 │   ├── Registers/
 │   │   ├── defect-register.md
-│   │   └── technical-debt-register.md
+│   │   ├── technical-debt-register.md
+│   │   └── ai-usage-register.md
 │   ├── Release/
+│   │   ├── release-candidate.md
 │   │   ├── release-evidence-summary.md
 │   │   ├── residual-risk-statement.md
 │   │   ├── rollback-plan.md
@@ -67,6 +110,9 @@ Repository strategy, configuration approach, and important implementation notes 
 │   └── Requirements_Traceability_Matrix/
 │       └── RTM.md
 ├── src/                           # Frontend (React 19 + Vite 6)
+├── tests/
+│   └── performance/
+│       └── load-test.js           # K6 performance script
 ├── .env.example
 ├── .gitignore
 ├── CONTRIBUTING.md
