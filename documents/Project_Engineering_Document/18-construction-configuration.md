@@ -1,8 +1,5 @@
 # 21 - Construction & Configuration
 
-> **M3 Addition - PED v3.0**
-> **Status:** Living document
-
 ## Purpose
 
 Repository strategy, configuration approach, and important implementation notes for future maintainers.
