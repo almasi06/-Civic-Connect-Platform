@@ -23,7 +23,7 @@ const ROLE_CAN: Record<StaffRole, Status[]> = {
 export const nextStatuses = (s: Status, role?: StaffRole) =>
   ALLOWED[s].filter((t) => !role || ROLE_CAN[role].includes(t));
 
-export function transition(
+export async function transition(
   id: string,
   to: Status,
   actor: StaffSession,
@@ -43,7 +43,7 @@ export function transition(
     actor.role === "field_worker" && to === "resolved" && field?.teamName?.trim()
       ? `${actor.name} and ${field.teamName.trim()} Team`
       : actor.name;
-  const updated = requestRepository.updateStatusTx(
+  const updated = await requestRepository.updateStatusTx(
     id,
     to,
     actorName,

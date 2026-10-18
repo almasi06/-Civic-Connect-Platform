@@ -128,3 +128,32 @@ export async function addFieldUpdate(
   );
   if (!updated) throw new HttpError(409, "This report was changed by someone else. Refresh.");
 }
+
+export async function assignWorkers(
+  id: string,
+  actor: { id: string; name: string; role: Role },
+  expectedVersion: number,
+  workerIds: string[],
+  teamLeaderId?: string,
+): Promise<void> {
+  const current = await requestRepository.findById(id);
+  if (!current) throw new HttpError(404, "Report not found");
+
+  // Validate team leader is in the worker list
+  if (teamLeaderId && !workerIds.includes(teamLeaderId)) {
+    throw new HttpError(400, "The team leader must be one of the assigned workers.");
+  }
+
+  const updated = await requestRepository.assignWorkers(
+    id,
+    actor.name,
+    expectedVersion,
+    workerIds,
+    teamLeaderId,
+  );
+
+  if (!updated) {
+    throw new HttpError(409, "This report was changed by someone else. Refresh.");
+  }
+}
+

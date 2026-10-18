@@ -1,47 +1,52 @@
-import { API, API_BASE_URL } from "@/config/city";
-import { authHeader } from "./auth";
+import { API_BASE_URL, API } from "@/config/city";
+import { authHeader } from "@/application/auth";
 import type { Team } from "@/domain/types";
 
-export type TeamInput = Omit<Team, "id" | "createdAt" | "updatedAt">;
+export interface TeamInput {
+  name: string;
+  description: string;
+  department: string;
+  contactEmail: string;
+  contactPhone: string;
+  workerIds: string[];
+}
+
 export type WorkerTeam = Pick<Team, "id" | "name" | "department" | "contactEmail" | "contactPhone">;
 
-async function teamRequest<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...init,
-    headers: {
-      "content-type": "application/json",
-      ...authHeader(),
-      ...init?.headers,
-    },
-  });
-  if (!response.ok) {
-    const body: unknown = await response.json().catch(() => null);
-    const message =
-      body && typeof body === "object" && "message" in body && typeof body.message === "string"
-        ? body.message
-        : `Team request failed (${response.status}).`;
-    throw new Error(message);
-  }
-  return (await response.json()) as T;
+export async function listTeams(): Promise<Team[]> {
+  const res = await fetch(`${API_BASE_URL}/api/teams`, { headers: authHeader() });
+  if (!res.ok) throw new Error("Could not load teams.");
+  return await res.json();
 }
 
-export function listTeams(): Promise<Team[]> {
-  return teamRequest<Team[]>(API.TEAMS);
-}
-
-export function listMyTeams(): Promise<WorkerTeam[]> {
-  return teamRequest<WorkerTeam[]>(`${API.TEAMS}/mine`);
-}
-
-export function saveTeam(input: TeamInput, id?: string): Promise<Team> {
-  return teamRequest<Team>(id ? `${API.TEAMS}/${encodeURIComponent(id)}` : API.TEAMS, {
+export async function saveTeam(form: TeamInput, id?: string): Promise<Team> {
+  const url = id 
+    ? `${API_BASE_URL}/api/teams/${id}` 
+    : `${API_BASE_URL}/api/teams`;
+    
+  const res = await fetch(url, {
     method: id ? "PATCH" : "POST",
-    body: JSON.stringify(input),
+    headers: { "content-type": "application/json", ...authHeader() },
+    body: JSON.stringify(form),
   });
+  
+  if (!res.ok) {
+    const err = await res.json().catch(() => null);
+    throw new Error(err?.message || "Could not save team.");
+  }
+  return await res.json();
 }
 
-export function removeTeam(id: string): Promise<void> {
-  return teamRequest<void>(`${API.TEAMS}/${encodeURIComponent(id)}`, {
+export async function removeTeam(id: string): Promise<void> {
+  const res = await fetch(`${API_BASE_URL}/api/teams/${id}`, {
     method: "DELETE",
+    headers: authHeader(),
   });
+  if (!res.ok) throw new Error("Could not delete team.");
+}
+
+export async function listMyTeams(): Promise<WorkerTeam[]> {
+  const res = await fetch(`${API_BASE_URL}/api/teams/mine`, { headers: authHeader() });
+  if (!res.ok) throw new Error("Could not load your teams.");
+  return await res.json();
 }

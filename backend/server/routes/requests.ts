@@ -6,13 +6,14 @@
 import { Router } from "express";
 import { z } from "zod";
 import { requestRepository, type RequestFilters } from "../persistence/request.repository";
-import { transition, acceptJob, addFieldUpdate } from "../application/workflow.service";
+import { transition, acceptJob, addFieldUpdate, assignWorkers } from "../application/workflow.service";
 import { requireAuth, requireRole } from "../middleware/auth.middleware";
 import { asyncHandler, HttpError } from "../middleware/error.middleware";
 import { validateBody } from "../middleware/validate.middleware";
 import { isInsideCity } from "../domain/city";
 import type { Category, Status, ServiceRequest } from "../types";
 import { userRepository } from "../persistence/user.repository";
+
 
 export const requestsRouter = Router();
 
@@ -173,6 +174,38 @@ requestsRouter.post(
       { id: user.id, name: user.name, role: user.role },
       body.expectedVersion,
     );
+    const updated = await requestRepository.findById(req.params.id);
+    res.json(updated);
+  }),
+);
+
+// =============================================================================
+// PATCH /api/requests/:id/assign  (admin assigns a team)
+// =============================================================================
+const assignSchema = z.object({
+  expectedVersion: z.number().int(),
+  assignedWorkerIds: z.array(z.string().uuid()),
+  teamLeaderId: z.string().uuid().optional(),
+});
+
+requestsRouter.patch(
+  "/:id/assign",
+  requireAuth,
+  requireRole("admin"),
+  validateBody(assignSchema),
+  asyncHandler(async (req, res) => {
+    const body = req.body as z.infer<typeof assignSchema>;
+    const user = await userRepository.findById(req.user!.id);
+    if (!user) throw new HttpError(401, "User not found");
+
+    await assignWorkers(
+      req.params.id,
+      { id: user.id, name: user.name, role: user.role },
+      body.expectedVersion,
+      body.assignedWorkerIds,
+      body.teamLeaderId,
+    );
+
     const updated = await requestRepository.findById(req.params.id);
     res.json(updated);
   }),

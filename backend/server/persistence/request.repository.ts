@@ -310,6 +310,63 @@ export const requestRepository = {
     }
   },
 
+    // =========================================================================
+  // ASSIGN WORKERS (transactional, version-checked)
+  // =========================================================================
+  async assignWorkers(
+    id: string,
+    actorName: string,
+    expectedVersion: number,
+    workerIds: string[],
+    teamLeaderId?: string,
+  ): Promise<ServiceRequest | null> {
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+
+      const { rows } = await client.query<{ version: number }>(
+        `UPDATE requests
+            SET version = version + 1,
+                updated_at = now(),
+                team_leader_id = $1,
+                assigned_to = $2,
+                assigned_name = (SELECT name FROM users WHERE id = $2)
+          WHERE id = $3 AND version = $4
+          RETURNING version`,
+        [teamLeaderId ?? null, workerIds[0] ?? null, id, expectedVersion],
+      );
+
+      if (rows.length === 0) {
+        await client.query("ROLLBACK");
+        return null;
+      }
+
+      // Update request_workers
+      await client.query(`DELETE FROM request_workers WHERE request_id = $1`, [id]);
+      for (const workerId of workerIds) {
+        await client.query(
+          `INSERT INTO request_workers (request_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`,
+          [id, workerId],
+        );
+      }
+
+      // Add history entry
+      await client.query(
+        `INSERT INTO request_history (request_id, status, by_name, note)
+         SELECT id, status, $2, $3 FROM requests WHERE id = $1`,
+        [id, actorName, `Team assignment updated: ${workerIds.length} worker(s)`],
+      );
+
+      await client.query("COMMIT");
+      return this.findById(id);
+    } catch (err) {
+      await client.query("ROLLBACK");
+      throw err;
+    } finally {
+      client.release();
+    }
+  },
+
   // =========================================================================
   // ACCEPT JOB (worker accepts; no status change)
   // =========================================================================

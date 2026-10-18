@@ -652,7 +652,6 @@ function TeamAssignmentPanel({
 function TeamAssignmentCard({
   request,
   workers,
-  teams,
   staff,
   onError,
 }: {
@@ -662,47 +661,35 @@ function TeamAssignmentCard({
   staff: StaffSession;
   onError: (message: string) => void;
 }) {
-  const department = departmentOf(request);
-  const departmentTeams = teams.filter((team) => team.department === department);
-  const eligibleIds = new Set(departmentTeams.flatMap((team) => team.workerIds));
   const assigned = assignedWorkerIdsOf(request);
-  const eligibleWorkers = workers.filter((worker) => eligibleIds.has(worker.id) || assigned.includes(worker.id));
-  const [selected, setSelected] = useState<string[]>(assigned);
-  const [leaderId, setLeaderId] = useState(request.teamLeaderId ?? request.assignedTo ?? "");
-  const [workerSearch, setWorkerSearch] = useState("");
+  const [selectedWorkerId, setSelectedWorkerId] = useState<string>(assigned[0] || "");
   const [saving, setSaving] = useState(false);
-  useEffect(() => {
-    setSelected(assignedWorkerIdsOf(request));
-    setLeaderId(request.teamLeaderId ?? request.assignedTo ?? "");
-  }, [request]);
-  const changed = selected.length !== assigned.length
-    || selected.some((id) => !assigned.includes(id))
-    || leaderId !== (request.teamLeaderId ?? request.assignedTo ?? "");
-  const matchingWorkers = eligibleWorkers.filter((worker) =>
-    worker.name.toLocaleLowerCase().includes(workerSearch.trim().toLocaleLowerCase()),
-  );
 
-  const save = () => {
+  // Sync state if the request updates from elsewhere
+  useEffect(() => {
+    setSelectedWorkerId(assignedWorkerIdsOf(request)[0] || "");
+  }, [request]);
+
+  const save = async () => {
+    if (!selectedWorkerId) return;
     onError("");
     setSaving(true);
     try {
-      const selectedWorkers = selected
-        .map((id) => workers.find((worker) => worker.id === id))
-        .filter((worker): worker is FieldWorker => worker !== undefined)
-        .map(({ id, name }) => ({ id, name }));
-      const updated = requestRepository.assignWorkersTx(
+      const worker = workers.find((w) => w.id === selectedWorkerId);
+      const selectedWorkers = worker ? [{ id: worker.id, name: worker.name }] : [];
+
+      const updated = await requestRepository.assignWorkersTx(
         request.id,
         request.version,
         staff.name,
         selectedWorkers,
-        leaderId || undefined,
+        selectedWorkerId
       );
-      setSelected(assignedWorkerIdsOf(updated));
-      setLeaderId(updated.teamLeaderId ?? "");
+      
       window.dispatchEvent(new CustomEvent("cc-alert", {
         detail: {
-          title: "Team assignment saved",
-          body: `${trackingOf(updated)} assignment updated. Ticket status was not changed.`,
+          title: "Worker Assigned",
+          body: `${trackingOf(updated)} has been assigned to ${worker?.name}.`,
         },
       }));
     } catch (reason) {
@@ -713,77 +700,43 @@ function TeamAssignmentCard({
   };
 
   return (
-    <article className="admin-assignment-card">
-      <div className="row-between">
+    <article className="admin-assignment-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px', border: '1px solid #ccc', borderRadius: '8px', marginBottom: '16px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h3>{CATEGORY_LABEL[request.category]} · {trackingOf(request)}</h3>
-          <p className="muted small">{DEPARTMENT_LABEL[department]} · {STATUS_LABEL[request.status]}</p>
+          <h3 style={{ margin: 0 }}>{CATEGORY_LABEL[request.category]} · {trackingOf(request)}</h3>
+          <p className="muted small" style={{ margin: 0 }}>{DEPARTMENT_LABEL[departmentOf(request)]} · {STATUS_LABEL[request.status]}</p>
         </div>
         <StatusBadge status={request.status} />
       </div>
-      <p className="small">{request.description || "No description provided."}</p>
-      {departmentTeams.length === 0 && assigned.length === 0 ? (
-        <p className="muted small">Create a team for this department before assigning workers.</p>
-      ) : eligibleWorkers.length === 0 ? (
-        <p className="muted small">Add field workers to the {DEPARTMENT_LABEL[department]} team before assigning this ticket.</p>
-      ) : (
-        <>
-          <label className="field">
-            <span className="field-label">Search department workers</span>
-            <input
-              className="input"
-              type="search"
-              value={workerSearch}
-              onChange={(event) => setWorkerSearch(event.currentTarget.value)}
-              placeholder="Search by worker name"
-            />
-          </label>
-          <fieldset className="team-workers admin-assignee-list">
-            <legend className="field-label">Assigned field workers</legend>
-            {matchingWorkers.map((worker) => {
-              const checked = selected.includes(worker.id);
-              return (
-                <label className="team-worker-option" key={worker.id}>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => {
-                      const next = checked ? selected.filter((id) => id !== worker.id) : [...selected, worker.id];
-                      setSelected(next);
-                      if (!next.includes(leaderId)) setLeaderId(next[0] ?? "");
-                    }}
-                  />
-                  {worker.name}
-                </label>
-              );
-            })}
-            {matchingWorkers.length === 0 && <p className="muted small">No department workers match that search.</p>}
-          </fieldset>
-          {selected.length > 0 && (
-            <fieldset className="team-workers admin-assignee-list">
-              <legend className="field-label">Team leader</legend>
-              {selected.map((id) => {
-                const worker = workers.find((candidate) => candidate.id === id);
-                if (!worker) return null;
-                return (
-                  <label className="team-worker-option" key={id}>
-                    <input type="radio" name={`leader-${request.id}`} checked={leaderId === id} onChange={() => setLeaderId(id)} />
-                    {worker.name}
-                  </label>
-                );
-              })}
-            </fieldset>
-          )}
-        </>
-      )}
-      <button
-        type="button"
-        className="btn btn-primary"
-        disabled={!changed || saving || (selected.length > 0 && !leaderId)}
-        onClick={save}
-      >
-        {saving ? "Saving assignment…" : "Save team assignment"}
-      </button>
+      
+      <p className="small" style={{ margin: 0 }}>{request.description || "No description provided."}</p>
+      
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
+        <label style={{ flex: 1 }}>
+          <span className="field-label" style={{ display: 'block', marginBottom: '4px' }}>Assign Field Worker</span>
+          <select 
+            className="select" 
+            value={selectedWorkerId} 
+            onChange={(e) => setSelectedWorkerId(e.currentTarget.value)}
+            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          >
+            <option value="">-- Select a worker --</option>
+            {workers.map(w => (
+              <option key={w.id} value={w.id}>{w.name}</option>
+            ))}
+          </select>
+        </label>
+        
+        <button
+          type="button"
+          className="btn btn-primary"
+          disabled={!selectedWorkerId || saving || selectedWorkerId === assigned[0]}
+          onClick={save}
+          style={{ marginTop: '20px', padding: '10px 16px', backgroundColor: '#2e7d32', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+        >
+          {saving ? "Saving..." : "Assign Worker"}
+        </button>
+      </div>
     </article>
   );
 }
@@ -1005,8 +958,10 @@ function TeamManager({
       department: team.department,
       contactEmail: team.contactEmail,
       contactPhone: team.contactPhone,
-      workerIds: team.workerIds,
+      workerIds: team.workerIds || [],
     });
+    
+   
   };
 
   return (
@@ -1066,8 +1021,10 @@ function TeamManager({
         </ul>
       )}
 
-      <form className="team-form" onSubmit={(event) => void submit(event)}>
-        <h3>{editingId ? "Edit team" : "Create a team"}</h3>
+      <form className="team-form" onSubmit={(event) => {
+  event.preventDefault();
+  void submit(event);
+}}>
         <div className="form-grid">
           <label className="field">
             <span className="field-label">Team name</span>
@@ -1207,15 +1164,14 @@ function StaffRequest({
   teamName?: string;
   onError: (message: string) => void;
 }) {
-  const run = (action: () => void) => {
+    const run = async (action: () => void | Promise<void>) => {
     onError("");
     try {
-      action();
+      await action();
     } catch (reason) {
       onError(reason instanceof Error ? reason.message : "Could not update this report.");
     }
   };
-
   const statuses = nextStatuses(request.status, staff.role);
 
   return (
@@ -1253,7 +1209,7 @@ function StaffRequest({
               <button
                 key={status}
                 className="btn btn-primary"
-                onClick={() => run(() => transition(
+                                onClick={() => run(async () => transition(
                   request.id,
                   status,
                   staff,

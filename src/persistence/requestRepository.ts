@@ -97,7 +97,7 @@ export const requestRepository = {
   //   UPDATE requests SET status=$1, version=version+1, updated_at=now()
   //     WHERE id=$2 AND version=$3;
   //   INSERT INTO request_history(...) VALUES (...);
-  updateStatusTx(
+   async updateStatusTx(
     id: string,
     to: Status,
     by: string,
@@ -109,85 +109,63 @@ export const requestRepository = {
       photo?: string;
     },
   ) {
-    const all = read();
-    const i = all.findIndex((r) => r.id === id);
-    const cur = all[i];
-    if (i < 0 || !cur) throw new Error("Report not found");
-    if (cur.version !== expectedVersion)
-      throw new Error("This report was changed by someone else. Refresh.");
-    const now = new Date().toISOString();
-    const updated: ServiceRequest = {
-      ...cur,
-      status: to,
-      version: cur.version + 1,
-      updatedAt: now,
-      history: [
-        ...cur.history,
-        {
-          status: to,
-          at: now,
-          by,
-          ...(extra?.note ? { note: extra.note } : {}),
-          ...(extra?.photo ? { photo: extra.photo } : {}),
-        },
-      ],
-      syncState: "pending",
-      ...(extra?.assignedTo
-        ? { assignedTo: extra.assignedTo, assignedName: extra.assignedName }
-        : {}),
-    };
-    all[i] = updated;
+    if (typeof navigator === "undefined" || !navigator.onLine) {
+      throw new Error("You must be online to update a report.");
+    }
+
+    const res = await fetch(`${API_BASE_URL}${API.REQUESTS}/${id}/status`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json", ...authHeader() },
+      body: JSON.stringify({
+        to,
+        expectedVersion,
+        assignedTo: extra?.assignedTo,
+        assignedName: extra?.assignedName,
+        note: extra?.note,
+        photo: extra?.photo,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      throw new Error(err?.message || "Could not update the report status.");
+    }
+
+    const updated = await res.json();
+    // Sync it to local storage just in case the app relies on it for fast reads
+    const all = read().map((r) => (r.id === id ? updated : r));
     write(all);
-    void this.sync();
+    
     return updated;
   },
 
-  assignWorkersTx(
+    async assignWorkersTx(
     id: string,
     expectedVersion: number,
     by: string,
     workers: { id: string; name: string }[],
     teamLeaderId?: string,
   ) {
-    const all = read();
-    const i = all.findIndex((request) => request.id === id);
-    const current = all[i];
-    if (!current) throw new Error("Report not found");
-    if (current.version !== expectedVersion) {
-      throw new Error("This report was changed by someone else. Refresh.");
-    }
-    if (teamLeaderId && !workers.some((worker) => worker.id === teamLeaderId)) {
-      throw new Error("The team leader must be one of the assigned workers.");
+    if (typeof navigator === "undefined" || !navigator.onLine) {
+      throw new Error("You must be online to assign workers.");
     }
 
-    const assignedWorkerIds = workers.map((worker) => worker.id);
-    const leader = workers.find((worker) => worker.id === teamLeaderId);
-    const now = new Date().toISOString();
-    const updated: ServiceRequest = {
-      ...current,
-      assignedWorkerIds,
-      teamLeaderId: leader?.id,
-      assignedTo: leader?.id ?? workers[0]?.id,
-      assignedName: leader?.name ?? workers[0]?.name,
-      version: current.version + 1,
-      updatedAt: now,
-      syncState: "pending",
-      history: [
-        ...current.history,
-        {
-          status: current.status,
-          at: now,
-          by,
-          note: workers.length
-            ? `Team assignment updated: ${workers.map((worker) => worker.name).join(", ")}${leader ? `; team leader: ${leader.name}` : ""}`
-            : "All team members removed from this report",
-        },
-      ],
-    };
-    all[i] = updated;
-    write(all);
-    void this.sync();
-    return updated;
+    const res = await fetch(`${API_BASE_URL}${API.REQUESTS}/${id}/assign`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json", ...authHeader() },
+      body: JSON.stringify({
+        expectedVersion,
+        assignedWorkerIds: workers.map((w) => w.id),
+        teamLeaderId,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      throw new Error(err?.message || "Could not update the team assignment.");
+    }
+
+    return await res.json();
   },
 
   // DB NOTE: same pattern as updateStatusTx — version-locked UPDATE + history INSERT.
@@ -260,7 +238,7 @@ export const requestRepository = {
         body: JSON.stringify({ requests: pending }),
       });
       if (!res.ok) {
-        reportSyncError(`The API rejected the sync request (${res.status}).`);
+       console.warn(`[sync] Background sync rejected: ${res.status}`);
         return;
       }
       const { accepted } = (await res.json()) as { accepted: string[] };

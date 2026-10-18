@@ -113,8 +113,9 @@ export const assignedWorkerIdsOf = (
 export const isAssignedToWorker = (
   request: Pick<ServiceRequest, "assignedTo" | "assignedWorkerIds">,
   workerId: string,
-) => assignedWorkerIdsOf(request).includes(workerId);
-
+) => {
+  return assignedWorkerIdsOf(request).includes(workerId) || request.assignedTo === workerId;
+};
 // Older reports have no stored number; derive a stable one from the id.
 export const trackingOf = (r: { id: string; trackingNumber?: string | undefined }) =>
   r.trackingNumber ?? `TSH-${r.id.replace(/-/g, "").slice(0, 6).toUpperCase()}`;

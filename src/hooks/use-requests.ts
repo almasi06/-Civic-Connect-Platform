@@ -4,17 +4,30 @@ import type { ServiceRequest } from "@/domain/types";
 
 export function useRequests() {
   const [list, setList] = useState<ServiceRequest[]>([]);
+
   useEffect(() => {
     const load = () => setList(requestRepository.list());
+    
+    // 1. Load from local cache immediately (fast UI)
     load();
+    
+    // 2. Fetch fresh data from the backend (source of truth)
+    void requestRepository.refresh().then(load).catch(console.error);
+
+    // 3. Subscribe to local storage changes
     const off = requestRepository.subscribe(load);
-    const online = () => void requestRepository.sync();
+    const online = () => {
+      void requestRepository.sync().then(() => requestRepository.refresh().then(load));
+    };
+    
     window.addEventListener("online", online);
+    
     return () => {
       off();
       window.removeEventListener("online", online);
     };
   }, []);
+  
   return list;
 }
 
