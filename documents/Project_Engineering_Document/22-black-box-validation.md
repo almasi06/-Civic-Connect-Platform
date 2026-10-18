@@ -21,6 +21,8 @@ Documents which black-box test techniques were applied, which critical scenarios
 | Citizen submits request with photo + GPS | FR-01 | TC-BE-REQ-01 |  Pass |
 | Missing lat/lng is rejected | FR-01 | TC-BE-REQ-02 |  Pass |
 | GPS outside Tshwane is rejected | FR-01 | TC-BE-REQ-03 |  Pass |
+| Offline sync accepts submitted requests | FR-02 | TC-BE-SYNC-01, TC-BE-SYNC-02 | Pass |
+| Field worker can add a field update with note | FR-07 | TC-BE-TRANS-07 | Pass |
 | Invalid category is rejected | FR-03 | TC-BE-REQ-04 |  Pass |
 | List returns an array | FR-10 | TC-BE-REQ-05 |  Pass |
 | Filter by category works | FR-10 | TC-BE-REQ-06 |  Pass |
