@@ -59,7 +59,7 @@ Based on observed single-request latency during the functional test suite:
 | Response time p95 | < 3000ms | 500-900ms |  Expected to pass |
 | Success rate | > 99% | > 99.5% |  Expected to pass |
 
-**Reasoning:** Integration tests complete in 300–800ms per request against the Supabase Frankfurt pooler from a local machine. Even with 20 concurrent users, the p95 should stay well under 3 seconds.
+**Reasoning:** Integration tests complete in 300-800ms per request against the Supabase Frankfurt pooler from a local machine. Even with 20 concurrent users, the p95 should stay well under 3 seconds.
 
 ## Comparison to NFR Targets
 
