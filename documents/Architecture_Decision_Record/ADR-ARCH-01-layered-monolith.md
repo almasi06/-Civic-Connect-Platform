@@ -46,7 +46,7 @@ Four architecture styles were evaluated on a weighted decision matrix (see [07-a
 - **Team parallelism** - each student could own a service boundary at team-scale
 - **Organisational alignment** - Conway's Law supports service boundaries at municipal-team scale
 
-These are real engineering benefits. The team takes seriously the lecturer's guidance that microservices represent the modern direction.
+
 
 **Why they are deferred (not rejected):**
 - **Transactional complexity** - ADR-PERSIST-01 requires ACID across status + audit + assignment. Microservices require either a shared DB (defeats the point) or a saga pattern with compensating transactions.
