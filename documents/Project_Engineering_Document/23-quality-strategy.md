@@ -1,4 +1,4 @@
-# 23 - Quality Strategy
+# Quality Strategy
 
 > **M3 Addition - PED v3.0**
 
