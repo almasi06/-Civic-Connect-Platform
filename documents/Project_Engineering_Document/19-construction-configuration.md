@@ -21,14 +21,9 @@ Repository strategy, configuration approach, and important implementation notes 
 ```text
 -Civic-Connect-Platform/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── adr.md
-│   │   ├── bug.md
-│   │   └── feature.md
 │   ├── workflows/
 │   │   ├── ci.yml                 # CI pipeline (frontend, backend, security)
 │   │   └── security.yml           # CodeQL, gitleaks, npm audit
-│   └── pull_request_template.md
 ├── backend/
 │   ├── migrations/
 │   │   └── 001_initial_schema.sql # PostgreSQL schema
@@ -86,9 +81,27 @@ Repository strategy, configuration approach, and important implementation notes 
 │   │   └── ADR-INT-01-notification-integration.md
 │   ├── Project_Engineering_Document/
 │   │   ├── 00-document-control.md
-│   │   ├── 18-m3-overview.md
-│   │   ├── 19-m2-baseline-conformance.md
-│   │   ├── 20-controlled-changes.md
+│   │   ├── 01-problem-statement.md
+│   │   ├── 02-stakeholders.md
+│   │   ├── 03-requirements.md
+│   │   ├── 04-scope-baseline.md
+│   │   ├── 05-constraints.md
+│   │   ├── 06-asrs.md
+│   │   ├── 07-architecture.md
+│   │   ├── 08-technology-stack.md
+│   │   ├── 09-data-persistence.md
+│   │   ├── 10-design-decisions.md
+│   │   ├── 11-integration-api.md
+│   │   ├── 12-risk-register.md
+│   │   ├── 13-forward-engineering.md
+│   │   ├── 14-deployment.md
+│   │   ├── 15-baseline.md
+│   │   ├── 16-ai-usage-register.md
+│   │   ├── 17-decision-log.md
+│   │   ├── 18-controlled-changes.md
+│   │   ├── 19-construction-configuration.md
+│   │   ├── 20-ci-automated-verification.md
+
 │   │   ├── 21-construction-configuration.md
 │   │   ├── 22-ci-automated-verification.md
 │   │   ├── 23-quality-strategy.md
@@ -113,15 +126,11 @@ Repository strategy, configuration approach, and important implementation notes 
 ├── tests/
 │   └── performance/
 │       └── load-test.js           # K6 performance script
-├── .env.example
 ├── .gitignore
 ├── CONTRIBUTING.md
 ├── package.json
 └── README.md
 ```
-
-
-
 
 ## Configuration Approach
 
