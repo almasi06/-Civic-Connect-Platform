@@ -5,8 +5,10 @@
 import { eventBus } from "../domain/events";
 import { ALLOWED, ROLE_CAN } from "../domain/workflow";
 import { requestRepository } from "../persistence/request.repository";
+import { userRepository } from "../persistence/user.repository";
 import { HttpError } from "../middleware/error.middleware";
 import type { Role, Status } from "../types";
+
 
 export async function transition(
   id: string,
@@ -39,6 +41,14 @@ export async function transition(
   // 5. Assignee required for "assigned" transition
   if (to === "assigned" && !assignee) {
     throw new HttpError(400, "Choose a field worker first");
+  }
+
+    // 5b. Assignee must be an active field worker
+  if (to === "assigned" && assignee) {
+    const ok = await userRepository.isActiveFieldWorker(assignee.id);
+    if (!ok) {
+      throw new HttpError(400, "Assignee is not an active field worker");
+    }
   }
 
   // 6. Compute actor display name

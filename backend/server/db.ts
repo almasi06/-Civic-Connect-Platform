@@ -18,9 +18,10 @@ const useSsl = connectionString.includes("supabase.co") || process.env.PGSSL ===
 export const pool = new Pool({
   connectionString,
   max: 10,
-  idleTimeoutMillis: 30_000,
-  connectionTimeoutMillis: 5_000,
+  idleTimeoutMillis: 60_000,
+  connectionTimeoutMillis: 10_000,
   ssl: useSsl ? { rejectUnauthorized: false } : false,
+  keepAlive: true,
 });
 
 pool.on("error", (err) => {

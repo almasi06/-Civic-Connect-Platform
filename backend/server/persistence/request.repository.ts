@@ -288,6 +288,18 @@ export const requestRepository = {
         [id, to, actorName, extra?.note ?? null, extra?.photo ?? null],
       );
 
+            // When assigning, also populate request_workers so that
+      // isAssignedTo() returns true and the worker can accept / transition.
+      if (extra?.assignedTo) {
+        await client.query(
+          `INSERT INTO request_workers (request_id, user_id)
+           VALUES ($1, $2)
+           ON CONFLICT DO NOTHING`,
+          [id, extra.assignedTo],
+        );
+      }
+
+      
       await client.query("COMMIT");
       return this.findById(id);
     } catch (err) {
