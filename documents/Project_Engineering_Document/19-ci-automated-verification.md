@@ -1,8 +1,5 @@
 # CI & Automated Verification
 
-> **M3 Addition - PED v3.0**
-
-
 ## Purpose
 
 Describes the CI pipeline, what each job checks, which checks block merge, and where the evidence lives.
