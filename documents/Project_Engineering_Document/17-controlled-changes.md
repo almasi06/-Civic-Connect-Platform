@@ -96,10 +96,3 @@ Use **Supabase** as the managed PostgreSQL host. Full decision record: [ADR-TECH
 
 *(list minor details that were adjusted without needing a formal ADR add as they arise)*
 
----
-
-## Links
-
-- M2 baseline: [15-baseline.md](15-baseline.md)
-- M2 baseline conformance: [19-m2-baseline-conformance.md](19-m2-baseline-conformance.md)
-- ADRs: [../Architecture_Decision_Record/](../Architecture_Decision_Record/)
