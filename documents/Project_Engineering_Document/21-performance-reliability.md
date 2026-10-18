@@ -53,7 +53,7 @@ NFR-02 (median response time < 3s) is **NOT MET** under concurrent load in the c
 
 ## Reliability Observations
 
-During the 63-test functional suite (~3 minutes total run time):
+During the 64-test functional suite (~3 minutes total run time):
 - No observed crashes or timeouts under single-user load
 - Supabase pool (`max: 10`) was sufficient for sequential test execution
 - Rate limiting worked as designed (triggered under rapid test runs - documented as DEF-005)
