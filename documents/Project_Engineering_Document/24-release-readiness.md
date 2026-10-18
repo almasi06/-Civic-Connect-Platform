@@ -14,7 +14,7 @@ See `../Release/release-candidate.md`.
 
 **Reasoning:**
 
-The core functional scope is implemented and verified by **63/63 passing tests** covering critical user journeys (submit, assign, transition, resolve, authenticate) as of 2026-10-18. However, performance testing revealed that the free-tier Supabase host (Frankfurt) cannot handle 100 concurrent database writes within the 3-second NFR-02 threshold. The functional baseline is solid; operational readiness is partial.
+The core functional scope is implemented and verified by **66/66 passing tests** covering critical user journeys (submit, assign, transition, resolve, authenticate) as of 2026-10-18. However, performance testing revealed that the free-tier Supabase host (Frankfurt) cannot handle 100 concurrent database writes within the 3-second NFR-02 threshold. The functional baseline is solid; operational readiness is partial.
 
 ## Gate Summary
 
@@ -22,7 +22,7 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 |---|---|---|
 | Build passes (typecheck + build) | Done | CI workflow + manual `npm run build` |
 | Unit tests pass | Done | 31 tests pass |
-| Integration tests pass | Done | 29 tests pass |
+| Integration tests pass | Done | 30 tests pass |
 | E2E tests pass | Done | 2 tests pass |
 | Static analysis | Done | ESLint run; CodeQL pending CI |
 | Security checks | Done | npm audit clean; gitleaks passes |
