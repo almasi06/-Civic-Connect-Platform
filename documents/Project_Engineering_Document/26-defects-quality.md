@@ -20,7 +20,7 @@ Full details: `../Registers/defect-register.md`
 
 ## Defects Found During M3
 
-### DEF-005 — Rate limiter blocks integration tests
+### DEF-005 - Rate limiter blocks integration tests
 
 - **Found:** 2026-10-15
 - **Severity:** High
@@ -49,7 +49,7 @@ Full details: `../Registers/defect-register.md`
 - **Fix:** Removed duplicate block; cleaned up diagnostic logs
 - **Status:**  Fixed
 
-### DEF-008 — Supabase password authentication failure
+### DEF-008 - Supabase password authentication failure
 
 - **Found:** 2026-10-16
 - **Severity:** Medium (infrastructure, not code)
