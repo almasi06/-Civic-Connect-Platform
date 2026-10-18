@@ -6,7 +6,7 @@
 
 ## Context
 
-M1 left architecture unspecified. M2 requires a proportionate architecture that satisfies ASR-01 to ASR-08, respects M1 constraints (3-person team, 12–14 weeks, zero budget, web-only), and does not foreclose M2 future-scope items.
+M1 left architecture unspecified. M2 requires a proportionate architecture that satisfies ASR-01 to ASR-08, respects M1 constraints (3-person team, 12-14 weeks, zero budget, web-only), and does not foreclose M2 future-scope items.
 
 ## Decision
 
