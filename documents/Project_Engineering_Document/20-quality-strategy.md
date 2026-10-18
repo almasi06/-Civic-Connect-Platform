@@ -47,10 +47,11 @@ Quality effort is prioritised by risk. The three drivers:
 | Requirement | Priority | Risk | Test Coverage | Evidence |
 |---|---|---|---|---|
 | FR-01 (submit) | Must | High | 4 integration tests + E2E | `requests.test.ts`, `admin-resolve.test.ts` |
-| FR-02 (offline sync) | Must | Critical (RR-001) | Endpoint tested (2 tests); timing test deferred | `sync.test.ts` |
+| FR-02 (offline sync) | Must | Critical (RR-001) | Endpoint tested (2 tests); NFR-01 timing deferred | `sync.test.ts` |
 | FR-03 (map/reporting) | Should | Medium | 1 integration test | `requests.test.ts` |
 | FR-04 (RBAC + transitions) | Must | High | 6 integration tests + 6 unit tests | `transitions.test.ts`, `workflow.test.ts` |
 | FR-05 (notifications) | Should | High | 1 integration test (post-commit event) | `transitions.test.ts` |
+| FR-07 (field updates) | Could | Medium | 1 integration test | `transitions.test.ts` |
 | FR-06 (track by number) | Must | Medium | 1 integration test | `requests.test.ts` |
 | FR-11 (assign/accept) | Must | Medium | 2 integration tests | `transitions.test.ts` |
 | FR-12 (auth) | Must | High | 10 integration tests | `auth.test.ts` |
