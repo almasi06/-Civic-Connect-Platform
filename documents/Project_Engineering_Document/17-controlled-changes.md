@@ -1,4 +1,4 @@
-# 20 - Controlled Changes
+# Controlled Changes
 
 
 > **Status:** Living document
