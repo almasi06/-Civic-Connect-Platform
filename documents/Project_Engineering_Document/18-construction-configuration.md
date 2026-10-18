@@ -9,8 +9,8 @@ Repository strategy, configuration approach, and important implementation notes 
 - **Monorepo** - one repository for frontend + backend + docs
 - **Branching model:** GitHub Flow (protected `main` and `Documentation`)
 - **Review rule:** 2 approvals per substantive PR
-- **Merge strategy:** Squash and merge
-- **Full rules:** `CONTRIBUTING.md`
+- **Merge strategy:** push -> pull request -> merge
+- **Full Contribution:** `CONTRIBUTING.md`
 
 
 ## Directory Structure
