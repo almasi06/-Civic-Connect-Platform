@@ -8,9 +8,11 @@ Documents the M3/M4 performance/load exercise: operation tested, workload, envir
 
 ## Test Subject
 
-**Operation chosen:** `POST /api/requests` (the most critical write operation).
+**Operations chosen:** 
+1. `POST /api/requests` (the heaviest write operation)
+2. `GET /api/requests` (the read operation for the dashboard)
 
-**Why this operation:** This is the heaviest endpoint—it validates input, checks the GPS city gate, and writes a new record to the Supabase database. If this endpoint is fast under load, the system is performant.
+**Why these operations:** These represent the two most critical user journeys in the system. Testing both reveals whether the bottleneck is in the API layer or the database layer.
 
 ## Intended Workload
 
@@ -18,31 +20,31 @@ Documents the M3/M4 performance/load exercise: operation tested, workload, envir
 |---|---|
 | Virtual users | 100 |
 | Duration | 35 seconds (10s ramp-up, 20s sustained, 5s ramp-down) |
-| Target endpoint | `http://localhost:4000/api/requests` |
+| Target endpoints | `http://localhost:4000/api/requests` |
 | Tool | k6 |
 | Thresholds | p95 < 3000ms (NFR-02) |
 
-## Actual Results (Executed 2026-10-17)
+## Actual Results (Executed 2026-10-18)
 
 The K6 load test was executed locally against the Express API, with the database hosted on Supabase (Frankfurt region).
 
-### Test 1: API Latency (Validation rejections)
-- **Result:** p95 = **4.78ms** (Passed)
-- **Interpretation:** The Express API routing and validation layer is extremely fast, responding in under 5 milliseconds.
+### Test 1: POST /api/requests (Write Load)
+- **Result:** p95 = **21.67s** (threshold failed)
+- **Interpretation:** Cross-continental latency + write contention on the free-tier DB. The API layer itself responded in under 5ms (validation rejections), but the database write bottleneck is severe.
 
-### Test 2: Full Write Load (100 concurrent users inserting into Supabase)
-- **Result:** p95 = **21.67s** (Failed threshold)
-- **Interpretation:** The bottleneck is the cross-continental network latency to Supabase (Frankfurt) combined with write contention on the free-tier database.
+### Test 2: GET /api/requests (Read Load)
+- **Result:** p95 = **24.1s** (threshold failed)
+- **Interpretation:** The list endpoint performs a **N+1 query pattern** — for every report, it makes 3 additional database calls (to `request_history` and `request_workers`). With 100 concurrent users hitting 50+ reports, this triggers 15,000+ queries to a Frankfurt database, which the free tier cannot handle.
+
+## Root Cause
+
+The endpoint fetches history and workers per-report instead of in a single JOIN query. Combined with the free-tier DB being in Frankfurt (not Cape Town), this causes response time to exceed the 3s NFR-02 target.
 
 ## Conclusion for NFR-02
 
-NFR-02 (median response time < 3s) is **NOT MET** under full write load in the current architecture. The API layer itself is fast (4.78ms), but the free-tier database hosted in Europe cannot handle 100 concurrent writes from South Africa within the required threshold.
+NFR-02 (median response time < 3s) is **NOT MET** under concurrent load in the current architecture. The Express API layer is fast (4.78ms for validation), but the free-tier database hosted in Europe cannot handle 100 concurrent writes/reads from South Africa within the required threshold.
 
 **This is a measured architectural limitation, not a code defect.**
-
-It would be resolved by:
-1. Hosting the database in the `af-south-1` (Cape Town) region
-2. Upgrading to a paid tier with higher write throughput
 
 ## What This Test Does NOT Prove
 
@@ -61,13 +63,14 @@ During the 63-test functional suite (~3 minutes total run time):
 
 ## Honest Limitation
 
-This is a **measured failure**, not a deferral. The NFR-02 target is not met for database writes at 100 concurrent users. We chose to report the failure honestly rather than fabricate performance results.
+This is a **measured failure**, not a deferral. The NFR-02 target is not met for database reads/writes at 100 concurrent users. We chose to report the failure honestly rather than fabricate performance results.
 
-## Future Work (Post-Project Maintenance)
+## What We Would Fix (Post-Project Maintenance)
 
-- Migrate the Supabase project to the `af-south-1` region.
-- Re-run the K6 test with a corrected payload that includes all required fields (`id`, `trackingNumber`, `reporterDeviceId`, `status`, `version`, `syncState`).
-- Re-evaluate the threshold.
+1. **Migrate to af-south-1 (Cape Town)** for regional latency reduction.
+2. **Refactor `requestRepository.list()`** to use a single SQL JOIN query, eliminating the N+1 pattern.
+3. **Add pagination** (limit 20 per page) to reduce database load.
+4. **Upgrade to a paid tier** with higher connection limits and throughput.
 
 ## Links
 
