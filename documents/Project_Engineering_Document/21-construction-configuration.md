@@ -82,7 +82,7 @@ Repository strategy, configuration approach, and important implementation notes 
 | Secrets (DB URL, JWT secret) | Environment variables never committed |
 | Environment template | `.env.example` (placeholders only) |
 | Local dev | `backend/.env` (git-ignored) |
-| CI | GitHub Actions Secrets — injected into `backend/.env` at runtime |
+| CI | GitHub Actions Secrets injected into `backend/.env` at runtime |
 | Staging | Host-provided env vars |
 
 ## Backend
