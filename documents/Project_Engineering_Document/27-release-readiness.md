@@ -28,10 +28,10 @@ The core functional scope is implemented and verified by **63/63 passing tests**
 | E2E tests pass | Done | 2 tests pass |
 | Static analysis | Done | ESLint run; CodeQL pending CI |
 | Security checks | Done | npm audit clean; gitleaks passes |
-| Performance test executed |  | Executed but NFR-02 threshold failed for writes |
+| Performance test executed | Done | Executed but NFR-02 threshold failed for writes |
 | Defects triaged | Done | DEF-005 through DEF-008 logged |
 | Residual risks documented | Done | See `../Release/residual-risk-statement.md` |
-| Staging deployment |  | Simulated local staging only |
+| Staging deployment | Done | Simulated local staging only |
 
 ## Blockers
 
