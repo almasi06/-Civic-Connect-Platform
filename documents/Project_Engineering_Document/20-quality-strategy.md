@@ -68,5 +68,5 @@ Coverage percentage is **not** a target. What matters is that critical behaviour
 
 - Risk register: `12-risk-register.md`
 - ASRs: `06-asrs.md`
-- Black-box validation: `21-black-box-validation.md`
+- Black-box validation: `22-black-box-validation.md`
 - Defects: `23-defects-quality.md`
