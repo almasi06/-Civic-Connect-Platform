@@ -19,9 +19,9 @@ We use **GitHub Flow**:
 | `refactor/` | Code refactoring |
 | `test/` | Test additions or fixes |
 | `ci/` | CI/CD changes |
-| `m3/member1-*` | M3 work by Member 1 |
-| `m3/member2-*` | M3 work by Member 2 |
-| `m3/member3-*` | M3 work by Member 3 |
+| `m3/member1-*` | M4 work by Member 1 |
+| `m3/member2-*` | M4 work by Member 2 |
+| `m3/member3-*` | M4 work by Member 3 |
 
 Examples:
 - `feat/citizen-submit-request`
@@ -77,9 +77,9 @@ Every substantive change goes through a Pull Request. No direct pushes to `main`
 ### Review requirements
 
 - **2 approvals required** before merge
-- **Meaningful review** — comment on at least one technical point
-- **No rubber-stamping** — "LGTM" alone is not a valid review
-- **Address feedback** — reply to comments before re-requesting review
+- **Meaningful review** - comment on at least one technical point
+- **No rubber-stamping** - "LGTM" alone is not a valid review
+- **Address feedback** - reply to comments before re-requesting review
 
 ## Merge strategy
 
