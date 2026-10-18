@@ -1,8 +1,5 @@
 # Controlled Changes
 
-
-> **Status:** Living document
-
 ## Purpose
 
 This section records significant changes from the M2 baseline that emerged during M3 construction. Each change follows the pattern: **original decision -> implementation evidence/problem -> revised decision -> consequence**.
