@@ -1,6 +1,6 @@
 # 25 - Performance & Reliability
 
-> **M3 Addition - PED v3.0**
+> **M3/M4 Addition - PED v4.0**
 
 
 ## Purpose
@@ -90,13 +90,9 @@ During the 60-test functional suite (~10 minutes total run time):
 
 This is a **deferral, not a verification**. The NFR-02 target remains **unproven** until the test is executed against a running system. The prediction above is based on indirect evidence (integration test latency) and should not be treated as a substitute for measured results.
 
-## Future Work (M4)
+## Future Work (Post-Project Maintenance)
 
-- Install k6 in CI runner or use an equivalent tool
-- Execute the load test against staging
-- Extend workload to 50-100 concurrent users
-- Add a DB-read scenario
-- Record results in this section
+ The K6 script remains in the repository. Due to local Windows environment constraints, the K6 binary could not be installed. The test remains deferred. This is accepted as a known limitation for the final project submission.*
 
 ## Links
 
