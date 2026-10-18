@@ -53,7 +53,7 @@ Full details: `../Registers/defect-register.md` and `../Registers/Defect_Registe
 ## Quality Interpretation
 
 ### What the Evidence Proves
-- **Functional completeness:** The full request lifecycle works end-to-end (submit → assign → in_progress → resolve) — 63/63 tests pass.
+- **Functional completeness:** The full request lifecycle works end-to-end (submit -> assign -> in_progress -> resolve) - 63/63 tests pass.
 - **RBAC enforcement:** 401 for missing/invalid tokens; 403 for role mismatch; 400 for invalid transitions.
 - **Input validation:** Bad inputs are rejected with appropriate HTTP codes.
 - **Error handling:** Responses don't leak internal details (NFR-09).
