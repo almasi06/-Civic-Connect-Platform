@@ -5,7 +5,7 @@ on:
     branches: [main, master, Documentation]
     types: [opened, synchronize, reopened]
   push:
-    branches: [main, master, Documentation, "m3/**"]
+    branches: [main, master, Documentation, "m3/**", "SRC-UPDATE"]
   workflow_dispatch:
 
 permissions:
